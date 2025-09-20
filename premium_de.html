@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Premium Upgrade – [APP_NAME]</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {font-family: system-ui, sans-serif; margin:0; padding:0; background:#000; color:#fff;}
+    main {max-width:900px; margin:0 auto; padding:24px;}
+    h1 {font-size:28px; margin-bottom:24px;}
+    .plans {display:flex; flex-direction:column; gap:20px;}
+    .card {
+      border-radius:16px; padding:20px;
+      color:#fff; cursor:pointer;
+      transition: transform .2s;
+    }
+    .card:hover {transform: scale(1.02);}
+    .features {margin-top:12px; padding-left:0; list-style:none;}
+    .features li::before {content:"✔ "; color:#fff;}
+    .btn {display:inline-block; margin-top:16px; padding:10px 18px; border-radius:8px; background:#fff; color:#000; font-weight:600; text-decoration:none;}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Premium Upgrade</h1>
+    <p>Wähle dein Upgrade für <strong>[APP_NAME]</strong>:</p>
+
+    <div class="plans">
+      <!-- Kostenlos -->
+      <div class="card" style="background:#374151;">
+        <h2>Kostenlos</h2>
+        <p><strong>0 €</strong></p>
+        <p>Mit Werbung</p>
+        <ul class="features">
+          <li>Zugriff auf Basisfunktionen</li>
+          <li>Werbung enthalten</li>
+        </ul>
+        <a href="#" class="btn">Bereits aktiv</a>
+      </div>
+
+      <!-- Monatlich -->
+      <div class="card" style="background:#d97706;">
+        <h2>Premium Monatlich</h2>
+        <p><strong>1,99 € / Monat</strong></p>
+        <p>Keine Werbung</p>
+        <ul class="features">
+          <li>Werbefrei</li>
+          <li>Premium-Features</li>
+          <li>Schnellere Ladezeiten</li>
+        </ul>
+        <a href="#" class="btn">Jetzt freischalten</a>
+      </div>
+
+      <!-- Lebenslang -->
+      <div class="card" style="background:#6d28d9;">
+        <h2>Premium Lebenslang</h2>
+        <p><strong>80 € einmalig</strong></p>
+        <p>Nie wieder Werbung</p>
+        <ul class="features">
+          <li>Alle Premium-Vorteile</li>
+          <li>Für immer freigeschaltet</li>
+        </ul>
+        <a href="#" class="btn">Jetzt freischalten</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
