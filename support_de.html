@@ -2,47 +2,153 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>Kontakt & Support – [APP_NAME]</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt & Support – Aurevoir</title>
+  <meta name="description" content="Support für die App Aurevoir. Kontaktiere uns per E-Mail. Hinweise zur Datenverarbeitung und Antwortzeiten." />
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6;margin:0;padding:0;color:#111}
-    main{max-width:800px;margin:0 auto;padding:24px}
-    h1,h2{line-height:1.25}
-    a.button{
-      display:inline-block;
-      padding:12px 20px;
-      margin-top:16px;
-      background:#2563eb;
-      color:#fff;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:600;
+    :root{
+      --brand:#2196F3;         /* Blau wie in deiner App */
+      --brand-600:#1e88e5;
+      --text:#111;
+      --muted:#475569;
+      --bg:#fff;
+      --card:#f8fafc;
+      --border:#e5e7eb;
     }
-    a.button:hover{background:#1d4ed8}
+    @media (prefers-color-scheme: dark){
+      :root{
+        --text:#e5e7eb;
+        --muted:#94a3b8;
+        --bg:#0b0f14;
+        --card:#10161d;
+        --border:#1f2937;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      line-height:1.6; color:var(--text); background:var(--bg);
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:860px; margin:0 auto; padding:24px}
+    header, main, footer{margin-inline:auto}
+    header{padding:20px 0}
+    .brand{font-weight:800; letter-spacing:.2px}
+    .muted{color:var(--muted)}
+    h1{font-size:clamp(1.6rem,2.2vw,2.1rem); line-height:1.25; margin:0 0 .25rem}
+    h2{font-size:1.1rem; margin:1.75rem 0 .5rem}
+    p{margin:.5rem 0}
+    ul{margin:.25rem 0 .75rem 1.1rem}
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin:14px 0;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:12px 18px; border-radius:10px; font-weight:700; letter-spacing:.2px;
+      background:var(--brand); color:#fff; border:1px solid transparent;
+      box-shadow:0 1px 2px rgba(0,0,0,.05);
+    }
+    .btn:hover{background:var(--brand-600); text-decoration:none}
+    .btn:focus{outline:3px solid color-mix(in oklab, var(--brand) 45%, #fff)}
+    .row{display:grid; grid-template-columns:1fr; gap:14px}
+    @media (min-width:720px){ .row{grid-template-columns:1fr 1fr} }
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:var(--border); padding:.05rem .4rem; border-radius:6px}
+    .small{font-size:.95rem}
+    .legal{font-size:.92rem}
+    .address{white-space:pre-line}
+    .skip{position:absolute; left:-9999px}
+    .skip:focus{left:16px; top:12px; z-index:10; background:var(--brand); color:#fff; padding:.4rem .6rem; border-radius:8px}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Kontakt & Support</h1>
-    <p>
-      Wenn du Hilfe mit der App <strong>[APP_NAME]</strong> benötigst, kannst du uns jederzeit kontaktieren.
-    </p>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
 
-    <h2>E-Mail-Support</h2>
-    <p>
-      Klicke auf den Button, um direkt eine E-Mail an unser Support-Team zu senden:
-    </p>
-    <a class="button" href="mailto:support@deineapp.de?subject=Support%20Anfrage&body=Hallo%20Support-Team,%0D%0Aich%20brauche%20Hilfe%20bei%20...">Support kontaktieren</a>
+  <header class="container" role="banner" aria-label="Kopfbereich">
+    <div>
+      <div class="brand">Aurevoir</div>
+      <div class="muted small">Kontakt & Support</div>
+    </div>
+  </header>
 
-    <h2>Informationen</h2>
-    <p>
-      Bitte füge deiner Nachricht, wenn möglich, folgende Informationen hinzu:
-    </p>
-    <ul>
-      <li>Gerät (z. B. iPhone 13, Samsung Galaxy ...)</li>
-      <li>Betriebssystem-Version (z. B. iOS 18, Android 15)</li>
-      <li>App-Version: [VERSION]</li>
-    </ul>
+  <main id="main" class="container" role="main">
+    <h1>Wir helfen dir gerne</h1>
+    <p class="muted small">Antwortzeiten i. d. R. innerhalb von 24–48&nbsp;Stunden (werktags).</p>
+
+    <div class="row">
+      <!-- Kontakt -->
+      <section class="card" aria-label="Direkter Kontakt">
+        <h2>Direkter Kontakt</h2>
+        <p>Sende uns eine E-Mail. Bitte beschreibe das Problem möglichst genau.</p>
+        <p>
+          <a
+            class="btn"
+            href="mailto:keystone@aurevoir.de?subject=Support%20Anfrage%20zu%20Aurevoir&body=Hallo%20Support-Team,%0D%0A%0D%0AIch%20brauche%20Hilfe%20bei:%20%5FBeschreibung%20hier%5D%0D%0A%0D%0AGer%C3%A4t:%20%5BiPhone%2FAndroid%20Modell%5D%0D%0AOS-Version:%20%5BiOS%2FAndroid%20Version%5D%0D%0AApp-Version:%20__APP_VERSION__%0D%0A%0D%0AOptional:%20Screenshot%20oder%20Schritte%20zum%20Nachvollziehen:%0D%0A- %0D%0A- %0D%0A- %0D%0A"
+            aria-label="Support per E-Mail kontaktieren"
+          >
+            ✉️ Support kontaktieren
+          </a>
+        </p>
+        <p class="small muted">Support-Adresse: <strong>keystone@aurevoir.de</strong></p>
+      </section>
+
+      <!-- Nützliche Infos -->
+      <section class="card" aria-label="Nützliche Informationen">
+        <h2>Nützliche Informationen</h2>
+        <p>Damit wir schneller helfen können, füge bitte (falls möglich) diese Angaben bei:</p>
+        <ul>
+          <li>Gerät (z. B. <span class="kbd">iPhone 14</span>, <span class="kbd">Pixel 8</span>)</li>
+          <li>Systemversion (z. B. <span class="kbd">iOS 18</span>, <span class="kbd">Android 15</span>)</li>
+          <li>App-Version: <span class="kbd">__APP_VERSION__</span></li>
+          <li>Fehlermeldung, Screenshots, Schritte zum Nachstellen</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Rechtliches / Datenschutz -->
+    <section class="card legal" aria-label="Datenschutz & Rechtliches">
+      <h2>Datenschutz & Rechtliches</h2>
+      <p>
+        Deine Anfrage wird ausschließlich zur Bearbeitung deines Support-Anliegens verwendet.
+        E-Mails können zu Nachweis- und Qualitätszwecken für einen angemessenen Zeitraum gespeichert werden.
+        Weitere Details findest du in unserer
+        <a href="https://niti0225.github.io/todo_app_business/privacy_de.html" rel="noopener">Datenschutzerklärung</a>
+        und in den
+        <a href="https://niti0225.github.io/todo_app_business/terms_de.html" rel="noopener">Nutzungsbedingungen</a>.
+      </p>
+      <p class="muted small">
+        Durch das Versenden einer E-Mail stimmst du zu, dass wir die darin enthaltenen Daten zur Bearbeitung deiner Anfrage verarbeiten.
+      </p>
+    </section>
+
+    <!-- Anbieterangaben (Optional – Impressum/Kontaktblock) -->
+    <section class="card small" aria-label="Anbieterangaben">
+      <h2>Kontakt (Anbieter)</h2>
+      <p class="address">
+        Keystone<br/>
+        E-Mail: keystone@aurevoir.de
+      </p>
+    </section>
   </main>
+
+  <footer class="container" role="contentinfo" aria-label="Fußbereich">
+    <p class="muted small">
+      © <span id="y"></span> Aurevoir · Alle Rechte vorbehalten.
+      · <a href="https://niti0225.github.io/todo_app_business/support_de.html">Diese Seite</a>
+    </p>
+  </footer>
+
+  <script>
+    // Jahr & (optional) App-Version aus Query übernehmen: ?v=1.0.0
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const params = new URLSearchParams(location.search);
+    const v = params.get('v');
+    if (v){
+      document.body.innerHTML =
+        document.body.innerHTML.replaceAll('__APP_VERSION__', v);
+    }
+  </script>
 </body>
 </html>
