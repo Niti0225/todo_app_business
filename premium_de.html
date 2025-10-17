@@ -2,67 +2,148 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>Premium Upgrade – [APP_NAME]</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Premium Upgrade – Aurevoir</title>
+  <meta name="description" content="Informationen zu den Premium-Abos der App Aurevoir – Preise, Vorteile, Datenschutz und rechtliche Hinweise." />
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body {font-family: system-ui, sans-serif; margin:0; padding:0; background:#000; color:#fff;}
-    main {max-width:900px; margin:0 auto; padding:24px;}
-    h1 {font-size:28px; margin-bottom:24px;}
-    .plans {display:flex; flex-direction:column; gap:20px;}
-    .card {
-      border-radius:16px; padding:20px;
-      color:#fff; cursor:pointer;
-      transition: transform .2s;
+    :root {
+      --brand:#2196F3;
+      --brand-600:#1e88e5;
+      --text:#f9fafb;
+      --bg:#000;
+      --card:#111827;
+      --border:#1f2937;
+      --muted:#9ca3af;
+      --gold:#d97706;
+      --purple:#6d28d9;
+      --gray:#374151;
     }
-    .card:hover {transform: scale(1.02);}
-    .features {margin-top:12px; padding-left:0; list-style:none;}
-    .features li::before {content:"✔ "; color:#fff;}
-    .btn {display:inline-block; margin-top:16px; padding:10px 18px; border-radius:8px; background:#fff; color:#000; font-weight:600; text-decoration:none;}
+    *{box-sizing:border-box}
+    body {
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      line-height:1.6;
+    }
+    main {max-width:880px; margin:0 auto; padding:24px;}
+    h1 {font-size:clamp(1.6rem,2.6vw,2rem); margin-bottom:24px;}
+    p{margin:.5rem 0}
+    .plans{display:grid; gap:24px; margin:24px 0;}
+    @media (min-width:720px){.plans{grid-template-columns:repeat(3,1fr)}}
+    .card{
+      border-radius:16px; padding:20px;
+      transition:transform .25s ease, box-shadow .25s ease;
+      border:1px solid var(--border);
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:0 6px 16px rgba(0,0,0,.25);}
+    .features{margin-top:12px; padding-left:1.2rem;}
+    .features li{margin:.35rem 0;}
+    .features li::marker{content:"✔ "; color:var(--brand);}
+    .btn{
+      display:inline-block; margin-top:16px; padding:10px 18px;
+      border-radius:8px; background:var(--brand); color:#fff;
+      font-weight:600; text-decoration:none; border:1px solid transparent;
+    }
+    .btn:hover{background:var(--brand-600);}
+    .muted{color:var(--muted);}
+    .legal{margin-top:40px; font-size:.95rem; color:var(--muted); line-height:1.7;}
+    footer{border-top:1px solid var(--border); margin-top:40px; padding:16px 24px; font-size:.9rem; color:var(--muted);}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--border);padding:.1rem .4rem;border-radius:6px;}
   </style>
 </head>
 <body>
   <main>
     <h1>Premium Upgrade</h1>
-    <p>Wähle dein Upgrade für <strong>[APP_NAME]</strong>:</p>
+    <p>
+      Mit <strong>Aurevoir Premium</strong> erhältst du Zugang zu erweiterten Funktionen, werbefreiem Arbeiten
+      und zukünftigen Updates. Wähle das Modell, das zu dir passt.
+    </p>
 
     <div class="plans">
       <!-- Kostenlos -->
-      <div class="card" style="background:#374151;">
+      <div class="card" style="background:var(--gray);">
         <h2>Kostenlos</h2>
         <p><strong>0 €</strong></p>
-        <p>Mit Werbung</p>
+        <p class="muted">Mit Werbung</p>
         <ul class="features">
-          <li>Zugriff auf Basisfunktionen</li>
+          <li>Basisfunktionen (Aufgaben, Kalender, Erinnerungen)</li>
+          <li>Synchronisation (begrenzt)</li>
           <li>Werbung enthalten</li>
         </ul>
-        <a href="#" class="btn">Bereits aktiv</a>
+        <a href="#" class="btn" aria-disabled="true">Bereits aktiv</a>
       </div>
 
       <!-- Monatlich -->
-      <div class="card" style="background:#d97706;">
+      <div class="card" style="background:var(--gold); color:#fff;">
         <h2>Premium Monatlich</h2>
         <p><strong>1,99 € / Monat</strong></p>
-        <p>Keine Werbung</p>
+        <p class="muted">Inklusive MwSt. · Monatlich kündbar</p>
         <ul class="features">
-          <li>Werbefrei</li>
-          <li>Premium-Features</li>
-          <li>Schnellere Ladezeiten</li>
+          <li>Keine Werbung</li>
+          <li>Unbegrenzte Synchronisation</li>
+          <li>Premium-Design & Themes</li>
+          <li>Erweiterte Aufgabenanalyse</li>
         </ul>
         <a href="#" class="btn">Jetzt freischalten</a>
       </div>
 
       <!-- Lebenslang -->
-      <div class="card" style="background:#6d28d9;">
+      <div class="card" style="background:var(--purple); color:#fff;">
         <h2>Premium Lebenslang</h2>
-        <p><strong>80 € einmalig</strong></p>
-        <p>Nie wieder Werbung</p>
+        <p><strong>79,99 € einmalig</strong></p>
+        <p class="muted">Einmal zahlen – dauerhaft nutzen</p>
         <ul class="features">
           <li>Alle Premium-Vorteile</li>
-          <li>Für immer freigeschaltet</li>
+          <li>Lebenslanger Zugriff auf Updates</li>
+          <li>Werbefrei und ohne laufende Kosten</li>
         </ul>
         <a href="#" class="btn">Jetzt freischalten</a>
       </div>
     </div>
+
+    <section class="legal">
+      <h3>Rechtliche Hinweise zum Abonnement</h3>
+      <ul>
+        <li>Die Bezahlung erfolgt über den jeweiligen App-Store (Apple / Google).</li>
+        <li>Abos verlängern sich automatisch, sofern sie nicht mindestens 24 Stunden vor Ablauf gekündigt werden.</li>
+        <li>Nach Kauf kannst du dein Abo jederzeit in den Store-Einstellungen kündigen oder verwalten.</li>
+        <li>Alle Preise enthalten die gesetzliche Mehrwertsteuer.</li>
+        <li>Bei Fragen zu Abos, Rechnungen oder Datenschutz kontaktiere uns unter <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</li>
+      </ul>
+
+      <h3>Datenverarbeitung im Rahmen des Abos</h3>
+      <p>
+        Zur Verwaltung und Prüfung deines Abostatus nutzen wir den Dienst <strong>RevenueCat</strong>.
+        Dabei werden anonymisierte Transaktions-IDs sowie dein App-Store-Konto verarbeitet, um den
+        Premium-Zugang zu aktivieren. Es werden keine Zahlungsdaten (z. B. Kreditkarte) gespeichert.
+        Diese verbleiben beim jeweiligen App-Store-Anbieter (Apple oder Google).
+      </p>
+      <p>
+        Weitere Informationen findest du in unserer
+        <a href="https://niti0225.github.io/todo_app_business/privacy_de.html" target="_blank" rel="noopener">Datenschutzerklärung</a>
+        und unseren
+        <a href="https://niti0225.github.io/todo_app_business/terms_de.html" target="_blank" rel="noopener">Nutzungsbedingungen</a>.
+      </p>
+
+      <h3>Widerrufsrecht</h3>
+      <p>
+        Wenn du ein Abo abschließt, kannst du es innerhalb von 14 Tagen über den jeweiligen App-Store stornieren.
+        Der Widerruf muss direkt über Apple oder Google erfolgen.
+      </p>
+    </section>
   </main>
+
+  <footer>
+    <p>© <span id="y"></span> Keystone · Aurevoir · Version <span class="kbd">__APP_VERSION__</span></p>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const params = new URLSearchParams(location.search);
+    const v = params.get('v');
+    if (v){
+      document.body.innerHTML = document.body.innerHTML.replaceAll('__APP_VERSION__', v);
+    }
+  </script>
 </body>
 </html>
