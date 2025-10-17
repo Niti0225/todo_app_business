@@ -2,115 +2,212 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Privacy Policy – [APP_NAME]</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Privacy Policy for the [APP_NAME] app." />
+  <title>Privacy Policy – Aurevoir</title>
+  <meta name="description" content="Privacy Policy for the Aurevoir app." />
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6;margin:0;color:#111}
-    header,footer{background:#f6f7f9}
-    header,main,footer{max-width:900px;margin:0 auto;padding:24px}
-    h1,h2,h3{line-height:1.25}
-    nav a{margin-right:16px}
-    code,kbd{background:#f1f5f9;border-radius:4px;padding:0 4px}
-    small,footer{color:#4b5563}
+    :root{
+      --brand:#2196F3;
+      --brand-600:#1e88e5;
+      --text:#111827;
+      --muted:#475569;
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --border:#e5e7eb;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --text:#e5e7eb;
+        --muted:#97a6b4;
+        --bg:#0b0f14;
+        --card:#10161d;
+        --border:#1f2937;
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:var(--bg);
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header, main, footer{max-width:920px;margin:0 auto;padding:24px}
+    header{padding-top:28px}
+    h1{font-size:clamp(1.6rem,2.8vw,2.2rem);line-height:1.2;margin:.2rem 0}
+    h2{font-size:clamp(1.2rem,2.2vw,1.4rem);margin:1.6rem 0 .5rem}
+    h3{font-size:1.05rem;margin:1rem 0 .35rem}
+    p{margin:.5rem 0}
+    ul{margin:.35rem 0 .85rem 1.2rem}
+    .muted{color:var(--muted)}
+    .toc{display:flex;flex-wrap:wrap;gap:.6rem 1rem;font-size:.98rem;margin-top:.6rem}
+    .toc a{white-space:nowrap}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:14px 0}
+    code,.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--border);padding:.05rem .35rem;border-radius:6px}
+    .badge{display:inline-block;font-size:.85rem;padding:.12rem .5rem;border-radius:999px;background:color-mix(in oklab,var(--brand) 16%,transparent);border:1px solid color-mix(in oklab,var(--brand) 35%,var(--border));color:var(--brand)}
+    .small{font-size:.95rem}
+    .grid{display:grid;gap:12px}
+    @media (min-width:760px){.grid-2{grid-template-columns:1fr 1fr}}
+    footer{border-top:1px solid var(--border);margin-top:24px}
+    .skip{position:absolute;left:-9999px}
+    .skip:focus{left:16px;top:12px;z-index:10;background:var(--brand);color:#fff;padding:.4rem .6rem;border-radius:8px}
   </style>
 </head>
 <body>
-<header>
-  <h1>Privacy Policy</h1>
-  <p>Last updated: <strong>[LAST_UPDATED_YYYY-MM-DD]</strong></p>
-  <nav>
-    <a href="#controller">Controller</a>
-    <a href="#purposes">Purposes & Data</a>
-    <a href="#legal-bases">Legal Bases</a>
-    <a href="#storage">Storage</a>
-    <a href="#sharing">Sharing</a>
-    <a href="#rights">Your Rights</a>
-    <a href="#contact">Contact</a>
-    <a href="#changes">Changes</a>
-  </nav>
-</header>
+  <a class="skip" href="#main">Skip to content</a>
 
-<main>
-  <section id="controller">
-    <h2>1. Controller</h2>
-    <p>
-      The controller responsible for processing personal data in connection with the <strong>[APP_NAME]</strong> app is:<br/>
-      <strong>[COMPANY_OR_PUBLISHER]</strong><br/>
-      [STREET_AND_NUMBER]<br/>
-      [POSTCODE] [CITY], [COUNTRY]<br/>
-      Email: <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a>
-    </p>
-  </section>
+  <header role="banner" aria-label="Header">
+    <h1>Privacy Policy</h1>
+    <p class="muted">Last updated: <strong>__LAST_UPDATED__</strong> · App version: <span class="kbd">__APP_VERSION__</span></p>
+    <nav class="toc" aria-label="Table of contents">
+      <a href="#controller">1. Controller</a>
+      <a href="#data-purpose">2. Data & Purposes</a>
+      <a href="#legal-bases">3. Legal Bases</a>
+      <a href="#retention">4. Retention</a>
+      <a href="#recipients">5. Recipients</a>
+      <a href="#international">6. International Transfers</a>
+      <a href="#obligations">7. Data Provision</a>
+      <a href="#rights">8. Your Rights</a>
+      <a href="#children">9. Children</a>
+      <a href="#changes">10. Changes</a>
+      <a href="#contact">11. Contact</a>
+    </nav>
+  </header>
 
-  <section id="purposes">
-    <h2>2. Purposes of Processing & Categories of Data</h2>
-    <p>
-      The app helps you manage tasks. Depending on how you use it, your data is stored
-      <strong>locally on your device</strong> or – if you enable a sync/online feature – processed <strong>online</strong>.
-    </p>
-    <ul>
-      <li><strong>Usage data</strong> (e.g., in-app interactions, technical logs) for stability and debugging.</li>
-      <li><strong>Task content</strong> you enter (titles, notes, due dates).</li>
-      <li><strong>Device/metadata</strong> (e.g., OS version, app version) for support/diagnostics.</li>
-    </ul>
-    <p>
-      <em>Optional online sync:</em> If you use cloud or account features, task data is processed by <strong>[CLOUD_PROVIDER / BACKEND_SERVICE]</strong> (hosting region: [REGION/EU?]).
-    </p>
-  </section>
+  <main id="main" role="main">
+    <section id="controller" class="card">
+      <h2>1) Controller</h2>
+      <p>
+        The responsible party for processing personal data in connection with the app <strong>Aurevoir</strong> is:
+      </p>
+      <p>
+        <strong>Keystone</strong><br/>
+        Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
+      </p>
+    </section>
 
-  <section id="legal-bases">
-    <h2>3. Legal Bases (Art. 6(1) GDPR)</h2>
-    <ul>
-      <li><strong>b) Contract</strong> – to provide the features you use.</li>
-      <li><strong>f) Legitimate interests</strong> – app security, troubleshooting, abuse prevention.</li>
-      <li><strong>a) Consent</strong> – only for optional features (e.g., analytics/tracking) that you actively enable.
-        You may withdraw consent at any time with future effect (see “Your Rights”).</li>
-    </ul>
-  </section>
+    <section id="data-purpose" class="card">
+      <h2>2) Data Types & Purposes of Processing</h2>
+      <p>We only process the data necessary to provide the app’s functionality. There are no advertising trackers.</p>
 
-  <section id="storage">
-    <h2>4. Storage Period</h2>
-    <p>
-      Local data remains on your device until you delete it in the app (<em>Settings → Reset data</em>) or uninstall the app.
-      Online data is deleted when you delete your account or disable sync; backups/logs may be retained for security for a limited time
-      ([RETENTION_PERIOD], e.g., 30–90 days).
-    </p>
-  </section>
+      <div class="grid grid-2">
+        <div>
+          <h3>Data Types</h3>
+          <ul>
+            <li><strong>Account data</strong> (email, optional name) via Firebase Authentication.</li>
+            <li><strong>Content data</strong> (tasks, titles, notes, due dates) via Firestore/Storage.</li>
+            <li><strong>Technical metadata</strong> (device, OS version, app version) for support and stability.</li>
+            <li><strong>Purchase data</strong> (entitlements/status) via RevenueCat / App Store / Google Play.</li>
+            <li><strong>Notifications</strong> (local reminders stored on your device; no push tokens collected).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Purposes</h3>
+          <ul>
+            <li>Providing and maintaining app functionality (tasks, calendar, focus timer).</li>
+            <li>Synchronizing data across devices (cloud storage).</li>
+            <li>Processing in-app purchases and subscription status.</li>
+            <li>Ensuring app security and preventing abuse.</li>
+            <li>Handling support requests via email.</li>
+          </ul>
+        </div>
+      </div>
 
-  <section id="sharing">
-    <h2>5. Sharing with Third Parties</h2>
-    <p>
-      We do <strong>not</strong> disclose sensitive data to third parties. Processing by processors (e.g., hosting/cloud)
-      only occurs under data processing agreements compliant with Art. 28 GDPR. There is <strong>no</strong> disclosure for advertising
-      or data brokerage purposes.
-    </p>
-  </section>
+      <p class="small">
+        <span class="badge">Note</span> Local notifications are created and triggered entirely on your device. No remote push data is sent or stored externally.
+      </p>
+    </section>
 
-  <section id="rights">
-    <h2>6. Your Rights</h2>
-    <p>
-      You have the rights of access, rectification, erasure, restriction, portability, and objection (Art. 15–21 GDPR).
-      You may also withdraw any consent given at any time with future effect.
-    </p>
-    <p>
-      You have the right to lodge a complaint with a supervisory authority, e.g., in your EU/EEA Member State of residence.
-    </p>
-  </section>
+    <section id="legal-bases" class="card">
+      <h2>3) Legal Bases (Art. 6 para. 1 GDPR)</h2>
+      <ul>
+        <li><strong>b) Contract performance</strong> – to provide the app features you use.</li>
+        <li><strong>f) Legitimate interest</strong> – app security, stability, and debugging.</li>
+        <li><strong>a) Consent</strong> – if you explicitly enable optional features (e.g. diagnostics). You may withdraw consent at any time with future effect.</li>
+      </ul>
+    </section>
 
-  <section id="contact">
-    <h2>7. Contact</h2>
-    <p>For privacy questions, contact: <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a></p>
-  </section>
+    <section id="retention" class="card">
+      <h2>4) Data Retention</h2>
+      <ul>
+        <li><strong>Local data</strong> remains on your device until you delete it in the app or uninstall the app.</li>
+        <li><strong>Cloud data</strong> is stored with your account and deleted once you delete your account or request erasure. Backups/logs may be temporarily retained for security (typically 30–90 days).</li>
+        <li><strong>Support emails</strong> are retained only as long as necessary for issue resolution (typically 6–12 months) and then deleted or anonymized.</li>
+      </ul>
+    </section>
 
-  <section id="changes">
-    <h2>8. Changes to this Policy</h2>
-    <p>We may update this policy from time to time. The current version is available on this page.</p>
-  </section>
-</main>
+    <section id="recipients" class="card">
+      <h2>5) Recipients / Processors</h2>
+      <p>We do not sell any data. Data sharing occurs only to provide the app services:</p>
+      <ul>
+        <li><strong>Google Firebase</strong> (Auth, Firestore, Storage) – account management & data storage. <a href="https://firebase.google.com/support/privacy" rel="noopener">Privacy Info</a></li>
+        <li><strong>RevenueCat</strong> – subscription management, without access to payment details. <a href="https://www.revenuecat.com/privacy/" rel="noopener">Privacy Policy</a></li>
+        <li><strong>Apple App Store / Google Play</strong> – payment processing (payment data handled by the store). <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple</a> · <a href="https://policies.google.com/privacy" rel="noopener">Google</a></li>
+      </ul>
+      <p>All processors operate under data processing agreements pursuant to Art. 28 GDPR where applicable.</p>
+    </section>
 
-<footer>
-  <small>© [YEAR] [COMPANY_OR_PUBLISHER]. All rights reserved.</small>
-</footer>
+    <section id="international" class="card">
+      <h2>6) International Transfers</h2>
+      <p>Data may be transferred to third countries depending on the chosen service region. Appropriate safeguards are implemented (Art. 44 et seq. GDPR), such as EU Standard Contractual Clauses and additional protective measures.</p>
+    </section>
+
+    <section id="obligations" class="card">
+      <h2>7) Data Provision Obligations</h2>
+      <p>Without basic account or content data, core app features cannot be used. You are not required to provide any optional data that is not necessary for functionality.</p>
+    </section>
+
+    <section id="rights" class="card">
+      <h2>8) Your Rights</h2>
+      <p>You have the right to access, rectification, erasure, restriction, portability, and objection (Art. 15–21 GDPR). You may also withdraw consent at any time.</p>
+      <p>You have the right to lodge a complaint with a supervisory authority, particularly in your member state of residence.</p>
+      <div class="card">
+        <h3>Quick Access in the App</h3>
+        <ul>
+          <li><strong>Delete Account:</strong> In-app via <span class="kbd">Legal / Account</span>.</li>
+          <li><strong>Data Export or Access:</strong> Contact <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</li>
+          <li><strong>Withdraw Consent:</strong> Disable optional features in the app settings.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="children" class="card">
+      <h2>9) Children</h2>
+      <p>This app is not directed at children under 16 years of age. We do not knowingly collect or process data from anyone under 16.</p>
+    </section>
+
+    <section id="changes" class="card">
+      <h2>10) Changes to This Policy</h2>
+      <p>We may update this Privacy Policy to reflect changes in services, legal requirements, or internal processes. The latest version is always available on this page.</p>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>11) Contact</h2>
+      <p>If you have any privacy-related questions, please contact:</p>
+      <p>
+        <strong>Keystone</strong><br/>
+        Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
+      </p>
+    </section>
+  </main>
+
+  <footer role="contentinfo" aria-label="Footer">
+    <p class="muted small">© <span id="y"></span> Keystone · Aurevoir · All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Dynamic replacements: ?v=1.0.0 to inject version
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const params = new URLSearchParams(location.search);
+    const v = params.get('v');
+    if (v){
+      document.body.innerHTML = document.body.innerHTML.replaceAll('__APP_VERSION__', v);
+    }
+    // Replace last updated date at deployment
+    document.body.innerHTML = document.body.innerHTML.replaceAll('__LAST_UPDATED__', '2025-01-01');
+  </script>
 </body>
 </html>
