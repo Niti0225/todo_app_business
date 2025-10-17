@@ -2,112 +2,206 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>Datenschutzerklärung – [APP_NAME]</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Datenschutzerklärung für die App [APP_NAME]." />
+  <title>Datenschutzerklärung – Aurevoir</title>
+  <meta name="description" content="Datenschutzerklärung für die App Aurevoir." />
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6;margin:0;color:#111}
-    header,footer{background:#f6f7f9}
-    header,main,footer{max-width:900px;margin:0 auto;padding:24px}
-    h1,h2,h3{line-height:1.25}
-    nav a{margin-right:16px}
-    code,kbd{background:#f1f5f9;border-radius:4px;padding:0 4px}
-    small,footer{color:#4b5563}
+    :root{
+      --brand:#2196F3;
+      --brand-600:#1e88e5;
+      --text:#111827;
+      --muted:#475569;
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --border:#e5e7eb;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --text:#e5e7eb;
+        --muted:#97a6b4;
+        --bg:#0b0f14;
+        --card:#10161d;
+        --border:#1f2937;
+      }
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif; line-height:1.65; color:var(--text); background:var(--bg)}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header, main, footer{max-width:920px; margin:0 auto; padding:24px}
+    header{padding-top:28px}
+    h1{font-size:clamp(1.6rem,2.8vw,2.2rem); line-height:1.2; margin:.2rem 0}
+    h2{font-size:clamp(1.2rem,2.2vw,1.4rem); margin:1.6rem 0 .5rem}
+    h3{font-size:1.05rem; margin:1rem 0 .35rem}
+    p{margin:.5rem 0}
+    ul{margin:.35rem 0 .85rem 1.2rem}
+    .muted{color:var(--muted)}
+    .toc{display:flex; flex-wrap:wrap; gap:.6rem 1rem; font-size:.98rem; margin-top:.6rem}
+    .toc a{white-space:nowrap}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin:14px 0}
+    code,.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:var(--border); padding:.05rem .35rem; border-radius:6px}
+    .badge{display:inline-block; font-size:.85rem; padding:.12rem .5rem; border-radius:999px; background:color-mix(in oklab, var(--brand) 16%, transparent); border:1px solid color-mix(in oklab, var(--brand) 35%, var(--border)); color:var(--brand)}
+    .small{font-size:.95rem}
+    .grid{display:grid; gap:12px}
+    @media (min-width:760px){ .grid-2{grid-template-columns:1fr 1fr} }
+    footer{border-top:1px solid var(--border); margin-top:24px}
+    .skip{position:absolute; left:-9999px}
+    .skip:focus{left:16px; top:12px; z-index:10; background:var(--brand); color:#fff; padding:.4rem .6rem; border-radius:8px}
   </style>
 </head>
 <body>
-<header>
-  <h1>Datenschutzerklärung</h1>
-  <p>Zuletzt aktualisiert: <strong>[LAST_UPDATED_YYYY-MM-DD]</strong></p>
-  <nav>
-    <a href="#verantwortlicher">Verantwortlicher</a>
-    <a href="#zwecke">Zwecke & Datenkategorien</a>
-    <a href="#rechtsgrundlagen">Rechtsgrundlagen</a>
-    <a href="#speicherung">Speicherung</a>
-    <a href="#weitergabe">Weitergabe an Dritte</a>
-    <a href="#rechte">Ihre Rechte</a>
-    <a href="#kontakt">Kontakt</a>
-    <a href="#aenderungen">Änderungen</a>
-  </nav>
-</header>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
 
-<main>
-  <section id="verantwortlicher">
-    <h2>1. Verantwortlicher</h2>
-    <p>
-      Verantwortlich für die Verarbeitung personenbezogener Daten im Zusammenhang mit der App <strong>[APP_NAME]</strong> ist:<br/>
-      <strong>[COMPANY_OR_PUBLISHER]</strong><br/>
-      [STREET_AND_NUMBER]<br/>
-      [POSTCODE] [CITY], [COUNTRY]<br/>
-      E-Mail: <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a>
-    </p>
-  </section>
+  <header role="banner" aria-label="Kopfbereich">
+    <h1>Datenschutzerklärung</h1>
+    <p class="muted">Zuletzt aktualisiert: <strong>__LAST_UPDATED__</strong> · App-Version: <span class="kbd">__APP_VERSION__</span></p>
+    <nav class="toc" aria-label="Inhaltsverzeichnis">
+      <a href="#verantwortlicher">1. Verantwortlicher</a>
+      <a href="#arten-zwecke">2. Daten & Zwecke</a>
+      <a href="#rechtsgrundlagen">3. Rechtsgrundlagen</a>
+      <a href="#speicherdauer">4. Speicherdauer</a>
+      <a href="#weitergabe">5. Empfänger</a>
+      <a href="#international">6. Drittlandtransfer</a>
+      <a href="#pflichten">7. Pflichtangaben</a>
+      <a href="#rechte">8. Ihre Rechte</a>
+      <a href="#kinder">9. Kinder</a>
+      <a href="#aenderungen">10. Änderungen</a>
+      <a href="#kontakt">11. Kontakt</a>
+    </nav>
+  </header>
 
-  <section id="zwecke">
-    <h2>2. Zwecke der Verarbeitung & Datenkategorien</h2>
-    <p>
-      Die App dient der Verwaltung von Aufgaben. Ihre Daten werden je nach Nutzung
-      <strong>lokal auf Ihrem Gerät</strong> oder – falls Sie eine Synchronisations-/Online-Funktion aktivieren – <strong>online</strong> verarbeitet.
-    </p>
-    <ul>
-      <li><strong>Nutzungsdaten</strong> (z. B. App-Interaktionen, technische Protokolle) zur Stabilität und Fehleranalyse.</li>
-      <li><strong>Aufgabendaten/Inhalte</strong>, die Sie selbst eingeben (Titel, Notizen, Fälligkeitsdaten).</li>
-      <li><strong>Geräte-/Metadaten</strong> (z. B. Betriebssystemversion, App-Version) für Support/Diagnose.</li>
-    </ul>
-    <p>
-      <em>Optionale Online-Synchronisierung:</em> Wenn Sie eine Cloud- oder Account-Funktion nutzen, werden
-      Aufgabendaten bei <strong>[CLOUD_PROVIDER / BACKEND_SERVICE]</strong> verarbeitet (Hosting: [REGION/EU?]).
-    </p>
-  </section>
+  <main id="main" role="main">
+    <section id="verantwortlicher" class="card">
+      <h2>1) Verantwortlicher</h2>
+      <p>
+        Verantwortlich für die Verarbeitung personenbezogener Daten im Zusammenhang mit der App <strong>Aurevoir</strong> ist:
+      </p>
+      <p>
+        <strong>Keystone</strong><br/>
+        E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
+      </p>
+    </section>
 
-  <section id="rechtsgrundlagen">
-    <h2>3. Rechtsgrundlagen (Art. 6 Abs. 1 DSGVO)</h2>
-    <ul>
-      <li><strong>b) Vertrag</strong> – zur Bereitstellung der App-Funktionen, die Sie nutzen.</li>
-      <li><strong>f) Berechtigtes Interesse</strong> – App-Sicherheit, Fehlerbehebung, Missbrauchsvermeidung.</li>
-      <li><strong>a) Einwilligung</strong> – nur sofern Sie optionale Funktionen (z. B. Analytics/Tracking) aktiv einschalten.
-        Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen (siehe „Ihre Rechte“).</li>
-    </ul>
-  </section>
+    <section id="arten-zwecke" class="card">
+      <h2>2) Verarbeitete Datenarten & Zwecke</h2>
+      <p>Wir verarbeiten nur die Daten, die zur Bereitstellung der App erforderlich sind. Keine Werbetracker.</p>
 
-  <section id="speicherung">
-    <h2>4. Speicherdauer</h2>
-    <p>
-      Lokale Daten verbleiben auf Ihrem Gerät, bis Sie diese in der App löschen (<em>Einstellungen → Daten zurücksetzen</em>) oder die App deinstallieren.
-      Online gespeicherte Daten werden gelöscht, sobald Sie Ihr Konto löschen oder die Synchronisierung deaktivieren; Backups/Protokolle können
-      aus Sicherheitsgründen befristet vorgehalten werden ([RETENTION_PERIOD], z. B. 30–90 Tage).
-    </p>
-  </section>
+      <div class="grid grid-2">
+        <div>
+          <h3>Datenarten</h3>
+          <ul>
+            <li><strong>Accountdaten</strong> (E-Mail, ggf. Name) via Firebase Auth.</li>
+            <li><strong>Inhaltsdaten</strong> (Aufgaben, Titel, Notizen, Fälligkeiten) via Firestore/Storage.</li>
+            <li><strong>Technische Metadaten</strong> (Gerät, OS-Version, App-Version) für Support/Stabilität.</li>
+            <li><strong>Kaufdaten</strong> (Entitlement/Status) via RevenueCat / Store (Apple/Google).</li>
+            <li><strong>Benachrichtigungen</strong> (lokal geplant auf deinem Gerät; keine Push-IDs).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Zwecke</h3>
+          <ul>
+            <li>Bereitstellung der Kernfunktionen (Aufgabenverwaltung, Kalender, Fokus).</li>
+            <li>Synchronisation über Geräte hinweg (Cloud-Speicherung).</li>
+            <li>Kaufabwicklung & Abo-Status (z. B. Pro-Freischaltung).</li>
+            <li>Sicherheit, Fehleranalyse und Missbrauchsvermeidung.</li>
+            <li>Support-Bearbeitung bei Anfragen per E-Mail.</li>
+          </ul>
+        </div>
+      </div>
 
-  <section id="weitergabe">
-    <h2>5. Weitergabe an Dritte</h2>
-    <p>
-      Es werden <strong>keine sensiblen Daten</strong> an Dritte weitergegeben. Eine Übermittlung an Auftragsverarbeiter
-      (z. B. Hosting/Cloud) erfolgt nur auf Grundlage von Verträgen nach Art. 28 DSGVO. Es findet <strong>keine</strong> Weitergabe zu
-      Werbe- oder Datenhandelszwecken statt.
-    </p>
-  </section>
+      <p class="small">
+        <span class="badge">Hinweis</span> Lokale Benachrichtigungen werden ausschließlich offline auf deinem Gerät ausgelöst. Keine Übermittlung an Push-Dienste.
+      </p>
+    </section>
 
-  <section id="rechte">
-    <h2>6. Ihre Rechte</h2>
-    <p>Sie haben die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit sowie Widerspruch (Art. 15–21 DSGVO). 
-      Außerdem haben Sie das Recht, eine erteilte Einwilligung jederzeit zu widerrufen.</p>
-    <p>Sie haben zudem das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren, z. B. in Ihrem Mitgliedstaat des gewöhnlichen Aufenthalts.</p>
-  </section>
+    <section id="rechtsgrundlagen" class="card">
+      <h2>3) Rechtsgrundlagen (Art. 6 Abs. 1 DSGVO)</h2>
+      <ul>
+        <li><strong>b) Vertrag</strong> – zur Erfüllung der App-Funktionen, die du nutzt.</li>
+        <li><strong>f) Berechtigtes Interesse</strong> – App-Sicherheit, Stabilität, Fehlerbehebung.</li>
+        <li><strong>a) Einwilligung</strong> – wo du freiwillig Funktionen aktivierst (z. B. optionale Diagnosen). Einwilligungen kannst du jederzeit mit Wirkung für die Zukunft widerrufen.</li>
+      </ul>
+    </section>
 
-  <section id="kontakt">
-    <h2>7. Kontakt</h2>
-    <p>Bei Fragen zum Datenschutz: <a href="mailto:[SUPPORT_EMAIL]">[SUPPORT_EMAIL]</a></p>
-  </section>
+    <section id="speicherdauer" class="card">
+      <h2>4) Speicherdauer</h2>
+      <ul>
+        <li><strong>Lokale Daten</strong> verbleiben auf deinem Gerät, bis du sie in der App löschst oder die App deinstallierst.</li>
+        <li><strong>Cloud-Daten</strong> werden mit deinem Account verknüpft und bei Kontolöschung bzw. Löschauftrag entfernt. Sicherheits-Backups/Protokolle können aus legitimen Gründen befristet vorgehalten werden (typisch 30–90 Tage).</li>
+        <li><strong>Support-E-Mails</strong> werden nur so lange gespeichert, wie zur Bearbeitung erforderlich (typisch 6–12 Monate), danach gelöscht oder anonymisiert.</li>
+      </ul>
+    </section>
 
-  <section id="aenderungen">
-    <h2>8. Änderungen dieser Erklärung</h2>
-    <p>Wir können diese Erklärung bei Bedarf anpassen. Die jeweils aktuelle Fassung finden Sie auf dieser Seite.</p>
-  </section>
-</main>
+    <section id="weitergabe" class="card">
+      <h2>5) Empfänger / Auftragsverarbeiter</h2>
+      <p>Wir verkaufen keine Daten. Eine Weitergabe erfolgt ausschließlich zur Erbringung der App-Leistungen:</p>
+      <ul>
+        <li><strong>Google Firebase</strong> (Auth, Firestore, Storage) – Nutzerkonten & Datenspeicherung. <a href="https://firebase.google.com/support/privacy" rel="noopener">Datenschutz</a></li>
+        <li><strong>RevenueCat</strong> – Abo-Verwaltung (Entitlements), ohne Zugriff auf Zahlungsdaten. <a href="https://www.revenuecat.com/privacy/" rel="noopener">Datenschutz</a></li>
+        <li><strong>Apple App Store / Google Play</strong> – Zahlungsabwicklung (Zahlungsdaten verbleiben beim Store). <a href="https://www.apple.com/legal/privacy/de-ww/" rel="noopener">Apple</a> · <a href="https://policies.google.com/privacy?hl=de" rel="noopener">Google</a></li>
+      </ul>
+      <p>Es bestehen Auftragsverarbeitungsverträge nach Art. 28 DSGVO, soweit erforderlich.</p>
+    </section>
 
-<footer>
-  <small>© [YEAR] [COMPANY_OR_PUBLISHER]. Alle Rechte vorbehalten.</small>
-</footer>
+    <section id="international" class="card">
+      <h2>6) Drittlandtransfer</h2>
+      <p>Daten können (je nach gewählter Region der Dienste) in Drittländer übertragen werden. In diesen Fällen stellen wir geeignete Garantien sicher (Art. 44 ff. DSGVO), z. B. EU-Standardvertragsklauseln und zusätzliche Schutzmaßnahmen.</p>
+    </section>
+
+    <section id="pflichten" class="card">
+      <h2>7) Bereitstellungspflichten</h2>
+      <p>Ohne grundlegende Account-/Inhaltsdaten ist die Nutzung der Kernfunktionen nicht möglich. Du musst jedoch keine optionalen Angaben machen, die nicht für den Vertragszweck erforderlich sind.</p>
+    </section>
+
+    <section id="rechte" class="card">
+      <h2>8) Deine Rechte</h2>
+      <p>Du hast die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch (Art. 15–21 DSGVO). Einwilligungen kannst du jederzeit widerrufen.</p>
+      <p>Du hast außerdem das Recht, dich bei einer zuständigen Datenschutzaufsichtsbehörde zu beschweren, insbesondere in deinem Mitgliedstaat deines gewöhnlichen Aufenthalts.</p>
+      <div class="card">
+        <h3>Schnellzugriffe in der App</h3>
+        <ul>
+          <li><strong>Konto löschen:</strong> In-App unter <span class="kbd">Rechtliches / Konto</span>.</li>
+          <li><strong>Daten exportieren / Auskunft:</strong> per E-Mail an <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</li>
+          <li><strong>Einwilligungen widerrufen:</strong> optional aktivierte Funktionen in den App-Einstellungen deaktivieren.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="kinder" class="card">
+      <h2>9) Kinder</h2>
+      <p>Unsere App richtet sich nicht an Kinder unter 16 Jahren. Wir verarbeiten wissentlich keine Daten von Kindern unter 16 Jahren.</p>
+    </section>
+
+    <section id="aenderungen" class="card">
+      <h2>10) Änderungen dieser Erklärung</h2>
+      <p>Wir können diese Erklärung anpassen, wenn sich Dienste, Rechtslage oder Prozesse ändern. Die aktuelle Fassung findest du jederzeit auf dieser Seite.</p>
+    </section>
+
+    <section id="kontakt" class="card">
+      <h2>11) Kontakt</h2>
+      <p>Fragen zum Datenschutz? Kontaktiere uns:</p>
+      <p>
+        <strong>Keystone</strong><br/>
+        E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
+      </p>
+    </section>
+  </main>
+
+  <footer role="contentinfo" aria-label="Fußbereich">
+    <p class="muted small">© <span id="y"></span> Keystone · Aurevoir · Alle Rechte vorbehalten.</p>
+  </footer>
+
+  <script>
+    // Platzhalter dynamisch ersetzen: ?v=1.0.0 setzt Version
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const params = new URLSearchParams(location.search);
+    const v = params.get('v');
+    if (v){
+      document.body.innerHTML = document.body.innerHTML.replaceAll('__APP_VERSION__', v);
+    }
+    // Letztes Update kannst du beim Deploy ersetzen, z. B. per CI:
+    document.body.innerHTML = document.body.innerHTML.replaceAll('__LAST_UPDATED__', '2025-01-01');
+  </script>
 </body>
 </html>
