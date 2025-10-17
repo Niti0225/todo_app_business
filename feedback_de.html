@@ -2,47 +2,154 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>App-Feedback – [APP_NAME]</title>
+  <title>App-Feedback – Aurevoir</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Schicke uns dein Feedback zu Aurevoir – wir freuen uns über Ideen, Lob und Fehlerberichte." />
+  <meta name="color-scheme" content="light dark" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6;margin:0;padding:0;color:#111}
-    main{max-width:800px;margin:0 auto;padding:24px}
-    h1,h2{line-height:1.25}
-    a.button{
-      display:inline-block;
-      padding:12px 20px;
-      margin-top:16px;
-      background:#16a34a;
-      color:#fff;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:600;
+    :root{
+      --brand:#16a34a;         /* Grün */
+      --brand-600:#15803d;
+      --bg:#fff;
+      --text:#111827;
+      --muted:#6b7280;
+      --card:#f8fafc;
+      --border:#e5e7eb;
+      --link:#1d4ed8;
     }
-    a.button:hover{background:#15803d}
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0b0d;
+        --text:#f9fafb;
+        --muted:#9ca3af;
+        --card:#111317;
+        --border:#1f2937;
+        --link:#93c5fd;
+      }
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;line-height:1.6}
+    header,footer{background:var(--card);border-bottom:1px solid var(--border)}
+    main,header,footer{max-width:900px;margin:0 auto;padding:24px}
+    h1,h2{line-height:1.25;margin:.2rem 0}
+    p{margin:.4rem 0}
+    .muted{color:var(--muted)}
+    .card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:14px;padding:18px;margin:16px 0;
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:var(--brand);color:#fff;
+      padding:12px 18px;border-radius:10px;text-decoration:none;
+      font-weight:600;border:1px solid transparent;
+    }
+    .btn:hover{background:var(--brand-600)}
+    .btn:focus{outline:2px solid var(--link);outline-offset:2px}
+    ul{padding-left:1.2rem;margin:.4rem 0}
+    code.kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:var(--border);padding:.15rem .4rem;border-radius:6px;
+    }
+    .links a{color:var(--link);text-decoration:none}
+    .links a:hover{text-decoration:underline}
+    .grid{display:grid;gap:16px}
+    @media (min-width:680px){.grid{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
-  <main>
+  <header>
     <h1>App-Feedback</h1>
-    <p>
-      Dein Feedback hilft uns, die App <strong>[APP_NAME]</strong> stetig zu verbessern.
-    </p>
+    <p class="muted">Hilf uns, <strong>Aurevoir</strong> noch besser zu machen.</p>
+  </header>
 
-    <h2>Feedback per E-Mail</h2>
-    <p>
-      Klicke auf den Button, um uns direkt eine E-Mail mit deinem Feedback zu senden:
-    </p>
-    <a class="button" href="mailto:feedback@deineapp.de?subject=App%20Feedback&body=Mein%20Feedback:">Feedback senden</a>
+  <main>
+    <section class="card">
+      <h2>Schnell starten</h2>
+      <p>Der Button öffnet deine E-Mail-App mit einer Vorlage. Geräte- und App-Infos fügen wir automatisch hinzu.</p>
+      <p>
+        <a id="feedbackBtn" class="btn" href="#">
+          <span aria-hidden="true">✉️</span> Feedback senden
+        </a>
+      </p>
+      <p class="muted" style="margin-top:.6rem">
+        Falls sich keine E-Mail-App öffnet, sende uns eine Nachricht an
+        <a class="links" href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
+      </p>
+    </section>
 
-    <h2>Hinweise</h2>
-    <p>
-      Bitte teile uns mit:
-    </p>
-    <ul>
-      <li>Was dir an der App gefällt</li>
-      <li>Welche Funktionen verbessert werden könnten</li>
-      <li>Fehler oder Probleme, die dir aufgefallen sind</li>
-    </ul>
+    <section class="grid">
+      <div class="card">
+        <h2>Was hilft uns?</h2>
+        <ul>
+          <li>Was dir an der App gefällt</li>
+          <li>Ideen & Feature-Wünsche</li>
+          <li>Fehlerberichte mit kurzer Beschreibung</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Nützliche Infos</h2>
+        <ul>
+          <li>Gerät & OS (z. B. Pixel 7 · Android 15)</li>
+          <li>App-Version (<code class="kbd" id="v">–</code>)</li>
+          <li>Schritte, wie sich der Fehler reproduzieren lässt</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Datenschutz</h2>
+      <p class="muted">
+        Deine E-Mail wird ausschließlich zur Bearbeitung deiner Anfrage verwendet. Details findest du in unserer
+        <a class="links" href="https://niti0225.github.io/todo_app_business/privacy_de.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+      </p>
+    </section>
   </main>
+
+  <footer>
+    <div class="links">
+      <a href="https://niti0225.github.io/todo_app_business/privacy_de.html" target="_blank" rel="noopener">Datenschutz</a> ·
+      <a href="https://niti0225.github.io/todo_app_business/support_de.html" target="_blank" rel="noopener">Support</a>
+    </div>
+    <p class="muted">© <span id="y"></span> Keystone · Aurevoir · Version <code class="kbd" id="ver">1.0.0</code></p>
+  </footer>
+
+  <script>
+    // Jahr & Version (optional via ?v=1.2.3)
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const qp = new URLSearchParams(location.search);
+    const version = qp.get('v') || '1.0.0';
+    document.getElementById('ver').textContent = version;
+    document.getElementById('v').textContent = version;
+
+    // Geräte-/OS-Infos in Mail-Body einfügen
+    function getUAInfo(){
+      const ua = navigator.userAgent || '';
+      const platform = navigator.platform || '';
+      return `${platform} | ${ua}`.slice(0, 400); // begrenzen
+    }
+
+    function buildMailto(){
+      const to = 'keystone@aurevoir.de';
+      const subject = `App Feedback – Aurevoir v${version}`;
+      const template = [
+        'Hallo Aurevoir-Team,',
+        '',
+        'mein Feedback:',
+        '- Was mir gefällt:',
+        '- Was verbessert werden könnte:',
+        '- Fehler/Problem (Schritte zur Reproduktion):',
+        '',
+        '---',
+        `Gerät/OS: ${getUAInfo()}`,
+        `App-Version: ${version}`,
+      ].join('\n');
+
+      return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(template)}`;
+    }
+
+    const btn = document.getElementById('feedbackBtn');
+    btn.setAttribute('href', buildMailto());
+  </script>
 </body>
 </html>
