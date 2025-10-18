@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum</title>
+</head>
+<body>
+  <h1>Impressum</h1>
+  <p><strong>Firmenname:</strong> Aurevoir</p>
+  <p><strong>Geschäftsführer:</strong> Leonit Sadiku</p>
+  <p><strong>Kontakt:</strong> Keystone@Aurevoir.de</p>
+  <p><strong>Telefon:</strong>Keine</p>
+  <p><strong>Umsatzsteuer-ID:</strong> [USt-ID]</p>
+  <p><strong>Verantwortlich für den Inhalt:</strong> Aurevoir</p>
+
+  <h2>Haftungsausschluss</h2>
+  <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Dennoch übernehmen wir keine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte.</p>
+  
+  <h2>Datenschutzerklärung</h2>
+  <p>Hier geht es zur <a href="[URL ZUR DATENSCHUTZERKLÄRUNG]">Datenschutzerklärung</a>.</p>
+
+  <h2>Kontakt</h2>
+  <p>Bei Fragen wenden Sie sich bitte an unseren Support:Keystone@Aurevoir.de</p>
+</body>
+</html>
