@@ -3,402 +3,405 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurevoir · Info & Legal · Home</title>
-  <meta name="description" content="Offizielle Info-, Hilfe- und Rechteseiten für die Aurevoir Apps (DE/EN). Datenschutz, Nutzungsbedingungen, Support, Premium, Feedback." />
-  <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%2360a5fa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx='18' ry='18' width='100' height='100' fill='url(%23g)'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-size='64' fill='white'%3Eℹ%3C/text%3E%3C/svg%3E">
+  <title>Aurevoir · ToDo Business – Home</title>
+  <meta name="description" content="Offizielle Info-Seite zur ToDo Business App von Aurevoir: Abo-Modelle, Rechtliches, Support." />
+  <meta name="color-scheme" content="light dark" />
+
   <style>
     :root{
-      /* Brand – veredelter Blau-Verlauf */
-      --brand-1:#1e3a8a;  /* tiefes Indigo */
-      --brand-2:#2563eb;  /* Hauptblau */
-      --brand-3:#3b82f6;  /* helleres Blau */
-      --brand-4:#60a5fa;  /* Akzent hell */
+      /* Brand (wie bei deinen anderen Seiten) */
+      --brand-start:#9A4DFF;
+      --brand-end:#20D5F4;
 
-      /* UI */
-      --bg:#0b0e14;
-      --bg-alt:#0e1119;
-      --card:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      --line:rgba(255,255,255,.10);
-      --line-2:rgba(255,255,255,.08);
-      --text:#eaf2ff;
-      --muted:#9fb0c7;
+      /* Surfaces */
+      --bg:#0b0f14;
+      --text:#e7ebf0;
+      --muted:#9aa3ad;
+      --card:#11161d;
+      --card-2:#0e1319;
+      --border:#1f2937;
 
-      --radius:18px;
-      --r-sm:12px;
-
-      --shadow-lg:0 14px 44px rgba(0,0,0,.55);
-      --shadow-soft:0 12px 34px rgba(59,130,246,.22);
+      /* Buttons/Links */
+      --link:#9acbff;
+      --chip:#0d1b2a;
+      --ok:#22c55e;
+      --warn:#f59e0b;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
+      margin:0;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at -10% -10%, rgba(37,99,235,.16), transparent 60%),
-        radial-gradient(900px 520px at 110% -20%, rgba(96,165,250,.18), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg-alt) 55%, var(--bg));
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
+        radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--brand-end) 14%, transparent), transparent 60%),
+        radial-gradient(1200px 600px at -10% 0%, color-mix(in oklab, var(--brand-start) 18%, transparent), transparent 60%),
+        var(--bg);
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Inter,Helvetica,Arial,sans-serif;
+      line-height:1.6;
     }
 
-    /* bewegte Orbs – dezent */
-    .orbs::before,
-    .orbs::after{
-      content:"";
-      position:fixed;
-      inset:auto auto auto auto;
-      width:52vmax; height:52vmax;
-      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.16), transparent 50%),
-                 radial-gradient(circle at 70% 70%, rgba(96,165,250,.14), transparent 50%);
-      filter:blur(24px);
-      z-index:-1; pointer-events:none;
-      animation:float 18s ease-in-out infinite alternate;
-      transform:translate(-30%, -30%) rotate(0deg);
-    }
-    .orbs::after{
-      width:60vmax; height:60vmax;
-      background:radial-gradient(circle at 70% 30%, rgba(30,58,138,.18), transparent 55%),
-                 radial-gradient(circle at 20% 70%, rgba(37,99,235,.10), transparent 55%);
-      animation:float2 22s ease-in-out infinite alternate;
-      transform:translate(60%, -10%) rotate(0deg);
-    }
-    @keyframes float{to{transform:translate(-26%, -33%) rotate(8deg)}}
-    @keyframes float2{to{transform:translate(56%, -6%) rotate(-6deg)}}
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
 
-    a{color:inherit; text-decoration:underline dotted}
-    a:focus-visible,button:focus-visible{outline:2px solid var(--brand-4); outline-offset:2px; border-radius:10px}
+    .wrap{max-width:1080px; margin:0 auto; padding:24px}
 
-    .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
-
-    /* Hero */
-    .hero{
-      padding:44px 0 24px; border-bottom:1px solid var(--line-2);
-      background:
-        radial-gradient(1200px 460px at 0% -20%, rgba(37,99,235,.22), transparent 60%),
-        radial-gradient(1000px 520px at 110% -20%, rgba(96,165,250,.22), transparent 65%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-    }
+    /* Top */
+    header{padding-top:8px; padding-bottom:8px}
     .title{
-      margin:0; font-weight:900; letter-spacing:.3px;
-      font-size:clamp(28px,3.6vw,40px); line-height:1.08;
-      background:linear-gradient(90deg, var(--brand-2), var(--brand-3), var(--brand-4));
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height:1.1;
+      margin:.3rem 0;
+      font-weight:900;
+      letter-spacing:.2px;
+      background: linear-gradient(90deg, var(--brand-start), var(--brand-end));
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow:0 6px 28px rgba(37,99,235,.25);
+      text-shadow: 0 0 28px color-mix(in oklab, var(--brand-start) 14%, transparent);
     }
-    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:700; letter-spacing:.2px}
+    .meta{color:var(--muted); font-weight:700}
+    .meta .kbd{background:var(--border); padding:.05rem .45rem; border-radius:8px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 
-    .topline{
-      margin-top:16px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap
-    }
-    .langbar{display:flex; gap:8px}
+    /* Language switch + nav */
+    .row{display:flex; flex-wrap:wrap; gap:10px}
     .chip{
-      border:1px solid var(--line-2);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      padding:8px 12px; border-radius:999px; font-weight:900; letter-spacing:.2px; color:var(--text);
-      cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+      display:inline-flex; align-items:center; gap:.5rem;
+      height:40px; padding:0 14px; border-radius:999px;
+      background: linear-gradient(90deg, color-mix(in oklab, var(--brand-start) 30%, transparent), color-mix(in oklab, var(--brand-end) 30%, transparent));
+      border:1px solid color-mix(in oklab, var(--brand-end) 30%, var(--border));
+      font-weight:800; color:#fff;
+      box-shadow: 0 6px 24px color-mix(in oklab, var(--brand-end) 15%, transparent);
     }
-    .chip[aria-pressed="true"]{
-      background:linear-gradient(90deg, var(--brand-2), var(--brand-3));
-      border-color:rgba(255,255,255,.18); box-shadow:var(--shadow-soft); transform:translateY(-1px);
-      color:#fff;
+    .chip.alt{
+      background:var(--card);
+      border:1px solid var(--border);
+      color:var(--text);
+      box-shadow:none;
     }
-    .navlink{
-      border:1px solid var(--line-2);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      padding:8px 12px; border-radius:10px; font-weight:900; letter-spacing:.2px;
-      text-decoration:none; transition:transform .2s ease, border-color .2s ease;
+    .tabs{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:10px
     }
-    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.16)}
+    .tab{
+      display:inline-flex; align-items:center; gap:.6rem;
+      padding:10px 14px; border-radius:14px;
+      background:var(--card);
+      border:1px solid var(--border);
+      font-weight:800; color:var(--text);
+    }
+    .tab:hover{background:color-mix(in oklab, var(--card) 85%, #000)}
 
-    /* Store-Badge Row */
-    .stores{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px}
-    .store-badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px; border-radius:14px;
-      background:linear-gradient(180deg, rgba(0,0,0,.22), rgba(255,255,255,.06));
-      border:1px solid var(--line-2); text-decoration:none; color:#fff;
-      letter-spacing:.2px; font-weight:900; box-shadow:0 1px 2px rgba(0,0,0,.25);
-    }
-    .store-badge svg{width:22px; height:22px; display:block}
-    .store-badge[aria-disabled="true"]{opacity:.55; cursor:not-allowed}
-    .store-badge:hover{transform:translateY(-1px)}
-
-    main{padding:28px 0 56px}
-    .grid{display:grid; gap:16px}
-    @media (min-width:820px){ .grid-3{grid-template-columns:repeat(3, 1fr)} }
-    @media (min-width:700px){ .grid-2{grid-template-columns:1.1fr .9fr} }
+    /* Sections */
+    .grid{display:grid; gap:18px}
+    @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
 
     .card{
-      background:var(--card); border:1px solid var(--line-2); border-radius:var(--radius);
-      box-shadow:var(--shadow-lg); padding:18px; backdrop-filter:blur(10px);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
     }
-    h2{
-      margin:.2rem 0 .5rem; font-size:18px; font-weight:900;
-      background:linear-gradient(90deg, var(--brand-2), var(--brand-3), var(--brand-4));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+    .card h2{
+      font-size: clamp(1.2rem,2.2vw,1.4rem);
+      margin:.2rem 0 .6rem;
+      font-weight:900;
       letter-spacing:.2px;
+      background:linear-gradient(90deg, var(--brand-start), var(--brand-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
     }
-    p{margin:.5rem 0}
-    ul{margin:.35rem 0 .85rem 1.2rem}
-    .muted{color:var(--muted); font-weight:600}
-    .pill{
-      display:inline-flex; align-items:center; gap:.5rem;
-      background:linear-gradient(90deg, var(--brand-2), var(--brand-3));
-      color:#fff; border-radius:999px; padding:8px 12px; font-weight:900; letter-spacing:.2px;
-      border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow-soft); text-decoration:none;
-    }
-    .btn{
-      display:inline-flex; align-items:center; gap:.6rem;
-      border:1px solid var(--line-2);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      color:var(--text);
-      font-weight:900; letter-spacing:.2px; text-decoration:none;
-      padding:10px 14px; border-radius:12px; transition:transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.16)}
-
+    .muted{color:var(--muted)}
     .kbd{
       font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      background:rgba(255,255,255,.08); padding:.06rem .45rem; border-radius:8px;
-      border:1px solid var(--line-2)
+      background:var(--border); padding:.1rem .45rem; border-radius:8px
     }
 
-    footer{
-      border-top:1px solid var(--line-2); color:var(--muted);
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-      padding:22px; text-align:center; font-weight:600; letter-spacing:.2px;
+    /* Plans */
+    .plans{display:grid; gap:18px; margin-top:8px}
+    @media (min-width:960px){ .plans{grid-template-columns: repeat(3,1fr)} }
+    .plan{
+      border-radius:18px; padding:18px; border:1px solid var(--border);
+      background:var(--card-2);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .plan:hover{ transform: translateY(-3px); box-shadow:0 14px 34px rgba(0,0,0,.35) }
+    .price{font-size:1.4rem; font-weight:900}
+    .badge{display:inline-block; font-size:.85rem; padding:.15rem .6rem; border-radius:999px; background:color-mix(in oklab, var(--brand-end) 18%, transparent); border:1px solid color-mix(in oklab, var(--brand-end) 38%, var(--border)); color:#bfe7ff; font-weight:800}
+    .ok{color:var(--ok); font-weight:800}
+    .warn{color:var(--warn); font-weight:800}
+    ul{margin:.4rem 0 .8rem 1.2rem}
+    li{margin:.25rem 0}
+
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem;
+      padding:12px 16px; border-radius:12px;
+      background:linear-gradient(90deg, var(--brand-start), var(--brand-end));
+      border:1px solid color-mix(in oklab, var(--brand-end) 35%, var(--border));
+      color:#fff; font-weight:900; text-decoration:none;
+      box-shadow:0 8px 26px color-mix(in oklab, var(--brand-start) 18%, transparent);
+    }
+    .btn.secondary{
+      background:var(--card);
+      color:var(--text);
+      border:1px solid var(--border);
+      box-shadow:none;
     }
 
-    .hidden{display:none}
-    .skip{position:absolute; left:-9999px}
-    .skip:focus{left:16px; top:12px; z-index:10; background:var(--brand-3); color:#fff; padding:.4rem .6rem; border-radius:10px}
+    /* Footer */
+    footer{margin-top:28px; padding:18px; border-top:1px solid var(--border); color:var(--muted)}
+    .links{display:flex; gap:10px; flex-wrap:wrap}
+    .links a{color:var(--link)}
   </style>
 </head>
-<body class="orbs">
-  <a class="skip" href="#main">Zum Inhalt springen</a>
-
-  <!-- ==================== HERO ==================== -->
-  <header class="hero">
-    <div class="wrap">
-      <h1 class="title" id="site-title">Aurevoir · Info & Legal</h1>
-      <p class="subtitle" id="site-sub">Keystone · Version <code class="kbd" id="ver">1.0.0</code></p>
-
-      <div class="stores" aria-label="Store Badges">
-        <!-- App Store (disabled/preview) -->
-        <a class="store-badge" aria-disabled="true" href="#" title="Coming soon">
-          <!-- Apple SVG -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.53 12.27c.01 3.12 2.73 4.16 2.76 4.17c-.02.06-.43 1.5-1.43 2.97c-.86 1.26-1.76 2.53-3.17 2.56c-1.39.03-1.84-.83-3.43-.83c-1.58 0-2.08.8-3.39.85c-1.36.05-2.39-1.37-3.26-2.62c-1.78-2.58-3.14-7.29-1.31-10.48c.9-1.57 2.51-2.57 4.26-2.6c1.33-.03 2.59.9 3.43.9c.84 0 2.35-1.12 3.97-.95c.68.03 2.6.27 3.83 2.04c-.1.07-2.29 1.34-2.26 4.99M14.76 3.5c.73-.88 1.22-2.1 1.08-3.33c-1.05.04-2.31.7-3.07 1.58c-.67.78-1.25 2.05-1.09 3.25c1.16.09 2.34-.59 3.08-1.5"/></svg>
-          <span>App&nbsp;Store</span>
-        </a>
-        <!-- Google Play (disabled/preview) -->
-        <a class="store-badge" aria-disabled="true" href="#" title="Coming soon">
-          <!-- Play SVG -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 20.5V3.5c0-.66.54-1.2 1.2-1.2c.22 0 .43.06.61.18l10.1 6.3l3.22 2.01c.55.34.72 1.06.39 1.61c-.1.16-.23.3-.39.39l-3.22 2.01L4.81 21.02a1.2 1.2 0 0 1-1.61-.39a1.2 1.2 0 0 1-.2-.62Z"/></svg>
-          <span>Google&nbsp;Play</span>
-        </a>
-        <!-- Brand Badges -->
-        <span class="store-badge" aria-hidden="true" style="background:linear-gradient(90deg, var(--brand-2), var(--brand-3)); border-color:rgba(255,255,255,.18); box-shadow:var(--shadow-soft)">Aurevoir</span>
-        <span class="store-badge" aria-hidden="true">Keystone</span>
-      </div>
-
-      <div class="topline">
-        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
-          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
-          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
-        </div>
-        <nav>
-          <a class="navlink" href="#" id="lnk-privacy">Privacy / Datenschutz</a>
-          <a class="navlink" href="#" id="lnk-terms">Terms / Nutzungsbedingungen</a>
-          <a class="navlink" href="#" id="lnk-imprint">Imprint / Impressum</a>
-          <a class="navlink" href="#" id="lnk-support">Support</a>
-        </nav>
-      </div>
+<body>
+  <header class="wrap" role="banner" aria-label="Kopfbereich">
+    <h1 class="title" data-i18n="title">ToDo Business · Übersicht</h1>
+    <div class="meta">
+      Aurevoir · Keystone · <span data-i18n="version">Version</span> <span class="kbd" id="ver">1.0.0</span>
     </div>
+
+    <div class="row" style="margin-top:12px">
+      <button id="btnDe" class="chip" type="button" aria-pressed="true">Deutsch</button>
+      <button id="btnEn" class="chip alt" type="button" aria-pressed="false">English</button>
+    </div>
+
+    <nav class="tabs" aria-label="Navigation">
+      <a class="tab" href="./index.html"><span aria-hidden="true">🏠</span><span data-i18n="home">Start</span></a>
+      <a class="tab" href="./privacy_de.html" id="navPrivacy"><span aria-hidden="true">🔒</span><span data-i18n="privacy">Privatsphäre</span></a>
+      <a class="tab" href="./terms_de.html" id="navTerms"><span aria-hidden="true">📜</span><span data-i18n="terms">Nutzungsbedingungen</span></a>
+      <a class="tab" href="./imprint.html" id="navImprint"><span aria-hidden="true">🏷️</span><span data-i18n="imprint">Impressum</span></a>
+      <a class="tab" href="./support_de.html" id="navSupport"><span aria-hidden="true">💬</span><span data-i18n="support">Support</span></a>
+      <a class="tab" href="./feedback_de.html" id="navFeedback"><span aria-hidden="true">⭐</span><span data-i18n="feedback">Feedback</span></a>
+    </nav>
   </header>
 
-  <main id="main" class="wrap">
-    <!-- ==================== GERMAN ==================== -->
-    <section id="sec-de">
-      <div class="card" style="margin-bottom:16px">
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-          <div>
-            <h2>Willkommen</h2>
-            <p class="muted">Offizielle Informationen, Hilfe & rechtliche Dokumente für die Aurevoir-Apps.</p>
-          </div>
-          <a class="pill" id="cta-privacy-de" href="#"><span aria-hidden="true">🔒</span> Datenschutz öffnen</a>
-        </div>
-      </div>
-
-      <div class="grid grid-3">
-        <section class="card">
-          <h2>Rechtliches</h2>
-          <ul>
-            <li>📜 <a id="de-terms" href="#">Nutzungsbedingungen</a></li>
-            <li>🔒 <a id="de-privacy" href="#">Datenschutzerklärung</a></li>
-            <li>🏢 <a id="de-imprint" href="#">Impressum</a></li>
-          </ul>
-          <a class="btn" id="de-legal-all" href="#">Alle Dokumente</a>
-        </section>
-
-        <section class="card">
-          <h2>Support</h2>
-          <p>Brauchst du Hilfe? Unser Team antwortet i. d. R. innerhalb von 24–48&nbsp;Stunden (werktags).</p>
-          <a class="btn" id="de-support" href="#"><span aria-hidden="true">✉️</span> Support kontaktieren</a>
-          <p class="muted" style="margin-top:.6rem">Direkte Mail: <span class="kbd">keystone@aurevoir.de</span></p>
-        </section>
-
-        <section class="card">
-          <h2>Premium & Feedback</h2>
-          <p>Infos zu Abos, Preisen & Datenschutz rund um Premium.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <a class="btn" id="de-premium" href="#"><span aria-hidden="true">⭐</span> Premium</a>
-            <a class="btn" id="de-feedback" href="#"><span aria-hidden="true">💬</span> Feedback</a>
-          </div>
-        </section>
+  <main class="wrap" id="main" role="main">
+    <!-- Hero / Intro -->
+    <section class="card" style="margin-bottom:18px">
+      <h2 data-i18n="hero_h">Willkommen!</h2>
+      <p class="muted" data-i18n="hero_p">
+        Hier findest du Abo-Modelle, rechtliche Informationen, Links zu Datenschutz & Nutzungsbedingungen
+        sowie Kontaktmöglichkeiten zum Support.
+      </p>
+      <div class="row" style="margin-top:8px">
+        <a class="btn" id="ctaPremium" href="./premium_de.html" data-i18n="cta_premium">Upgrade auf Pro ansehen</a>
+        <a class="btn secondary" href="./support_de.html" data-i18n="cta_support">Support kontaktieren</a>
       </div>
     </section>
 
-    <!-- ==================== ENGLISH ==================== -->
-    <section id="sec-en" class="hidden">
-      <div class="card" style="margin-bottom:16px">
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-          <div>
-            <h2>Welcome</h2>
-            <p class="muted">Official information, help & legal documents for the Aurevoir apps.</p>
-          </div>
-          <a class="pill" id="cta-privacy-en" href="#"><span aria-hidden="true">🔒</span> Open Privacy</a>
+    <!-- Plans -->
+    <section class="card">
+      <h2 data-i18n="plans_h">Abo-Modelle</h2>
+      <div class="plans">
+        <!-- Free -->
+        <div class="plan">
+          <div class="badge" data-i18n="plan_free_badge">Kostenlos</div>
+          <p class="price" data-i18n="plan_free_price">0 € / immer</p>
+          <ul>
+            <li data-i18n="plan_free_f1">Aufgaben erstellen & verwalten</li>
+            <li data-i18n="plan_free_f2">Kalender nutzen</li>
+            <li><span class="warn">•</span> <span data-i18n="plan_free_f3">Werbung enthalten</span></li>
+          </ul>
+          <a class="btn secondary" href="#" aria-disabled="true" data-i18n="plan_btn_active">Bereits aktiv</a>
+        </div>
+
+        <!-- Pro Monthly -->
+        <div class="plan" style="background:linear-gradient(180deg, color-mix(in oklab, var(--brand-start) 10%, var(--card-2)), var(--card-2));">
+          <div class="badge" data-i18n="plan_pro_badge">Pro</div>
+          <p class="price" data-i18n="plan_pro_price">1,99 € / Monat</p>
+          <ul>
+            <li><span class="ok">•</span> <span data-i18n="plan_pro_f1">Keine Werbung</span></li>
+            <li><span class="ok">•</span> <span data-i18n="plan_pro_f2">Fokus-Timer & Smart-Scheduling</span></li>
+            <li><span class="ok">•</span> <span data-i18n="plan_pro_f3">Erweiterte Statistiken</span></li>
+            <li><span class="ok">•</span> <span data-i18n="plan_pro_f4">Premium-Support</span></li>
+          </ul>
+          <a class="btn" href="./premium_de.html" data-i18n="plan_btn_get">Jetzt freischalten</a>
+        </div>
+
+        <!-- Lifetime -->
+        <div class="plan" style="background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.005)), var(--card-2); border-image: linear-gradient(90deg, var(--brand-start), var(--brand-end)) 1; border:1px solid transparent;">
+          <div class="badge" data-i18n="plan_life_badge">Pro – Lebenslang</div>
+          <p class="price" data-i18n="plan_life_price">79,99 € einmalig</p>
+          <ul>
+            <li><span class="ok">•</span> <span data-i18n="plan_life_f1">Alle Pro-Vorteile</span></li>
+            <li><span class="ok">•</span> <span data-i18n="plan_life_f2">Zukünftige Updates inklusive</span></li>
+            <li><span class="ok">•</span> <span data-i18n="plan_life_f3">Keine laufenden Kosten</span></li>
+          </ul>
+          <a class="btn" href="./premium_de.html#lifetime" data-i18n="plan_btn_get">Jetzt freischalten</a>
         </div>
       </div>
+      <p class="muted" style="margin-top:6px" data-i18n="plans_note">
+        Die Abrechnung erfolgt über den App-Store (Apple/Google). Kündigung jederzeit im Store möglich.
+      </p>
+    </section>
 
-      <div class="grid grid-3">
-        <section class="card">
-          <h2>Legal</h2>
-          <ul>
-            <li>📜 <a id="en-terms" href="#">Terms of Use</a></li>
-            <li>🔒 <a id="en-privacy" href="#">Privacy Policy</a></li>
-            <li>🏢 <a id="en-imprint" href="#">Imprint</a></li>
-          </ul>
-          <a class="btn" id="en-legal-all" href="#">All documents</a>
-        </section>
-
-        <section class="card">
-          <h2>Support</h2>
-          <p>Need help? We typically respond within 24–48&nbsp;hours (business days).</p>
-          <a class="btn" id="en-support" href="#"><span aria-hidden="true">✉️</span> Contact Support</a>
-          <p class="muted" style="margin-top:.6rem">Direct mail: <span class="kbd">keystone@aurevoir.de</span></p>
-        </section>
-
-        <section class="card">
-          <h2>Premium & Feedback</h2>
-          <p>All about subscriptions, pricing & privacy around Premium.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <a class="btn" id="en-premium" href="#"><span aria-hidden="true">⭐</span> Premium</a>
-            <a class="btn" id="en-feedback" href="#"><span aria-hidden="true">💬</span> Feedback</a>
-          </div>
-        </section>
+    <!-- Quick links -->
+    <section class="grid" style="margin-top:18px">
+      <div class="card">
+        <h2 data-i18n="legal_h">Rechtliches</h2>
+        <p class="muted" data-i18n="legal_p">Transparente Infos zu Datenschutz, Bedingungen und Anbieter.</p>
+        <div class="row">
+          <a class="btn" id="btnPrivacy" href="./privacy_de.html">🔒 <span data-i18n="privacy">Privatsphäre</span></a>
+          <a class="btn secondary" id="btnTerms" href="./terms_de.html">📜 <span data-i18n="terms">Nutzungsbedingungen</span></a>
+          <a class="btn secondary" id="btnImprint" href="./imprint.html">🏷️ <span data-i18n="imprint">Impressum</span></a>
+        </div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="support_h">Support & Feedback</h2>
+        <p class="muted" data-i18n="support_p">Wir helfen schnell – und freuen uns über Ideen & Hinweise.</p>
+        <div class="row">
+          <a class="btn" id="btnSupport" href="./support_de.html">💬 <span data-i18n="support">Support</span></a>
+          <a class="btn secondary" id="btnFeedback" href="./feedback_de.html">⭐ <span data-i18n="feedback">Feedback</span></a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="links" style="margin-bottom:6px">
-      <a href="#" id="f-privacy">Privacy / Datenschutz</a> ·
-      <a href="#" id="f-terms">Terms / Nutzungsbedingungen</a> ·
-      <a href="#" id="f-imprint">Imprint / Impressum</a> ·
-      <a href="#" id="f-support">Support</a>
+  <footer class="wrap" role="contentinfo" aria-label="Fußbereich">
+    <div class="links">
+      <a id="fPrivacy" href="./privacy_de.html">Privacy</a> ·
+      <a id="fTerms" href="./terms_de.html">Terms</a> ·
+      <a id="fSupport" href="./support_de.html">Support</a>
     </div>
-    <p class="muted">© <span id="year"></span> Aurevoir · Keystone · v<span id="v2">1.0.0</span></p>
+    <p>© <span id="y"></span> Aurevoir · Keystone · <span data-i18n="version">Version</span> <span class="kbd" id="verF">1.0.0</span></p>
   </footer>
 
   <script>
-    (function(){
-      const qp = new URLSearchParams(location.search);
-      const version = qp.get('v') || '1.0.0';
-      document.getElementById('year').textContent = new Date().getFullYear();
-      document.getElementById('ver').textContent = version;
-      document.getElementById('v2').textContent = version;
+    // ---- Version & year ----
+    const qp = new URLSearchParams(location.search);
+    const version = qp.get('v') || '1.0.0';
+    document.getElementById('ver').textContent = version;
+    document.getElementById('verF').textContent = version;
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-      // ---- Build URL with lang & version ----
-      function withParams(href, lang){
-        const url = new URL(href, location.href);
-        if (lang) url.searchParams.set('lang', lang);
-        if (qp.get('v')) url.searchParams.set('v', version);
-        return url.toString();
+    // ---- Simple i18n ----
+    const t = {
+      de:{
+        title:'ToDo Business · Übersicht',
+        version:'Version',
+        home:'Start',
+        privacy:'Privatsphäre',
+        terms:'Nutzungsbedingungen',
+        imprint:'Impressum',
+        support:'Support',
+        feedback:'Feedback',
+        hero_h:'Willkommen!',
+        hero_p:'Hier findest du Abo-Modelle, rechtliche Informationen, Links zu Datenschutz & Nutzungsbedingungen sowie Kontaktmöglichkeiten zum Support.',
+        cta_premium:'Upgrade auf Pro ansehen',
+        cta_support:'Support kontaktieren',
+        plans_h:'Abo-Modelle',
+        plan_free_badge:'Kostenlos',
+        plan_free_price:'0 € / immer',
+        plan_free_f1:'Aufgaben erstellen & verwalten',
+        plan_free_f2:'Kalender nutzen',
+        plan_free_f3:'Werbung enthalten',
+        plan_btn_active:'Bereits aktiv',
+        plan_pro_badge:'Pro',
+        plan_pro_price:'1,99 € / Monat',
+        plan_pro_f1:'Keine Werbung',
+        plan_pro_f2:'Fokus-Timer & Smart-Scheduling',
+        plan_pro_f3:'Erweiterte Statistiken',
+        plan_pro_f4:'Premium-Support',
+        plan_life_badge:'Pro – Lebenslang',
+        plan_life_price:'79,99 € einmalig',
+        plan_life_f1:'Alle Pro-Vorteile',
+        plan_life_f2:'Zukünftige Updates inklusive',
+        plan_life_f3:'Keine laufenden Kosten',
+        plan_btn_get:'Jetzt freischalten',
+        plans_note:'Die Abrechnung erfolgt über den App-Store (Apple/Google). Kündigung jederzeit im Store möglich.',
+        legal_h:'Rechtliches',
+        legal_p:'Transparente Infos zu Datenschutz, Bedingungen und Anbieter.',
+        support_h:'Support & Feedback',
+        support_p:'Wir helfen schnell – und freuen uns über Ideen & Hinweise.',
+      },
+      en:{
+        title:'ToDo Business · Overview',
+        version:'Version',
+        home:'Home',
+        privacy:'Privacy',
+        terms:'Terms',
+        imprint:'Imprint',
+        support:'Support',
+        feedback:'Feedback',
+        hero_h:'Welcome!',
+        hero_p:'Find plans, legal information, links to Privacy & Terms, and how to contact support.',
+        cta_premium:'See Pro upgrade',
+        cta_support:'Contact support',
+        plans_h:'Plans',
+        plan_free_badge:'Free',
+        plan_free_price:'€0 / forever',
+        plan_free_f1:'Create & manage tasks',
+        plan_free_f2:'Use the calendar',
+        plan_free_f3:'Ads included',
+        plan_btn_active:'Already active',
+        plan_pro_badge:'Pro',
+        plan_pro_price:'€1.99 / month',
+        plan_pro_f1:'No ads',
+        plan_pro_f2:'Focus timer & smart scheduling',
+        plan_pro_f3:'Advanced stats',
+        plan_pro_f4:'Premium support',
+        plan_life_badge:'Pro – Lifetime',
+        plan_life_price:'€79.99 one-time',
+        plan_life_f1:'All Pro benefits',
+        plan_life_f2:'Future updates included',
+        plan_life_f3:'No recurring costs',
+        plan_btn_get:'Get Pro',
+        plans_note:'Billing via the app store (Apple/Google). Cancel anytime in store settings.',
+        legal_h:'Legal',
+        legal_p:'Transparent information about privacy, terms and provider.',
+        support_h:'Support & Feedback',
+        support_p:'We respond quickly and love your ideas & reports.',
       }
+    };
 
-      // ---- Language handling ----
-      const saved = localStorage.getItem('index_lang');
-      const qsLang = (qp.get('lang')||'').toLowerCase();
-      const browserIsDe = (navigator.language||'en').toLowerCase().startsWith('de');
-      let lang = (qsLang==='de'||qsLang==='en') ? qsLang
-               : (saved==='de'||saved==='en') ? saved
-               : (browserIsDe ? 'de' : 'en');
+    const i18nNodes = [...document.querySelectorAll('[data-i18n]')];
+    const btnDe = document.getElementById('btnDe');
+    const btnEn = document.getElementById('btnEn');
 
-      const btnDe = document.getElementById('btn-de');
-      const btnEn = document.getElementById('btn-en');
-      const secDe = document.getElementById('sec-de');
-      const secEn = document.getElementById('sec-en');
+    function setLang(lang){
+      const dict = t[lang];
+      i18nNodes.forEach(n=>{
+        const k = n.getAttribute('data-i18n');
+        if (dict[k]) n.textContent = dict[k];
+      });
 
-      function applyLang(l){
-        lang = l;
-        localStorage.setItem('index_lang', l);
-        document.documentElement.lang = (l==='de') ? 'de' : 'en';
-        btnDe.setAttribute('aria-pressed', l==='de' ? 'true':'false');
-        btnEn.setAttribute('aria-pressed', l==='en' ? 'true':'false');
-        if(l==='de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
-        else{ secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
+      // Switch button styles
+      const active = (el, on)=> {
+        el.classList.toggle('alt', !on);
+        el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      };
+      active(btnDe, lang==='de');
+      active(btnEn, lang==='en');
 
-        // Header nav + footer links
-        document.getElementById('lnk-privacy').href = withParams('privacy.html', l);
-        document.getElementById('lnk-terms').href   = withParams('terms.html', l);
-        document.getElementById('lnk-imprint').href = withParams('imprint.html', l);
-        document.getElementById('lnk-support').href = withParams('support.html', l);
+      // Update link targets for language
+      document.getElementById('navPrivacy').href = lang==='de' ? './privacy_de.html'  : './privacy_en.html';
+      document.getElementById('navTerms').href   = lang==='de' ? './terms_de.html'    : './terms_en.html';
+      document.getElementById('navSupport').href = lang==='de' ? './support_de.html'  : './support_en.html';
+      document.getElementById('navFeedback').href= lang==='de' ? './feedback_de.html' : './feedback_en.html';
+      document.getElementById('btnPrivacy').href = lang==='de' ? './privacy_de.html'  : './privacy_en.html';
+      document.getElementById('btnTerms').href   = lang==='de' ? './terms_de.html'    : './terms_en.html';
+      document.getElementById('btnImprint').href = './imprint.html'; // zweisprachig in einer Datei
+      document.getElementById('btnSupport').href = lang==='de' ? './support_de.html'  : './support_en.html';
+      document.getElementById('btnFeedback').href= lang==='de' ? './feedback_de.html' : './feedback_en.html';
+      document.getElementById('ctaPremium').href = lang==='de' ? './premium_de.html'  : './premium_en.html';
 
-        document.getElementById('f-privacy').href = withParams('privacy.html', l);
-        document.getElementById('f-terms').href   = withParams('terms.html', l);
-        document.getElementById('f-imprint').href = withParams('imprint.html', l);
-        document.getElementById('f-support').href = withParams('support.html', l);
+      // Footer
+      document.getElementById('fPrivacy').href   = lang==='de' ? './privacy_de.html'  : './privacy_en.html';
+      document.getElementById('fTerms').href     = lang==='de' ? './terms_de.html'    : './terms_en.html';
+      document.getElementById('fSupport').href   = lang==='de' ? './support_de.html'  : './support_en.html';
 
-        // German CTAs
-        document.getElementById('cta-privacy-de').href = withParams('privacy.html', 'de');
-        document.getElementById('de-terms').href       = withParams('terms.html', 'de');
-        document.getElementById('de-privacy').href     = withParams('privacy.html', 'de');
-        document.getElementById('de-imprint').href     = withParams('imprint.html', 'de');
-        document.getElementById('de-legal-all').href   = withParams('terms.html', 'de');
-        document.getElementById('de-support').href     = withParams('support.html', 'de');
-        document.getElementById('de-premium').href     = withParams('premium.html', 'de');
-        document.getElementById('de-feedback').href    = withParams('feedback.html', 'de');
+      // Document language
+      document.documentElement.lang = lang;
+      // Title
+      document.title = lang==='de' ? 'Aurevoir · ToDo Business – Home' : 'Aurevoir · ToDo Business – Home';
+      // Persist
+      localStorage.setItem('idx_lang', lang);
+    }
 
-        // English CTAs
-        document.getElementById('cta-privacy-en').href = withParams('privacy.html', 'en');
-        document.getElementById('en-terms').href       = withParams('terms.html', 'en');
-        document.getElementById('en-privacy').href     = withParams('privacy.html', 'en');
-        document.getElementById('en-imprint').href     = withParams('imprint.html', 'en');
-        document.getElementById('en-legal-all').href   = withParams('terms.html', 'en');
-        document.getElementById('en-support').href     = withParams('support.html', 'en');
-        document.getElementById('en-premium').href     = withParams('premium.html', 'en');
-        document.getElementById('en-feedback').href    = withParams('feedback.html', 'en');
+    // Default language from storage or browser
+    const initial = localStorage.getItem('idx_lang') || (navigator.language || '').startsWith('de') ? 'de' : 'en';
+    setLang(initial);
 
-        // keep lang in URL for sharing
-        const url = new URL(location.href);
-        url.searchParams.set('lang', l);
-        if(qp.get('v')) url.searchParams.set('v', version);
-        history.replaceState({}, '', url.toString());
-
-        // Hero-Subline per Sprache
-        document.getElementById('site-sub').innerHTML =
-          (l==='de')
-            ? `Keystone · Version <code class="kbd" id="ver">${version}</code>`
-            : `Keystone · Version <code class="kbd" id="ver">${version}</code>`;
-      }
-
-      btnDe.addEventListener('click', ()=>applyLang('de'));
-      btnEn.addEventListener('click', ()=>applyLang('en'));
-      applyLang(lang);
-    })();
+    btnDe.addEventListener('click', ()=> setLang('de'));
+    btnEn.addEventListener('click', ()=> setLang('en'));
   </script>
 </body>
 </html>
