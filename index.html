@@ -2,254 +2,336 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>[APP_NAME] – Offizielle Infos & Rechtliches</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurevoir · Info & Legal · Home</title>
+  <meta name="description" content="Offizielle Info-, Hilfe- und Rechteseiten für die Aurevoir Apps (DE/EN). Datenschutz, Nutzungsbedingungen, Support, Premium, Feedback." />
   <meta name="color-scheme" content="dark light" />
-  <meta name="description" content="[APP_NAME] – Info & Recht (Datenschutz, Nutzungsbedingungen, Support, Feedback, Premium) in DE & EN" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏠%3C/text%3E%3C/svg%3E">
   <style>
     :root{
-      --bg:#0E0E12; --bg-alt:#121218; --card:#181822;
-      --muted:#9AA0A6; --text:#EAEAF1; --line:rgba(255,255,255,.06);
-      --grad-start:#9A4DFF; --grad-end:#20D5F4;
-      --radius:18px; --radius-sm:12px;
-      --shadow-lg:0 10px 30px rgba(0,0,0,.45);
-      --shadow-soft:0 8px 24px rgba(32,213,244,.12);
+      /* Brand (blau behalten) */
+      --brand:#2563eb;
+      --brand-600:#1d4ed8;
+      --brand-300:#60a5fa;
+
+      /* UI */
+      --bg:#0E0F13;
+      --bg-alt:#10131a;
+      --card:rgba(255,255,255,.04);
+      --line:rgba(255,255,255,.08);
+      --text:#E9EEF5;
+      --muted:#9AA0A6;
+
+      --radius:18px;
+      --radius-sm:12px;
+      --shadow-lg:0 12px 32px rgba(0,0,0,.45);
+      --shadow-soft:0 10px 30px rgba(37,99,235,.18);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(154,77,255,.12), transparent 60%),
-        radial-gradient(1000px 600px at 110% 10%, rgba(32,213,244,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
       color:var(--text);
+      background:
+        radial-gradient(1200px 600px at -10% -10%, rgba(37,99,235,.18), transparent 60%),
+        radial-gradient(900px 500px at 120% -20%, rgba(96,165,250,.17), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
-    a{color:inherit; text-decoration:none}
-    a:focus-visible,button:focus-visible{outline:2px solid var(--grad-end); outline-offset:2px; border-radius:10px}
 
-    .wrap{max-width:1000px; margin:0 auto; padding:0 20px}
+    a{color:inherit; text-decoration:underline dotted}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--brand-300); outline-offset:2px; border-radius:10px}
 
-    /* Header/Hero */
+    .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
+
+    /* Hero */
     .hero{
-      padding:42px 0 20px; position:relative; border-bottom:1px solid var(--line);
+      padding:44px 0 24px; border-bottom:1px solid var(--line);
       background:
-        radial-gradient(1000px 400px at -10% -20%, rgba(154,77,255,.22), transparent 55%),
-        radial-gradient(900px 500px at 110% -30%, rgba(32,213,244,.20), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+        radial-gradient(900px 420px at 0% -20%, rgba(37,99,235,.22), transparent 55%),
+        radial-gradient(900px 520px at 110% -30%, rgba(96,165,250,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
     }
     .title{
       margin:0; font-weight:900; letter-spacing:.3px;
-      font-size:clamp(28px,3.6vw,40px); line-height:1.1;
-      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      font-size:clamp(28px,3.6vw,40px); line-height:1.08;
+      background:linear-gradient(90deg, var(--brand), var(--brand-300));
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow:0 4px 24px rgba(154,77,255,.15);
+      text-shadow:0 4px 22px rgba(37,99,235,.22);
     }
-    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:600; letter-spacing:.2px}
+    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:700; letter-spacing:.2px}
 
-    /* Language toggle */
-    .langbar{
-      margin-top:16px; display:flex; gap:8px; align-items:center; justify-content:flex-end;
+    .topline{
+      margin-top:16px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap
     }
+    .langbar{display:flex; gap:8px}
     .chip{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+      border:1px solid var(--line); background:rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:999px; font-weight:900; letter-spacing:.2px; color:var(--text);
       cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
     }
     .chip[aria-pressed="true"]{
-      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
-      border-color:rgba(255,255,255,.2); box-shadow:var(--shadow-soft); transform:translateY(-1px);
+      background:linear-gradient(90deg, var(--brand), var(--brand-300));
+      border-color:rgba(255,255,255,.18); box-shadow:var(--shadow-soft); transform:translateY(-1px);
+      color:#fff;
     }
+    .navlink{
+      border:1px solid var(--line); background:rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:10px; font-weight:900; letter-spacing:.2px;
+      text-decoration:none; transition:transform .2s ease, border-color .2s ease;
+    }
+    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.14)}
 
-    main{padding:28px 0 48px}
-    .grid{display:grid; gap:18px; grid-template-columns:1fr}
-    @media (min-width:780px){ .grid{grid-template-columns:1fr 1fr} }
+    /* Layout */
+    main{padding:28px 0 56px}
+    .grid{display:grid; gap:16px}
+    @media (min-width:820px){ .grid-3{grid-template-columns:repeat(3, 1fr)} }
+    @media (min-width:700px){ .grid-2{grid-template-columns:1.1fr .9fr} }
 
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border:1px solid var(--line); border-radius:var(--radius);
       box-shadow:var(--shadow-lg); padding:18px; backdrop-filter:blur(10px);
     }
-    .card h2{
-      margin:0 0 12px; font-size:16px; font-weight:900; letter-spacing:.2px;
-      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+    h2{
+      margin:.2rem 0 .5rem; font-size:18px; font-weight:900;
+      background:linear-gradient(90deg, var(--brand), var(--brand-300));
       -webkit-background-clip:text; background-clip:text; color:transparent;
+      letter-spacing:.2px;
     }
-    .list{display:grid; gap:12px}
-    .link{
-      display:flex; align-items:center; gap:12px; padding:12px 14px;
-      border-radius:var(--radius-sm); background:rgba(255,255,255,.02);
+    p{margin:.5rem 0}
+    ul{margin:.35rem 0 .85rem 1.2rem}
+    .muted{color:var(--muted); font-weight:600}
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:linear-gradient(90deg, var(--brand), var(--brand-300));
+      color:#fff; border-radius:999px; padding:8px 12px; font-weight:900; letter-spacing:.2px;
+      border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow-soft); text-decoration:none;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem;
       border:1px solid var(--line);
-      transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s, background .25s;
+      background:rgba(255,255,255,.04); color:var(--text);
+      font-weight:900; letter-spacing:.2px; text-decoration:none;
+      padding:10px 14px; border-radius:12px; transition:transform .2s ease, border-color .2s ease, background .2s ease;
     }
-    .link:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.12); box-shadow:var(--shadow-soft); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));}
-    .badge{
-      flex:0 0 38px; height:38px; border-radius:10px; display:grid; place-items:center; font-size:18px;
-      background:linear-gradient(135deg,var(--grad-start),var(--grad-end));
-      box-shadow:0 6px 16px rgba(154,77,255,.25), 0 6px 16px rgba(32,213,244,.18);
+    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.14); background:rgba(255,255,255,.06)}
+
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:rgba(255,255,255,.08); padding:.06rem .45rem; border-radius:8px;
+      border:1px solid var(--line)
     }
-    .label{font-weight:800; letter-spacing:.2px}
-    .desc{color:var(--muted); font-size:13px; font-weight:600}
 
     footer{
-      border-top:1px solid var(--line);
+      border-top:1px solid var(--line); color:var(--muted);
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+      padding:22px; text-align:center; font-weight:600; letter-spacing:.2px;
     }
-    .brandline{margin-top:6px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.02)}
-    .sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    /* Language sections hidden by class */
     .hidden{display:none}
+    .skip{position:absolute; left:-9999px}
+    .skip:focus{left:16px; top:12px; z-index:10; background:var(--brand); color:#fff; padding:.4rem .6rem; border-radius:10px}
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+
+  <!-- ==================== HERO ==================== -->
   <header class="hero">
     <div class="wrap">
-      <h1 class="title">[APP_NAME]</h1>
-      <p class="subtitle">Info • Datenschutz • Nutzungsbedingungen • Support • Feedback • Premium</p>
+      <h1 class="title" id="site-title">Aurevoir · Info & Legal</h1>
+      <p class="subtitle">Keystone · <span id="verline">Version <code class="kbd" id="ver">1.0.0</code></span></p>
 
-      <!-- Sprache wählen -->
-      <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
-        <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
-        <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+      <div class="topline">
+        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
+          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
+          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+        </div>
+        <nav>
+          <a class="navlink" href="#" id="lnk-privacy">Privacy / Datenschutz</a>
+          <a class="navlink" href="#" id="lnk-terms">Terms / Nutzungsbedingungen</a>
+          <a class="navlink" href="#" id="lnk-imprint">Imprint / Impressum</a>
+          <a class="navlink" href="#" id="lnk-support">Support</a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="grid">
-      <!-- Deutsch -->
-      <section id="section-de" class="card">
-        <h2>Deutsch</h2>
-        <div class="list">
-          <a class="link" href="privacy_de.html">
-            <span class="badge" aria-hidden="true">📄</span>
-            <div>
-              <div class="label">Datenschutzerklärung</div>
-              <div class="desc">Informationen zur Verarbeitung deiner Daten</div>
-            </div>
-          </a>
-          <a class="link" href="terms_de.html">
-            <span class="badge" aria-hidden="true">📜</span>
-            <div>
-              <div class="label">Nutzungsbedingungen</div>
-              <div class="desc">Regeln zur Nutzung der App</div>
-            </div>
-          </a>
-          <a class="link" href="support_de.html">
-            <span class="badge" aria-hidden="true">☎️</span>
-            <div>
-              <div class="label">Kontakt & Support</div>
-              <div class="desc">So erreichst du uns bei Fragen</div>
-            </div>
-          </a>
-          <a class="link" href="feedback_de.html">
-            <span class="badge" aria-hidden="true">💬</span>
-            <div>
-              <div class="label">App-Feedback</div>
-              <div class="desc">Verbesserungsvorschläge und Wünsche</div>
-            </div>
-          </a>
-          <a class="link" href="premium_de.html">
-            <span class="badge" aria-hidden="true">⭐️</span>
-            <div>
-              <div class="label">Premium Upgrade</div>
-              <div class="desc">Vorteile & Preise im Überblick</div>
-            </div>
-          </a>
+  <main id="main" class="wrap">
+    <!-- ==================== GERMAN ==================== -->
+    <section id="sec-de">
+      <div class="card" style="margin-bottom:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+          <div>
+            <h2>Willkommen</h2>
+            <p class="muted">Offizielle Informationen, Hilfe & rechtliche Dokumente für die Aurevoir-Apps.</p>
+          </div>
+          <a class="pill" id="cta-privacy-de" href="#"><span aria-hidden="true">🔒</span> Datenschutz öffnen</a>
         </div>
-      </section>
+      </div>
 
-      <!-- English -->
-      <section id="section-en" class="card hidden">
-        <h2>English</h2>
-        <div class="list">
-          <a class="link" href="privacy_en.html">
-            <span class="badge" aria-hidden="true">📄</span>
-            <div>
-              <div class="label">Privacy Policy</div>
-              <div class="desc">How we process your data</div>
-            </div>
-          </a>
-          <a class="link" href="terms_en.html">
-            <span class="badge" aria-hidden="true">📜</span>
-            <div>
-              <div class="label">Terms of Use</div>
-              <div class="desc">Rules for using the app</div>
-            </div>
-          </a>
-          <a class="link" href="support_en.html">
-            <span class="badge" aria-hidden="true">☎️</span>
-            <div>
-              <div class="label">Contact & Support</div>
-              <div class="desc">Get help or ask a question</div>
-            </div>
-          </a>
-          <a class="link" href="feedback_en.html">
-            <span class="badge" aria-hidden="true">💬</span>
-            <div>
-              <div class="label">App Feedback</div>
-              <div class="desc">Share ideas and improvements</div>
-            </div>
-          </a>
-          <a class="link" href="premium_en.html">
-            <span class="badge" aria-hidden="true">⭐️</span>
-            <div>
-              <div class="label">Premium Upgrade</div>
-              <div class="desc">Benefits & pricing at a glance</div>
-            </div>
-          </a>
+      <div class="grid grid-3">
+        <section class="card">
+          <h2>Rechtliches</h2>
+          <ul>
+            <li>📜 <a id="de-terms" href="#">Nutzungsbedingungen</a></li>
+            <li>🔒 <a id="de-privacy" href="#">Datenschutzerklärung</a></li>
+            <li>🏢 <a id="de-imprint" href="#">Impressum</a></li>
+          </ul>
+          <a class="btn" id="de-legal-all" href="#">Alle Dokumente</a>
+        </section>
+
+        <section class="card">
+          <h2>Support</h2>
+          <p>Brauchst du Hilfe? Unser Team antwortet i. d. R. innerhalb von 24–48&nbsp;Stunden (werktags).</p>
+          <a class="btn" id="de-support" href="#"><span aria-hidden="true">✉️</span> Support kontaktieren</a>
+          <p class="muted" style="margin-top:.6rem">Direkte Mail: <span class="kbd">keystone@aurevoir.de</span></p>
+        </section>
+
+        <section class="card">
+          <h2>Premium & Feedback</h2>
+          <p>Infos zu Abos, Preisen & Datenschutz rund um Premium.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn" id="de-premium" href="#"><span aria-hidden="true">⭐</span> Premium</a>
+            <a class="btn" id="de-feedback" href="#"><span aria-hidden="true">💬</span> Feedback</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ==================== ENGLISH ==================== -->
+    <section id="sec-en" class="hidden">
+      <div class="card" style="margin-bottom:16px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+          <div>
+            <h2>Welcome</h2>
+            <p class="muted">Official information, help & legal documents for the Aurevoir apps.</p>
+          </div>
+          <a class="pill" id="cta-privacy-en" href="#"><span aria-hidden="true">🔒</span> Open Privacy</a>
         </div>
-      </section>
-    </div>
+      </div>
+
+      <div class="grid grid-3">
+        <section class="card">
+          <h2>Legal</h2>
+          <ul>
+            <li>📜 <a id="en-terms" href="#">Terms of Use</a></li>
+            <li>🔒 <a id="en-privacy" href="#">Privacy Policy</a></li>
+            <li>🏢 <a id="en-imprint" href="#">Imprint</a></li>
+          </ul>
+          <a class="btn" id="en-legal-all" href="#">All documents</a>
+        </section>
+
+        <section class="card">
+          <h2>Support</h2>
+          <p>Need help? We typically respond within 24–48&nbsp;hours (business days).</p>
+          <a class="btn" id="en-support" href="#"><span aria-hidden="true">✉️</span> Contact Support</a>
+          <p class="muted" style="margin-top:.6rem">Direct mail: <span class="kbd">keystone@aurevoir.de</span></p>
+        </section>
+
+        <section class="card">
+          <h2>Premium & Feedback</h2>
+          <p>All about subscriptions, pricing & privacy around Premium.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn" id="en-premium" href="#"><span aria-hidden="true">⭐</span> Premium</a>
+            <a class="btn" id="en-feedback" href="#"><span aria-hidden="true">💬</span> Feedback</a>
+          </div>
+        </section>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <small>© [YEAR] [COMPANY_OR_PUBLISHER]. All rights reserved.</small>
-    <div class="brandline" aria-hidden="true">
-      <span>Powered by</span>
-      <span style="font-weight:900; background:linear-gradient(90deg,var(--grad-start),var(--grad-end)); -webkit-background-clip:text; background-clip:text; color:transparent;">[APP_NAME]</span>
+    <div class="links" style="margin-bottom:6px">
+      <a href="#" id="f-privacy">Privacy / Datenschutz</a> ·
+      <a href="#" id="f-terms">Terms / Nutzungsbedingungen</a> ·
+      <a href="#" id="f-imprint">Imprint / Impressum</a> ·
+      <a href="#" id="f-support">Support</a>
     </div>
+    <p class="muted">© <span id="year"></span> Aurevoir · Keystone · <span id="vline">v<span id="v2">1.0.0</span></span></p>
   </footer>
 
   <script>
     (function(){
-      const qs = new URLSearchParams(location.search);
-      const saved = localStorage.getItem('hg_lang');
-      const fromQS = (qs.get('lang') || '').toLowerCase();
-      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
-      let lang = (fromQS === 'de' || fromQS === 'en') ? fromQS
-                : (saved === 'de' || saved === 'en') ? saved
-                : (browserIsDe ? 'de' : 'en');
+      const qp = new URLSearchParams(location.search);
+      const version = qp.get('v') || '1.0.0';
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.getElementById('ver').textContent = version;
+      document.getElementById('v2').textContent = version;
+
+      // ---- Build URL with lang & version ----
+      function withParams(href, lang){
+        const url = new URL(href, location.href);
+        if (lang) url.searchParams.set('lang', lang);
+        if (qp.get('v')) url.searchParams.set('v', version);
+        return url.toString();
+      }
+
+      // ---- Language handling ----
+      const saved = localStorage.getItem('index_lang');
+      const qsLang = (qp.get('lang')||'').toLowerCase();
+      const browserIsDe = (navigator.language||'en').toLowerCase().startsWith('de');
+      let lang = (qsLang==='de'||qsLang==='en') ? qsLang
+               : (saved==='de'||saved==='en') ? saved
+               : (browserIsDe ? 'de' : 'en');
 
       const btnDe = document.getElementById('btn-de');
       const btnEn = document.getElementById('btn-en');
-      const secDe = document.getElementById('section-de');
-      const secEn = document.getElementById('section-en');
+      const secDe = document.getElementById('sec-de');
+      const secEn = document.getElementById('sec-en');
 
-      function apply(l){
+      function applyLang(l){
         lang = l;
-        localStorage.setItem('hg_lang', l);
-        document.documentElement.lang = l === 'de' ? 'de' : 'en';
-        btnDe.setAttribute('aria-pressed', l === 'de' ? 'true' : 'false');
-        btnEn.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
-        if(l === 'de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
-        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
-        // URL aktualisieren (ohne Reload)
+        localStorage.setItem('index_lang', l);
+        document.documentElement.lang = (l==='de') ? 'de' : 'en';
+        btnDe.setAttribute('aria-pressed', l==='de' ? 'true':'false');
+        btnEn.setAttribute('aria-pressed', l==='en' ? 'true':'false');
+        if(l==='de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
+        else{ secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
+
+        // Header nav + footer links
+        document.getElementById('lnk-privacy').href = withParams('privacy.html', l);
+        document.getElementById('lnk-terms').href   = withParams('terms.html', l);
+        document.getElementById('lnk-imprint').href = withParams('imprint.html', l);
+        document.getElementById('lnk-support').href = withParams('support.html', l);
+
+        document.getElementById('f-privacy').href = withParams('privacy.html', l);
+        document.getElementById('f-terms').href   = withParams('terms.html', l);
+        document.getElementById('f-imprint').href = withParams('imprint.html', l);
+        document.getElementById('f-support').href = withParams('support.html', l);
+
+        // German CTAs
+        document.getElementById('cta-privacy-de').href = withParams('privacy.html', 'de');
+        document.getElementById('de-terms').href       = withParams('terms.html', 'de');
+        document.getElementById('de-privacy').href     = withParams('privacy.html', 'de');
+        document.getElementById('de-imprint').href     = withParams('imprint.html', 'de');
+        document.getElementById('de-legal-all').href   = withParams('terms.html', 'de');
+        document.getElementById('de-support').href     = withParams('support.html', 'de');
+        document.getElementById('de-premium').href     = withParams('premium.html', 'de');
+        document.getElementById('de-feedback').href    = withParams('feedback.html', 'de');
+
+        // English CTAs
+        document.getElementById('cta-privacy-en').href = withParams('privacy.html', 'en');
+        document.getElementById('en-terms').href       = withParams('terms.html', 'en');
+        document.getElementById('en-privacy').href     = withParams('privacy.html', 'en');
+        document.getElementById('en-imprint').href     = withParams('imprint.html', 'en');
+        document.getElementById('en-legal-all').href   = withParams('terms.html', 'en');
+        document.getElementById('en-support').href     = withParams('support.html', 'en');
+        document.getElementById('en-premium').href     = withParams('premium.html', 'en');
+        document.getElementById('en-feedback').href    = withParams('feedback.html', 'en');
+
+        // keep lang in URL for sharing
         const url = new URL(location.href);
         url.searchParams.set('lang', l);
+        if(qp.get('v')) url.searchParams.set('v', version);
         history.replaceState({}, '', url.toString());
       }
 
-      btnDe.addEventListener('click', () => apply('de'));
-      btnEn.addEventListener('click', () => apply('en'));
-      apply(lang);
+      btnDe.addEventListener('click', ()=>applyLang('de'));
+      btnEn.addEventListener('click', ()=>applyLang('en'));
+      applyLang(lang);
     })();
   </script>
 </body>
