@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support · Kontakt – Aurevoir</title>
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Aurevoir App Support · Kontakt (DE/EN). Schnelle Hilfe, E-Mail-Vorlage, Datenschutz & rechtliche Hinweise." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉️</text></svg>">
+  <style>
+    :root{
+      --bg:#0E0E12; --bg-alt:#121218; --card:#181822;
+      --muted:#9AA0A6; --text:#EAEAF1; --line:rgba(255,255,255,.06);
+      --grad-start:#9A4DFF; --grad-end:#20D5F4;
+      --radius:18px; --radius-sm:12px;
+      --shadow-lg:0 10px 30px rgba(0,0,0,.45);
+      --shadow-soft:0 8px 24px rgba(32,213,244,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(154,77,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(32,213,244,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:underline dotted}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--grad-end); outline-offset:2px; border-radius:10px}
+    .wrap{max-width:980px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    .hero{
+      padding:42px 0 22px; position:relative; border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 400px at -10% -20%, rgba(154,77,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 110% -30%, rgba(32,213,244,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+    }
+    .title{
+      margin:0; font-weight:900; letter-spacing:.3px;
+      font-size:clamp(28px,3.6vw,40px); line-height:1.1;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 4px 24px rgba(154,77,255,.15);
+    }
+    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:700; letter-spacing:.2px}
+
+    .topline{margin-top:16px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .langbar{display:flex; gap:8px}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px; border-radius:999px; font-weight:900; letter-spacing:.2px;
+      cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .chip[aria-pressed="true"]{
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      border-color:rgba(255,255,255,.2); box-shadow:var(--shadow-soft); transform:translateY(-1px);
+    }
+    .navlink{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:10px; font-weight:900; letter-spacing:.2px;
+      transition:transform .2s ease, border-color .2s ease;
+      text-decoration:none;
+    }
+    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.12)}
+
+    main{padding:28px 0 48px}
+    .grid{display:grid; gap:16px}
+    @media (min-width:760px){ .grid-2{grid-template-columns:1.15fr .85fr} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); padding:18px; backdrop-filter:blur(10px);
+    }
+    h2{
+      margin:.2rem 0 .4rem; font-size:20px; font-weight:900; letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    h3{margin:.6rem 0 .35rem; font-size:1.05rem; font-weight:800}
+    p{margin:.48rem 0}
+    ul{margin:.35rem 0 .85rem 1.2rem}
+    .muted{color:var(--muted); font-weight:600}
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:rgba(255,255,255,.08); padding:.06rem .45rem; border-radius:8px;
+      border:1px solid var(--line)
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem;
+      border:1px solid var(--line);
+      background:linear-gradient(90deg, var(--grad-start), var(--grad-end));
+      color:#fff; font-weight:900; letter-spacing:.2px;
+      padding:12px 16px; border-radius:12px; text-decoration:none;
+      box-shadow:var(--shadow-soft); transition:transform .2s ease, filter .2s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .hidden{display:none}
+
+    footer{
+      border-top:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">Support · Kontakt</h1>
+      <p class="subtitle">Aurevoir · Keystone · <span id="verline">Version <code class="kbd" id="ver">1.0.0</code></span></p>
+
+      <div class="topline">
+        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
+          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
+          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+        </div>
+        <nav>
+          <a class="navlink" href="index.html">← Home</a>
+          <a class="navlink" href="privacy.html">Privacy / Datenschutz</a>
+          <a class="navlink" href="terms.html">Terms / Nutzungsbedingungen</a>
+          <a class="navlink" href="imprint.html">Imprint / Impressum</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ===================== Deutsch ===================== -->
+    <section id="sec-de">
+      <div class="grid grid-2">
+        <section class="card" aria-label="Direkter Kontakt">
+          <h2>Direkter Kontakt</h2>
+          <p class="muted">Antwort i. d. R. innerhalb von 24–48&nbsp;Stunden (werktags).</p>
+          <p>Nutze den Button – deine E-Mail-App öffnet sich mit einer Vorlage. Geräte-/Appinfos fügen wir automatisch hinzu.</p>
+          <p><a id="btn-mail-de" class="btn" href="#">✉️ Support kontaktieren</a></p>
+          <p class="muted">Support-Adresse: <strong>keystone@aurevoir.de</strong></p>
+        </section>
+
+        <section class="card" aria-label="Nützliche Informationen">
+          <h2>Nützliche Informationen</h2>
+          <p>Damit wir schneller helfen können, füge bitte (falls möglich) diese Angaben bei:</p>
+          <ul>
+            <li>Gerät (z. B. <span class="kbd">iPhone 14</span>, <span class="kbd">Pixel 8</span>)</li>
+            <li>Systemversion (z. B. <span class="kbd">iOS 18</span>, <span class="kbd">Android 15</span>)</li>
+            <li>App-Version: <span class="kbd" id="ver-de">1.0.0</span></li>
+            <li>Fehlermeldung, Screenshots, Schritte zum Nachstellen</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="card" aria-label="Datenschutz & Rechtliches">
+        <h2>Datenschutz & Rechtliches</h2>
+        <p>Deine Nachricht verwenden wir ausschließlich zur Bearbeitung deines Anliegens. E-Mails können zu Nachweis- und Qualitätszwecken für einen angemessenen Zeitraum gespeichert werden.</p>
+        <p class="muted">Details findest du in unserer <a href="privacy.html">Datenschutzerklärung</a> und in den <a href="terms.html">Nutzungsbedingungen</a>.</p>
+      </section>
+
+      <section class="card" aria-label="Anbieterangaben">
+        <h2>Kontakt (Anbieter)</h2>
+        <p><strong>Keystone (Aurevoir)</strong><br>
+           E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </section>
+    </section>
+
+    <!-- ===================== English ===================== -->
+    <section id="sec-en" class="hidden">
+      <div class="grid grid-2">
+        <section class="card" aria-label="Direct contact">
+          <h2>Direct Contact</h2>
+          <p class="muted">Typical response within 24–48&nbsp;hours (business days).</p>
+          <p>Use the button – your email app opens with a template. Device/app info will be added automatically.</p>
+          <p><a id="btn-mail-en" class="btn" href="#">✉️ Contact Support</a></p>
+          <p class="muted">Support address: <strong>keystone@aurevoir.de</strong></p>
+        </section>
+
+        <section class="card" aria-label="Helpful details">
+          <h2>Helpful Details</h2>
+          <p>To speed things up, please include (if possible):</p>
+          <ul>
+            <li>Device (e.g., <span class="kbd">iPhone 14</span>, <span class="kbd">Pixel 8</span>)</li>
+            <li>OS version (e.g., <span class="kbd">iOS 18</span>, <span class="kbd">Android 15</span>)</li>
+            <li>App version: <span class="kbd" id="ver-en">1.0.0</span></li>
+            <li>Error message, screenshots, reproduction steps</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="card" aria-label="Privacy & legal">
+        <h2>Privacy & Legal</h2>
+        <p>Your message will be used solely to process your request. Emails may be retained for a reasonable period for proof and quality purposes.</p>
+        <p class="muted">See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Use</a> for details.</p>
+      </section>
+
+      <section class="card" aria-label="Provider contact">
+        <h2>Provider Contact</h2>
+        <p><strong>Keystone (Aurevoir)</strong><br>
+           Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="index.html">Home</a> ·
+      <a href="privacy.html">Privacy / Datenschutz</a> ·
+      <a href="terms.html">Terms / Nutzungsbedingungen</a> ·
+      <a href="imprint.html">Imprint / Impressum</a>
+    </div>
+    <p class="muted">© <span id="year"></span> Aurevoir · Keystone</p>
+  </footer>
+
+  <script>
+    (function(){
+      // Year & version from URL (?v=1.2.3)
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const qp = new URLSearchParams(location.search);
+      const version = qp.get('v') || '1.0.0';
+      document.getElementById('ver').textContent = version;
+      document.getElementById('ver-de').textContent = version;
+      document.getElementById('ver-en').textContent = version;
+
+      // UA snippet (trim to keep mail length sane)
+      function uaInfo(){
+        const ua = navigator.userAgent || '';
+        const plt = navigator.platform || '';
+        const lang = navigator.language || '';
+        return `${plt} | ${lang} | ${ua}`.slice(0, 420);
+      }
+
+      // Build mailto body (DE/EN)
+      function buildMail(lang){
+        const to = 'keystone@aurevoir.de';
+        if(lang === 'de'){
+          const subject = `Support · Aurevoir v${version}`;
+          const lines = [
+            'Hallo Aurevoir-Team,',
+            '',
+            'ich benötige Hilfe bei:',
+            '- Kurzbeschreibung:',
+            '- Erwartetes Verhalten:',
+            '- Tatsächliches Verhalten:',
+            '',
+            'Schritte zum Nachstellen:',
+            '1) ',
+            '2) ',
+            '3) ',
+            '',
+            '—',
+            `Gerät/OS: ${uaInfo()}`,
+            `App-Version: ${version}`,
+          ].join('\n');
+          return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines)}`;
+        } else {
+          const subject = `Support · Aurevoir v${version}`;
+          const lines = [
+            'Hi Aurevoir team,',
+            '',
+            'I need help with:',
+            '- Short description:',
+            '- Expected behavior:',
+            '- Actual behavior:',
+            '',
+            'Steps to reproduce:',
+            '1) ',
+            '2) ',
+            '3) ',
+            '',
+            '—',
+            `Device/OS: ${uaInfo()}`,
+            `App version: ${version}`,
+          ].join('\n');
+          return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines)}`;
+        }
+      }
+
+      // Language handling (?lang=de|en + localStorage + browser fallback)
+      const saved = localStorage.getItem('support_lang');
+      const fromQS = (qp.get('lang') || '').toLowerCase();
+      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
+      let lang = (fromQS === 'de' || fromQS === 'en') ? fromQS
+                : (saved === 'de' || saved === 'en') ? saved
+                : (browserIsDe ? 'de' : 'en');
+
+      const btnDe = document.getElementById('btn-de');
+      const btnEn = document.getElementById('btn-en');
+      const secDe = document.getElementById('sec-de');
+      const secEn = document.getElementById('sec-en');
+
+      function applyLang(l){
+        lang = l;
+        localStorage.setItem('support_lang', l);
+        document.documentElement.lang = (l === 'de') ? 'de' : 'en';
+        btnDe.setAttribute('aria-pressed', l === 'de' ? 'true' : 'false');
+        btnEn.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+        if(l === 'de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
+        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
+
+        // set mailto links
+        document.getElementById('btn-mail-de').setAttribute('href', buildMail('de'));
+        document.getElementById('btn-mail-en').setAttribute('href', buildMail('en'));
+
+        // keep lang in URL (nice for sharing)
+        const url = new URL(location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState({}, '', url.toString());
+      }
+
+      btnDe.addEventListener('click', ()=>applyLang('de'));
+      btnEn.addEventListener('click', ()=>applyLang('en'));
+      applyLang(lang);
+    })();
+  </script>
+</body>
+</html>
