@@ -14,19 +14,19 @@
       --accent:#7c3aed;     /* Lila Schimmer */
       --ok:#22c55e;
 
-      /* Dark-UI */
-      --bg:#0b0f14;
-      --bg-soft:#0d1117;
-      --card:#111827;
-      --card-2:#0f172a;
+      /* Dark-UI (bewusst sehr dunkel/schwarz) */
+      --bg:#000000;         /* tief schwarz */
+      --bg-soft:#07090d;
+      --card:#0e1218;
+      --card-2:#0b1119;
       --text:#e5e7eb;
       --muted:#9aa3af;
-      --border:#1f2937;
+      --border:#141a22;
       --chip:#0b1320;
       --chip-border:#1e293b;
 
       --radius:16px;
-      --blur:40px;          /* Weichzeichner für Glow */
+      --blur:44px;          /* Weichzeichner für Glow */
       --emoji-alpha:.10;    /* Sichtbarkeit der Emojis */
     }
     @media (prefers-color-scheme: light){
@@ -59,8 +59,8 @@
       position:relative;
       isolation:isolate;
       background:
-        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 15%, transparent) 0%, transparent 60%),
-        radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 18%, transparent) 0%, transparent 60%),
+        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
+        radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
       border-bottom:1px solid var(--border);
       overflow:hidden;
@@ -69,7 +69,7 @@
     /* ✨ Nebel-Glow-Layer */
     .glow{
       position:absolute; inset:0; pointer-events:none; z-index:0;
-      filter:blur(var(--blur)) saturate(120%);
+      filter:blur(var(--blur)) saturate(115%);
       opacity:.9;
     }
     .glow::before,
@@ -77,15 +77,15 @@
       content:"";
       position:absolute;
       width:55vmax; height:55vmax; border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 35%, transparent), transparent 60%);
+      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
     }
     .glow::before{ top:-35vmax; left:-20vmax }
     .glow::after{
       top:-30vmax; right:-25vmax;
-      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 40%, transparent), transparent 60%);
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
     }
 
-    /* 🌥️ Emoji-Fog */
+    /* 🌥️ Emoji-Fog – dezent, fix positioniert */
     .emoji-cloud{
       position:absolute; inset:0; pointer-events:none; z-index:1;
       filter:blur(1px);
@@ -96,7 +96,6 @@
       transform:translate(-50%,-50%);
       user-select:none;
     }
-    /* feste Positionen, damit's ruhig bleibt */
     .e1{ left:10%; top:28% }   /* ✅ */
     .e2{ left:24%; top:12% }   /* 📅 */
     .e3{ left:42%; top:22% }   /* ⏱️ */
@@ -150,7 +149,7 @@
       border:1px solid var(--border);
       border-radius:var(--radius);
       padding:18px;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
       position:relative; z-index:0;
     }
     h2{font-size:clamp(1.2rem,2.2vw,1.5rem); margin:.2rem 0 .65rem}
@@ -171,7 +170,7 @@
 
     /* Plans */
     .plans{display:grid; gap:16px; margin-top:10px}
-    @media (min-width:900px){ .plans{grid-template-columns:repeat(2,1fr)} } /* nur 2 Karten */
+    @media (min-width:900px){ .plans{grid-template-columns:repeat(2,1fr)} } /* 2 Karten (Free + Pro) */
     .plan{
       background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; position:relative;
       transition:transform .2s ease;
@@ -228,7 +227,7 @@
         <a href="#" class="pill" id="pill-en">English</a>
       </div>
 
-      <!-- Tabs -->
+      <!-- Tabs (unten auf der Seite alles bleibt erhalten) -->
       <nav class="tabs" aria-label="Quick links">
         <a class="tab" id="tab-home" href="#"><span data-i18n="tabHome">← Home</span></a>
         <a class="tab" id="tab-privacy" href="privacy.html"><span data-i18n="tabPrivacy">Privacy / Datenschutz</span></a>
@@ -269,7 +268,7 @@
       </aside>
     </div>
 
-    <!-- PLANS -->
+    <!-- PLANS (Free + Pro) -->
     <section class="card" id="plans">
       <h2 data-i18n="plansTitle">Abo-Modelle</h2>
       <div class="plans">
