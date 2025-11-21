@@ -2,63 +2,321 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>[APP_NAME] – Startseite</title>
+  <title>[APP_NAME] – Offizielle Infos & Rechtliches</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="[APP_NAME] – Offizielle Info- & Rechteseite (Datenschutz, Nutzungsbedingungen, Support, Feedback, Premium)" />
+
   <style>
-    body {font-family: system-ui, sans-serif; margin:0; padding:0; background:#f9fafb; color:#111;}
-    header {background:#2563eb; color:#fff; padding:24px; text-align:center;}
-    header h1 {margin:0; font-size:28px;}
-    header p {margin:8px 0 0;}
-    main {max-width:900px; margin:0 auto; padding:24px;}
-    section {margin-bottom:32px;}
-    h2 {margin-top:0;}
-    ul {list-style:none; padding-left:0;}
-    li {margin:8px 0;}
-    a {
-      display:inline-block;
-      padding:10px 16px;
-      border-radius:8px;
-      background:#2563eb;
-      color:#fff;
-      font-weight:600;
-      text-decoration:none;
+    /* =========================
+       HealthGaming Dark/Neon Theme
+       ========================= */
+    :root{
+      --bg: #0E0E12;
+      --bg-alt:#121218;
+      --card:#181822;
+      --muted:#9AA0A6;
+      --text:#EAEAF1;
+      --line: rgba(255,255,255,.06);
+
+      --grad-start:#9A4DFF;
+      --grad-end:#20D5F4;
+
+      --radius:18px;
+      --radius-sm:12px;
+
+      --shadow-lg: 0 10px 30px rgba(0,0,0,.45);
+      --shadow-soft: 0 8px 24px rgba(32,213,244,.12);
     }
-    a:hover {background:#1d4ed8;}
-    footer {background:#f3f4f6; color:#555; text-align:center; padding:16px;}
+
+    @media (prefers-reduced-motion:no-preference){
+      :root{ --motion: 280ms cubic-bezier(.2,.8,.2,1); }
+    }
+
+    * { box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(154,77,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(32,213,244,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--grad-end);
+      outline-offset: 2px;
+      border-radius: 10px;
+    }
+
+    /* =========================
+       Header / Hero
+       ========================= */
+    .hero{
+      padding: 42px 20px 26px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(1000px 400px at -10% -20%, rgba(154,77,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 110% -30%, rgba(32,213,244,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+    }
+
+    .wrap{ max-width: 1000px; margin: 0 auto; }
+
+    .title{
+      margin: 0;
+      font-weight: 900;
+      letter-spacing: .3px;
+      font-size: clamp(28px, 3.6vw, 40px);
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 4px 24px rgba(154,77,255,.15);
+    }
+
+    .subtitle{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+
+    /* =========================
+       Main / Cards
+       ========================= */
+    main{ padding: 28px 20px 48px; }
+
+    .grid{
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .col{
+      grid-column: 1/-1;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .card h2{
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: .2px;
+      background: linear-gradient(90deg, var(--grad-start), var(--grad-end));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    .list{
+      display: grid;
+      gap: 12px;
+    }
+
+    .link{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--line);
+      transition: transform var(--motion), box-shadow var(--motion), border-color var(--motion), background var(--motion);
+    }
+    .link:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.12);
+      box-shadow: var(--shadow-soft);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+
+    .badge{
+      flex: 0 0 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+      box-shadow: 0 6px 16px rgba(154,77,255,.25), 0 6px 16px rgba(32,213,244,.18);
+    }
+
+    .label{
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .desc{
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Split Deutsch/English auf Desktop nebeneinander */
+    @media (min-width: 780px){
+      .col{ grid-column: span 6; }
+    }
+
+    /* =========================
+       Footer
+       ========================= */
+    footer{
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      color: var(--muted);
+      padding: 20px;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+
+    .brandline{
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Small utility */
+    .sr{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
   </style>
 </head>
 <body>
-  <header>
-    <h1>[APP_NAME]</h1>
-    <p>Willkommen zur offiziellen Info- & Rechteseite</p>
+  <!-- =========================
+       HERO
+       ========================= -->
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">[APP_NAME]</h1>
+      <p class="subtitle">Offizielle Info- & Rechteseite · Datenschutz · Nutzungsbedingungen · Support</p>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Deutsch</h2>
-      <ul>
-        <li><a href="privacy_de.html">📄 Datenschutzerklärung</a></li>
-        <li><a href="terms_de.html">📜 Nutzungsbedingungen</a></li>
-        <li><a href="support_de.html">☎️ Kontakt & Support</a></li>
-        <li><a href="feedback_de.html">💬 App-Feedback</a></li>
-        <li><a href="premium_de.html">⭐ Premium Upgrade</a></li>
-      </ul>
-    </section>
+  <!-- =========================
+       MAIN
+       ========================= -->
+  <main class="wrap">
+    <div class="grid">
+      <!-- Deutsch -->
+      <section class="col card" aria-labelledby="de-title">
+        <h2 id="de-title">Deutsch</h2>
+        <div class="list">
+          <a class="link" href="privacy_de.html">
+            <span class="badge" aria-hidden="true">📄</span>
+            <div>
+              <div class="label">Datenschutzerklärung</div>
+              <div class="desc">Informationen zur Verarbeitung deiner Daten</div>
+            </div>
+          </a>
 
-    <section>
-      <h2>English</h2>
-      <ul>
-        <li><a href="privacy_en.html">📄 Privacy Policy</a></li>
-        <li><a href="terms_en.html">📜 Terms of Use</a></li>
-        <li><a href="support_en.html">☎️ Contact & Support</a></li>
-        <li><a href="feedback_en.html">💬 App Feedback</a></li>
-        <li><a href="premium_en.html">⭐ Premium Upgrade</a></li>
-      </ul>
-    </section>
+          <a class="link" href="terms_de.html">
+            <span class="badge" aria-hidden="true">📜</span>
+            <div>
+              <div class="label">Nutzungsbedingungen</div>
+              <div class="desc">Regeln zur Nutzung der App</div>
+            </div>
+          </a>
+
+          <a class="link" href="support_de.html">
+            <span class="badge" aria-hidden="true">☎️</span>
+            <div>
+              <div class="label">Kontakt & Support</div>
+              <div class="desc">So erreichst du uns bei Fragen</div>
+            </div>
+          </a>
+
+          <a class="link" href="feedback_de.html">
+            <span class="badge" aria-hidden="true">💬</span>
+            <div>
+              <div class="label">App-Feedback</div>
+              <div class="desc">Verbesserungsvorschläge und Wünsche</div>
+            </div>
+          </a>
+
+          <a class="link" href="premium_de.html">
+            <span class="badge" aria-hidden="true">⭐️</span>
+            <div>
+              <div class="label">Premium Upgrade</div>
+              <div class="desc">Vorteile & Preise im Überblick</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- English -->
+      <section class="col card" aria-labelledby="en-title">
+        <h2 id="en-title">English</h2>
+        <div class="list">
+          <a class="link" href="privacy_en.html">
+            <span class="badge" aria-hidden="true">📄</span>
+            <div>
+              <div class="label">Privacy Policy</div>
+              <div class="desc">How we process your data</div>
+            </div>
+          </a>
+
+          <a class="link" href="terms_en.html">
+            <span class="badge" aria-hidden="true">📜</span>
+            <div>
+              <div class="label">Terms of Use</div>
+              <div class="desc">Rules for using the app</div>
+            </div>
+          </a>
+
+          <a class="link" href="support_en.html">
+            <span class="badge" aria-hidden="true">☎️</span>
+            <div>
+              <div class="label">Contact & Support</div>
+              <div class="desc">Get help or ask a question</div>
+            </div>
+          </a>
+
+          <a class="link" href="feedback_en.html">
+            <span class="badge" aria-hidden="true">💬</span>
+            <div>
+              <div class="label">App Feedback</div>
+              <div class="desc">Share ideas and improvements</div>
+            </div>
+          </a>
+
+          <a class="link" href="premium_en.html">
+            <span class="badge" aria-hidden="true">⭐️</span>
+            <div>
+              <div class="label">Premium Upgrade</div>
+              <div class="desc">Benefits & pricing at a glance</div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
   </main>
 
+  <!-- =========================
+       FOOTER
+       ========================= -->
   <footer>
     <small>© [YEAR] [COMPANY_OR_PUBLISHER]. Alle Rechte vorbehalten.</small>
+    <div class="brandline" aria-hidden="true">
+      <span class="sr">Brand Accent</span>
+      <span>Powered by</span>
+      <span style="font-weight:900; background:linear-gradient(90deg,var(--grad-start),var(--grad-end)); -webkit-background-clip:text; background-clip:text; color:transparent;">[APP_NAME]</span>
+    </div>
   </footer>
 </body>
 </html>
