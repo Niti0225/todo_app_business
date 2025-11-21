@@ -1,26 +1,295 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impressum</title>
+  <meta charset="utf-8" />
+  <title>Impressum • Aurevoir</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Impressum / Imprint von Aurevoir (Verantwortliche, Kontakt, Haftung, ODR). Deutsch & Englisch." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <style>
+    :root{
+      --bg:#0E0E12; --bg-alt:#121218; --card:#181822;
+      --muted:#9AA0A6; --text:#EAEAF1; --line:rgba(255,255,255,.06);
+      --grad-start:#9A4DFF; --grad-end:#20D5F4;
+      --radius:18px; --radius-sm:12px;
+      --shadow-lg:0 10px 30px rgba(0,0,0,.45);
+      --shadow-soft:0 8px 24px rgba(32,213,244,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(154,77,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(32,213,244,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    a.under{ text-decoration:underline; text-underline-offset:3px; color:#e6f4ff }
+    a:focus-visible,button:focus-visible{outline:2px solid var(--grad-end); outline-offset:2px; border-radius:10px}
+
+    .wrap{max-width:960px; margin:0 auto; padding:0 20px}
+
+    /* Header / Hero */
+    .hero{
+      padding:42px 0 20px; position:relative; border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 400px at -10% -20%, rgba(154,77,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 110% -30%, rgba(32,213,244,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+    }
+    .title{
+      margin:0; font-weight:900; letter-spacing:.3px;
+      font-size:clamp(26px,3.4vw,38px); line-height:1.1;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 4px 24px rgba(154,77,255,.15);
+    }
+    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:600; letter-spacing:.2px}
+
+    /* Language toggle */
+    .langbar{
+      margin-top:16px; display:flex; gap:8px; align-items:center; justify-content:flex-end;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+      cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .chip[aria-pressed="true"]{
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      border-color:rgba(255,255,255,.2); box-shadow:var(--shadow-soft); transform:translateY(-1px);
+    }
+
+    main{padding:28px 0 48px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); padding:22px; backdrop-filter:blur(10px);
+    }
+    h2{
+      margin:0 0 14px; font-size:18px; font-weight:900; letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .grid{display:grid; gap:22px}
+    .row{display:grid; grid-template-columns:210px 1fr; gap:12px; padding:10px 0; border-bottom:1px dashed var(--line)}
+    .row:last-child{border-bottom:none}
+    .k{color:var(--muted); font-weight:700}
+    .v{font-weight:800}
+    .muted{color:var(--muted); font-weight:600}
+    .block{margin:14px 0}
+    .stamp{margin-top:8px; color:var(--muted); font-size:13px; font-weight:600}
+
+    .actions{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:12px; font-weight:900; letter-spacing:.2px;
+      border:1px solid var(--line); background:rgba(255,255,255,.03);
+      transition:transform .25s, box-shadow .25s, border-color .25s, background .25s;
+    }
+    .btn:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.12); box-shadow:var(--shadow-soft); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));}
+
+    footer{
+      border-top:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+    }
+    .brandline{margin-top:6px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.02)}
+    .hidden{display:none}
+  </style>
 </head>
 <body>
-  <h1>Impressum</h1>
-  <p><strong>Firmenname:</strong> Aurevoir</p>
-  <p><strong>Geschäftsführer:</strong> Leonit Sadiku</p>
-  <p><strong>Kontakt:</strong> Keystone@Aurevoir.de</p>
-  <p><strong>Telefon:</strong>Keine</p>
-  <p><strong>Umsatzsteuer-ID:</strong> [USt-ID]</p>
-  <p><strong>Verantwortlich für den Inhalt:</strong> Aurevoir</p>
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">Impressum • Imprint</h1>
+      <p class="subtitle">Aurevoir – Rechtliche Angaben & Kontakt (DE/EN)</p>
 
-  <h2>Haftungsausschluss</h2>
-  <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Dennoch übernehmen wir keine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte.</p>
-  
-  <h2>Datenschutzerklärung</h2>
-  <p> Informationen dazu finden sie in der App, ebenfalls die Links zu den Webseiten</p>
+      <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
+        <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
+        <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
 
-  <h2>Kontakt</h2>
-  <p>Bei Fragen wenden Sie sich bitte an unseren Support:Keystone@Aurevoir.de</p>
+  <main class="wrap">
+    <div class="grid">
+      <!-- === Deutsch === -->
+      <section id="section-de" class="card">
+        <h2>Angaben gemäß § 5 TMG / § 18 MStV</h2>
+
+        <div class="row"><div class="k">Firmenname</div><div class="v">Aurevoir</div></div>
+        <div class="row"><div class="k">Geschäftsführer</div><div class="v">Leonit Sadiku</div></div>
+        <div class="row"><div class="k">Kontakt</div><div class="v"><a class="under" href="mailto:Keystone@Aurevoir.de">Keystone@Aurevoir.de</a></div></div>
+        <div class="row"><div class="k">Telefon</div><div class="v">Keine</div></div>
+        <div class="row"><div class="k">Umsatzsteuer-ID</div><div class="v">[USt-ID]</div></div>
+        <div class="row"><div class="k">Verantwortlich i.S.d.P.</div><div class="v">Aurevoir</div></div>
+
+        <div class="block">
+          <h2>Haftung für Inhalte</h2>
+          <p class="muted">
+            Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Dennoch übernehmen wir keine Gewähr
+            für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte. Bei Bekanntwerden von Rechtsverletzungen
+            werden wir entsprechende Inhalte umgehend entfernen.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>Haftung für Links</h2>
+          <p class="muted">
+            Unsere Website kann Links zu externen Websites Dritter enthalten. Auf deren Inhalte haben wir keinen Einfluss.
+            Für diese Inhalte ist stets der jeweilige Anbieter verantwortlich. Bei Kenntnis von Rechtsverstößen entfernen
+            wir derartige Links umgehend.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>Urheberrecht</h2>
+          <p class="muted">
+            Die durch uns erstellten Inhalte dieser Seite unterliegen dem deutschen Urheberrecht. Vervielfältigung,
+            Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen
+            unserer schriftlichen Zustimmung.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>Datenschutz</h2>
+          <p class="muted">
+            Informationen zum Datenschutz findest du in der App sowie auf unseren Seiten
+            <a class="under" href="privacy_de.html">Datenschutzerklärung</a> und
+            <a class="under" href="terms_de.html">Nutzungsbedingungen</a>.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>EU-Streitbeilegung</h2>
+          <p class="muted">
+            Plattform der EU-Kommission zur Online-Streitbeilegung (OS): 
+            <a class="under" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr/</a>.
+            Wir sind nicht verpflichtet und in der Regel nicht bereit, an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </div>
+
+        <div class="stamp">Zuletzt aktualisiert: 21.11.2025</div>
+
+        <div class="actions">
+          <a class="btn" href="index.html?lang=de">← Zurück zur Startseite</a>
+          <a class="btn" href="privacy_de.html">📄 Datenschutz</a>
+          <a class="btn" href="terms_de.html">📜 Nutzungsbedingungen</a>
+        </div>
+      </section>
+
+      <!-- === English === -->
+      <section id="section-en" class="card hidden">
+        <h2>Service Provider (Germany)</h2>
+
+        <div class="row"><div class="k">Company</div><div class="v">Aurevoir</div></div>
+        <div class="row"><div class="k">Managing Director</div><div class="v">Leonit Sadiku</div></div>
+        <div class="row"><div class="k">Contact</div><div class="v"><a class="under" href="mailto:Keystone@Aurevoir.de">Keystone@Aurevoir.de</a></div></div>
+        <div class="row"><div class="k">Phone</div><div class="v">None</div></div>
+        <div class="row"><div class="k">VAT ID</div><div class="v">[USt-ID]</div></div>
+        <div class="row"><div class="k">Editorially Responsible</div><div class="v">Aurevoir</div></div>
+
+        <div class="block">
+          <h2>Liability for Content</h2>
+          <p class="muted">
+            We create our website content with great care, but cannot guarantee accuracy, completeness, or timeliness.
+            If we become aware of any legal infringements, we will remove such content without delay.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>Liability for Links</h2>
+          <p class="muted">
+            Our site may contain links to external websites of third parties. We have no influence on their content;
+            the respective provider is responsible. Upon becoming aware of infringements, we will remove such links immediately.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>Copyright</h2>
+          <p class="muted">
+            Content created by us on this site is subject to German copyright law. Any use beyond statutory limits
+            requires our prior written consent.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>Privacy</h2>
+          <p class="muted">
+            See our in-app information and the pages
+            <a class="under" href="privacy_en.html">Privacy Policy</a> and
+            <a class="under" href="terms_en.html">Terms of Use</a>.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2>EU Online Dispute Resolution</h2>
+          <p class="muted">
+            EU Commission ODR platform:
+            <a class="under" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr/</a>.
+            We are not obliged and generally not willing to participate in consumer arbitration procedures.
+          </p>
+        </div>
+
+        <div class="stamp">Last updated: 21 Nov 2025</div>
+
+        <div class="actions">
+          <a class="btn" href="index.html?lang=en">← Back to Home</a>
+          <a class="btn" href="privacy_en.html">📄 Privacy</a>
+          <a class="btn" href="terms_en.html">📜 Terms of Use</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <small>© 2025 Aurevoir. All rights reserved.</small>
+    <div class="brandline" aria-hidden="true">
+      <span>Powered by</span>
+      <span style="font-weight:900; background:linear-gradient(90deg,var(--grad-start),var(--grad-end)); -webkit-background-clip:text; background-clip:text; color:transparent;">Aurevoir</span>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const qs = new URLSearchParams(location.search);
+      const saved = localStorage.getItem('hg_lang');
+      const fromQS = (qs.get('lang') || '').toLowerCase();
+      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
+      let lang = (fromQS === 'de' || fromQS === 'en') ? fromQS
+                : (saved === 'de' || saved === 'en') ? saved
+                : (browserIsDe ? 'de' : 'en');
+
+      const btnDe = document.getElementById('btn-de');
+      const btnEn = document.getElementById('btn-en');
+      const secDe = document.getElementById('section-de');
+      const secEn = document.getElementById('section-en');
+
+      function apply(l){
+        lang = l;
+        localStorage.setItem('hg_lang', l);
+        document.documentElement.lang = l === 'de' ? 'de' : 'en';
+        btnDe.setAttribute('aria-pressed', l === 'de' ? 'true' : 'false');
+        btnEn.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+        if(l === 'de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
+        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
+        const url = new URL(location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState({}, '', url.toString());
+      }
+
+      btnDe.addEventListener('click', () => apply('de'));
+      btnEn.addEventListener('click', () => apply('en'));
+      apply(lang);
+    })();
+  </script>
 </body>
 </html>
