@@ -8,10 +8,10 @@
   <meta name="color-scheme" content="light dark" />
   <style>
     :root{
-      /* Brand – Blau wie auf deinen anderen Seiten */
+      /* Brand */
       --brand:#2196F3;
       --brand-600:#1e88e5;
-      --accent:#7c3aed;         /* Lila Schimmer */
+      --accent:#7c3aed;     /* Lila Schimmer */
       --ok:#22c55e;
 
       /* Dark-UI */
@@ -26,6 +26,8 @@
       --chip-border:#1e293b;
 
       --radius:16px;
+      --blur:40px;          /* Weichzeichner für Glow */
+      --emoji-alpha:.10;    /* Sichtbarkeit der Emojis */
     }
     @media (prefers-color-scheme: light){
       :root{
@@ -38,6 +40,7 @@
         --border:#e5e7eb;
         --chip:#eef2ff;
         --chip-border:#e5e7eb;
+        --emoji-alpha:.12;
       }
     }
 
@@ -47,38 +50,89 @@
       margin:0; background:var(--bg); color:var(--text);
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;
       line-height:1.65;
+      overflow-x:hidden;
     }
 
     /* Layout */
     .container{max-width:1100px; margin:0 auto; padding:20px}
     header.hero{
+      position:relative;
+      isolation:isolate;
       background:
         radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 15%, transparent) 0%, transparent 60%),
         radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 18%, transparent) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
       border-bottom:1px solid var(--border);
+      overflow:hidden;
     }
+
+    /* ✨ Nebel-Glow-Layer */
+    .glow{
+      position:absolute; inset:0; pointer-events:none; z-index:0;
+      filter:blur(var(--blur)) saturate(120%);
+      opacity:.9;
+    }
+    .glow::before,
+    .glow::after{
+      content:"";
+      position:absolute;
+      width:55vmax; height:55vmax; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 35%, transparent), transparent 60%);
+    }
+    .glow::before{ top:-35vmax; left:-20vmax }
+    .glow::after{
+      top:-30vmax; right:-25vmax;
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 40%, transparent), transparent 60%);
+    }
+
+    /* 🌥️ Emoji-Fog */
+    .emoji-cloud{
+      position:absolute; inset:0; pointer-events:none; z-index:1;
+      filter:blur(1px);
+    }
+    .bg-emoji{
+      position:absolute; font-size:clamp(24px, 3.2vw, 34px);
+      opacity:var(--emoji-alpha);
+      transform:translate(-50%,-50%);
+      user-select:none;
+    }
+    /* feste Positionen, damit's ruhig bleibt */
+    .e1{ left:10%; top:28% }   /* ✅ */
+    .e2{ left:24%; top:12% }   /* 📅 */
+    .e3{ left:42%; top:22% }   /* ⏱️ */
+    .e4{ left:64%; top:16% }   /* 📈 */
+    .e5{ left:82%; top:30% }   /* 🧭 */
+    .e6{ left:18%; top:46% }   /* 🗂️ */
+    .e7{ left:36%; top:54% }   /* ✨ */
+    .e8{ left:72%; top:50% }   /* 🧠 */
+
+    @media (prefers-reduced-motion: reduce){
+      .glow, .emoji-cloud{ display:none }
+    }
+
     .title{
       font-size:clamp(1.8rem,3.2vw,2.4rem);
       font-weight:900; letter-spacing:.4px; margin:.2rem 0;
       background:linear-gradient(90deg, var(--brand) 0%, var(--accent) 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
+      position:relative; z-index:2;
     }
     .sub{
       color:var(--muted); margin:.2rem 0 .4rem;
       font-weight:700; letter-spacing:.3px;
+      position:relative; z-index:2;
     }
-    .meta{display:flex; gap:.6rem; flex-wrap:wrap; color:var(--muted); font-weight:700}
+    .meta{display:flex; gap:.6rem; flex-wrap:wrap; color:var(--muted); font-weight:700; position:relative; z-index:2}
     .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; padding:.05rem .45rem; border-radius:8px; background:var(--chip); border:1px solid var(--chip-border)}
 
     /* Language pills + nav */
-    .bar{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:14px 0}
+    .bar{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:14px 0; position:relative; z-index:2}
     .pill{
       border:1px solid var(--border); border-radius:999px; padding:8px 14px;
       color:var(--text); text-decoration:none; font-weight:800; letter-spacing:.2px; background:var(--card);
     }
     .pill[aria-current="true"]{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#fff; border-color:transparent}
-    .tabs{display:flex; gap:12px; flex-wrap:wrap}
+    .tabs{display:flex; gap:12px; flex-wrap:wrap; position:relative; z-index:2}
     .tab{
       background:var(--card); border:1px solid var(--border);
       border-radius:12px; padding:10px 14px; text-decoration:none; color:var(--text);
@@ -97,6 +151,7 @@
       border-radius:var(--radius);
       padding:18px;
       box-shadow:0 10px 24px rgba(0,0,0,.12);
+      position:relative; z-index:0;
     }
     h2{font-size:clamp(1.2rem,2.2vw,1.5rem); margin:.2rem 0 .65rem}
     p{margin:.45rem 0}
@@ -144,7 +199,22 @@
 <body>
   <!-- HERO -->
   <header class="hero">
-    <div class="container">
+    <!-- weicher Glow -->
+    <div class="glow" aria-hidden="true"></div>
+
+    <!-- schwebende Emoji-Badges -->
+    <div class="emoji-cloud" aria-hidden="true">
+      <span class="bg-emoji e1">✅</span>
+      <span class="bg-emoji e2">📅</span>
+      <span class="bg-emoji e3">⏱️</span>
+      <span class="bg-emoji e4">📈</span>
+      <span class="bg-emoji e5">🧭</span>
+      <span class="bg-emoji e6">🗂️</span>
+      <span class="bg-emoji e7">✨</span>
+      <span class="bg-emoji e8">🧠</span>
+    </div>
+
+    <div class="container" style="position:relative; z-index:2">
       <h1 class="title" data-i18n="heroTitle">ToDo Business • Produktivität, die mitwächst.</h1>
       <div class="sub" data-i18n="heroSub">Aufgaben. Kalender. Fokus – und ein faires Pro-Upgrade.</div>
       <div class="meta">
@@ -204,7 +274,7 @@
       <h2 data-i18n="plansTitle">Abo-Modelle</h2>
       <div class="plans">
         <!-- Free -->
-        <div className="plan" class="plan">
+        <div class="plan">
           <div class="label" data-i18n="planBadgeFree">FREE</div>
           <h3 data-i18n="planFree">Kostenlos</h3>
           <div class="price" data-i18n="priceFree">0 €</div>
@@ -217,7 +287,7 @@
           <a class="btn outline" href="premium.html" data-i18n="btnAlreadyActive">Bereits aktiv</a>
         </div>
 
-        <!-- Pro Monthly (mit erweiterten Punkten) -->
+        <!-- Pro Monthly -->
         <div class="plan" style="border-color: color-mix(in oklab, var(--brand) 45%, var(--border));">
           <div class="label">PRO</div>
           <h3 data-i18n="planPro">Pro (Monatlich)</h3>
