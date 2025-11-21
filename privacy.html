@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy · Datenschutz – Aurevoir</title>
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Aurevoir App – Privacy Policy / Datenschutzerklärung." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+  <style>
+    :root{
+      --bg:#0E0E12; --bg-alt:#121218; --card:#181822;
+      --muted:#9AA0A6; --text:#EAEAF1; --line:rgba(255,255,255,.06);
+      --grad-start:#9A4DFF; --grad-end:#20D5F4;
+      --radius:18px; --radius-sm:12px;
+      --shadow-lg:0 10px 30px rgba(0,0,0,.45);
+      --shadow-soft:0 8px 24px rgba(32,213,244,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(154,77,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(32,213,244,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:underline dotted}
+    a:hover{text-decoration:underline}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--grad-end); outline-offset:2px; border-radius:10px}
+    .wrap{max-width:980px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    .hero{
+      padding:42px 0 20px; position:relative; border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 400px at -10% -20%, rgba(154,77,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 110% -30%, rgba(32,213,244,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+    }
+    .title{
+      margin:0; font-weight:900; letter-spacing:.3px;
+      font-size:clamp(28px,3.6vw,40px); line-height:1.1;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 4px 24px rgba(154,77,255,.15);
+    }
+    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:700; letter-spacing:.2px}
+
+    .topline{margin-top:16px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .langbar{display:flex; gap:8px}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px; border-radius:999px; font-weight:900; letter-spacing:.2px;
+      cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .chip[aria-pressed="true"]{
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      border-color:rgba(255,255,255,.2); box-shadow:var(--shadow-soft); transform:translateY(-1px);
+    }
+    .navlink{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:10px; font-weight:900; letter-spacing:.2px;
+      text-decoration:none;
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.12)}
+
+    main{padding:28px 0 48px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); padding:22px; backdrop-filter:blur(10px);
+      margin:14px 0;
+    }
+    h2{
+      margin:.2em 0 .6em; font-size:20px; font-weight:900; letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    h3{margin:.6em 0 .4em; font-weight:900}
+    .muted{color:var(--muted); font-weight:600}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.08);padding:.1rem .45rem;border-radius:8px;border:1px solid var(--line)}
+    .grid{display:grid; gap:14px}
+    @media (min-width:860px){ .two{grid-template-columns:1fr 1fr} }
+    .hidden{display:none}
+    footer{
+      border-top:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">Privacy · Datenschutz</h1>
+      <p class="subtitle">
+        Last update / Letzte Aktualisierung:
+        <span class="kbd" id="last">2025-01-01</span> ·
+        Version: <span class="kbd" id="ver">1.0.0</span>
+      </p>
+
+      <div class="topline">
+        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
+          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
+          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+        </div>
+        <nav>
+          <a class="navlink" href="index.html">← Home</a>
+          <a class="navlink" href="terms_de.html">Terms / Nutzungsbedingungen</a>
+          <a class="navlink" href="support_de.html">Support</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- =================== Deutsch =================== -->
+    <section id="sec-de">
+      <div class="card">
+        <h2>1) Verantwortlicher</h2>
+        <p>Verantwortlich für die Verarbeitung personenbezogener Daten in Zusammenhang mit der App <strong>Aurevoir</strong> ist:</p>
+        <p><strong>Keystone · Aurevoir</strong><br>
+          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </div>
+
+      <div class="card">
+        <h2>2) Verarbeitete Datenarten & Zwecke</h2>
+        <p class="muted">Wir verarbeiten nur, was für die App notwendig ist. Keine Werbetracker.</p>
+        <div class="grid two">
+          <div>
+            <h3>Datenarten</h3>
+            <ul>
+              <li><strong>Accountdaten</strong> (z. B. E-Mail) via Firebase Auth.</li>
+              <li><strong>Inhaltsdaten</strong> (To-dos, Notizen, Fälligkeiten) via Firestore/Storage.</li>
+              <li><strong>Technische Metadaten</strong> (Gerät, OS, App-Version) für Support/Stabilität.</li>
+              <li><strong>Kauf-/Abo-Status</strong> (Entitlements) via RevenueCat/Store (Apple/Google).</li>
+              <li><strong>Benachrichtigungen</strong> (lokal, ohne Push-IDs).</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Zwecke</h3>
+            <ul>
+              <li>Bereitstellung der Kernfunktionen & Synchronisation.</li>
+              <li>Kaufabwicklung & Verwaltung deines Abo-Status.</li>
+              <li>App-Sicherheit, Fehlersuche, Missbrauchsvermeidung.</li>
+              <li>Support-Bearbeitung bei Anfragen.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Lokale Benachrichtigungen werden ausschließlich offline auf deinem Gerät ausgelöst.</p>
+      </div>
+
+      <div class="card">
+        <h2>3) Rechtsgrundlagen (Art. 6 Abs. 1 DSGVO)</h2>
+        <ul>
+          <li><strong>b) Vertrag</strong> – Erfüllung der von dir genutzten Funktionen.</li>
+          <li><strong>f) Berechtigtes Interesse</strong> – Sicherheit/Stabilität/Fehlerbehebung.</li>
+          <li><strong>a) Einwilligung</strong> – freiwillige, optionale Features (jederzeit widerrufbar).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4) Speicherdauer</h2>
+        <ul>
+          <li><strong>Lokal</strong> bis zur Löschung oder Deinstallation.</li>
+          <li><strong>Cloud</strong> mit deinem Account verknüpft, Löschung bei Konto-Löschung bzw. Auftrag.</li>
+          <li><strong>Support</strong> i. d. R. 6–12 Monate, danach Löschung/Anonymisierung.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5) Empfänger / Auftragsverarbeiter</h2>
+        <ul>
+          <li><strong>Google Firebase</strong> (Auth, Firestore, Storage) – <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Datenschutz</a></li>
+          <li><strong>RevenueCat</strong> – Abo-Verwaltung, keine Zahlungsdaten – <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">Datenschutz</a></li>
+          <li><strong>Apple / Google</strong> – Zahlungsabwicklung (Zahlungsdaten verbleiben beim Store) – <a href="https://www.apple.com/legal/privacy/de-ww/" target="_blank" rel="noopener">Apple</a> · <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">Google</a></li>
+        </ul>
+        <p>Erforderliche Auftragsverarbeitungsverträge bestehen (Art. 28 DSGVO).</p>
+      </div>
+
+      <div class="card">
+        <h2>6) Drittlandtransfer</h2>
+        <p>Je nach Diensten kann eine Übermittlung in Drittländer erfolgen. Es werden geeignete Garantien (EU-Standardvertragsklauseln, zusätzliche Schutzmaßnahmen) umgesetzt (Art. 44 ff. DSGVO).</p>
+      </div>
+
+      <div class="card">
+        <h2>7) Bereitstellungspflichten</h2>
+        <p>Ohne grundlegende Account-/Inhaltsdaten sind Kernfunktionen nicht nutzbar. Optionale Angaben sind freiwillig.</p>
+      </div>
+
+      <div class="card">
+        <h2>8) Deine Rechte</h2>
+        <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch (Art. 15–21 DSGVO). Einwilligungen jederzeit widerrufbar.</p>
+        <ul>
+          <li><strong>Konto löschen:</strong> In-App unter <span class="kbd">Rechtliches / Konto</span>.</li>
+          <li><strong>Auskunft/Export:</strong> <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
+          <li><strong>Einwilligungen:</strong> in den App-Einstellungen deaktivieren.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>9) Kinder</h2>
+        <p>Nicht für Kinder unter 16 Jahren bestimmt.</p>
+      </div>
+
+      <div class="card">
+        <h2>10) Änderungen</h2>
+        <p>Diese Erklärung kann angepasst werden; die aktuelle Fassung steht jederzeit auf dieser Seite.</p>
+      </div>
+
+      <div class="card">
+        <h2>11) Kontakt</h2>
+        <p><strong>Keystone · Aurevoir</strong><br>
+          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </div>
+    </section>
+
+    <!-- =================== English =================== -->
+    <section id="sec-en" class="hidden">
+      <div class="card">
+        <h2>1) Controller</h2>
+        <p>The controller for personal data processed in connection with the <strong>Aurevoir</strong> app is:</p>
+        <p><strong>Keystone · Aurevoir</strong><br>
+          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </div>
+
+      <div class="card">
+        <h2>2) Data Categories & Purposes</h2>
+        <p class="muted">We only process what is necessary to run the app. No ad trackers.</p>
+        <div class="grid two">
+          <div>
+            <h3>Data</h3>
+            <ul>
+              <li><strong>Account data</strong> (e.g., email) via Firebase Auth.</li>
+              <li><strong>Content data</strong> (to-dos, notes, due dates) via Firestore/Storage.</li>
+              <li><strong>Technical metadata</strong> (device, OS, app version) for support/stability.</li>
+              <li><strong>Purchase/subscription status</strong> (entitlements) via RevenueCat / app stores.</li>
+              <li><strong>Notifications</strong> (local only, no push IDs).</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Purposes</h3>
+            <ul>
+              <li>Provide core features & synchronization.</li>
+              <li>Handle purchases and manage your subscription status.</li>
+              <li>Security, troubleshooting, abuse prevention.</li>
+              <li>Process support requests.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">Local notifications are triggered offline on your device only.</p>
+      </div>
+
+      <div class="card">
+        <h2>3) Legal Bases (Art. 6(1) GDPR)</h2>
+        <ul>
+          <li><strong>b) Contract</strong> – to provide the features you use.</li>
+          <li><strong>f) Legitimate interests</strong> – security/stability/bug fixing.</li>
+          <li><strong>a) Consent</strong> – optional features you enable (can be withdrawn anytime).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4) Storage</h2>
+        <ul>
+          <li><strong>Local</strong> until you delete data or uninstall.</li>
+          <li><strong>Cloud</strong> linked to your account and deleted upon account deletion or request.</li>
+          <li><strong>Support emails</strong> typically 6–12 months, then deleted/anonymized.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5) Recipients / Processors</h2>
+        <ul>
+          <li><strong>Google Firebase</strong> (Auth, Firestore, Storage) – <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy</a></li>
+          <li><strong>RevenueCat</strong> – subscription management, no payment details – <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">Privacy</a></li>
+          <li><strong>Apple / Google</strong> – payment processing (payment data stays with the store) – <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a></li>
+        </ul>
+        <p>Data processing agreements are in place where required (Art. 28 GDPR).</p>
+      </div>
+
+      <div class="card">
+        <h2>6) International Transfers</h2>
+        <p>Depending on services used, data may be transferred to third countries. Appropriate safeguards (EU SCCs and additional measures) are applied (Art. 44 et seq. GDPR).</p>
+      </div>
+
+      <div class="card">
+        <h2>7) Necessity</h2>
+        <p>Core features require basic account/content data. Optional information is voluntary.</p>
+      </div>
+
+      <div class="card">
+        <h2>8) Your Rights</h2>
+        <p>Access, rectification, erasure, restriction, portability, and objection (Art. 15–21 GDPR). You can withdraw consents anytime.</p>
+        <ul>
+          <li><strong>Delete account:</strong> in-app via <span class="kbd">Legal / Account</span>.</li>
+          <li><strong>Access/export:</strong> <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
+          <li><strong>Withdraw consents:</strong> disable options in app settings.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>9) Minors</h2>
+        <p>Not intended for children under 16.</p>
+      </div>
+
+      <div class="card">
+        <h2>10) Changes</h2>
+        <p>We may update this notice; the current version is always available on this page.</p>
+      </div>
+
+      <div class="card">
+        <h2>11) Contact</h2>
+        <p><strong>Keystone · Aurevoir</strong><br>
+          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="terms_de.html" target="_blank" rel="noopener">Terms / Nutzungsbedingungen</a> ·
+      <a href="imprint.html" target="_blank" rel="noopener">Imprint / Impressum</a> ·
+      <a href="support_de.html" target="_blank" rel="noopener">Support</a>
+    </div>
+    <p class="muted">© <span id="year"></span> Aurevoir · Keystone</p>
+  </footer>
+
+  <script>
+    (function(){
+      // Year + version from ?v=1.2.3
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const qp = new URLSearchParams(location.search);
+      const version = qp.get('v') || '1.0.0';
+      document.getElementById('ver').textContent = version;
+
+      // Optional last update override (?last=YYYY-MM-DD)
+      const last = qp.get('last') || '2025-01-01';
+      document.getElementById('last').textContent = last;
+
+      // Language handling (?lang=de|en + localStorage + browser fallback)
+      const saved = localStorage.getItem('privacy_lang');
+      const fromQS = (qp.get('lang') || '').toLowerCase();
+      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
+      let lang = (fromQS === 'de' || fromQS === 'en') ? fromQS
+                : (saved === 'de' || saved === 'en') ? saved
+                : (browserIsDe ? 'de' : 'en');
+
+      const btnDe = document.getElementById('btn-de');
+      const btnEn = document.getElementById('btn-en');
+      const secDe = document.getElementById('sec-de');
+      const secEn = document.getElementById('sec-en');
+
+      function applyLang(l){
+        lang = l;
+        localStorage.setItem('privacy_lang', l);
+        document.documentElement.lang = l === 'de' ? 'de' : 'en';
+        btnDe.setAttribute('aria-pressed', l === 'de' ? 'true' : 'false');
+        btnEn.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+        if(l === 'de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
+        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
+        const url = new URL(location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState({}, '', url.toString());
+      }
+      btnDe.addEventListener('click', ()=>applyLang('de'));
+      btnEn.addEventListener('click', ()=>applyLang('en'));
+      applyLang(lang);
+    })();
+  </script>
+</body>
+</html>
