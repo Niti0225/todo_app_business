@@ -6,26 +6,29 @@
   <title>Aurevoir · Info & Legal · Home</title>
   <meta name="description" content="Offizielle Info-, Hilfe- und Rechteseiten für die Aurevoir Apps (DE/EN). Datenschutz, Nutzungsbedingungen, Support, Premium, Feedback." />
   <meta name="color-scheme" content="dark light" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏠%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%2360a5fa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx='18' ry='18' width='100' height='100' fill='url(%23g)'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-size='64' fill='white'%3Eℹ%3C/text%3E%3C/svg%3E">
   <style>
     :root{
-      /* Brand (blau behalten) */
-      --brand:#2563eb;
-      --brand-600:#1d4ed8;
-      --brand-300:#60a5fa;
+      /* Brand – veredelter Blau-Verlauf */
+      --brand-1:#1e3a8a;  /* tiefes Indigo */
+      --brand-2:#2563eb;  /* Hauptblau */
+      --brand-3:#3b82f6;  /* helleres Blau */
+      --brand-4:#60a5fa;  /* Akzent hell */
 
       /* UI */
-      --bg:#0E0F13;
-      --bg-alt:#10131a;
-      --card:rgba(255,255,255,.04);
-      --line:rgba(255,255,255,.08);
-      --text:#E9EEF5;
-      --muted:#9AA0A6;
+      --bg:#0b0e14;
+      --bg-alt:#0e1119;
+      --card:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      --line:rgba(255,255,255,.10);
+      --line-2:rgba(255,255,255,.08);
+      --text:#eaf2ff;
+      --muted:#9fb0c7;
 
       --radius:18px;
-      --radius-sm:12px;
-      --shadow-lg:0 12px 32px rgba(0,0,0,.45);
-      --shadow-soft:0 10px 30px rgba(37,99,235,.18);
+      --r-sm:12px;
+
+      --shadow-lg:0 14px 44px rgba(0,0,0,.55);
+      --shadow-soft:0 12px 34px rgba(59,130,246,.22);
     }
 
     *{box-sizing:border-box}
@@ -34,31 +37,56 @@
       margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at -10% -10%, rgba(37,99,235,.18), transparent 60%),
-        radial-gradient(900px 500px at 120% -20%, rgba(96,165,250,.17), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
+        radial-gradient(1200px 600px at -10% -10%, rgba(37,99,235,.16), transparent 60%),
+        radial-gradient(900px 520px at 110% -20%, rgba(96,165,250,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 55%, var(--bg));
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
     }
 
+    /* bewegte Orbs – dezent */
+    .orbs::before,
+    .orbs::after{
+      content:"";
+      position:fixed;
+      inset:auto auto auto auto;
+      width:52vmax; height:52vmax;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.16), transparent 50%),
+                 radial-gradient(circle at 70% 70%, rgba(96,165,250,.14), transparent 50%);
+      filter:blur(24px);
+      z-index:-1; pointer-events:none;
+      animation:float 18s ease-in-out infinite alternate;
+      transform:translate(-30%, -30%) rotate(0deg);
+    }
+    .orbs::after{
+      width:60vmax; height:60vmax;
+      background:radial-gradient(circle at 70% 30%, rgba(30,58,138,.18), transparent 55%),
+                 radial-gradient(circle at 20% 70%, rgba(37,99,235,.10), transparent 55%);
+      animation:float2 22s ease-in-out infinite alternate;
+      transform:translate(60%, -10%) rotate(0deg);
+    }
+    @keyframes float{to{transform:translate(-26%, -33%) rotate(8deg)}}
+    @keyframes float2{to{transform:translate(56%, -6%) rotate(-6deg)}}
+
     a{color:inherit; text-decoration:underline dotted}
-    a:focus-visible,button:focus-visible{outline:2px solid var(--brand-300); outline-offset:2px; border-radius:10px}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--brand-4); outline-offset:2px; border-radius:10px}
 
     .wrap{max-width:1040px; margin:0 auto; padding:0 20px}
 
     /* Hero */
     .hero{
-      padding:44px 0 24px; border-bottom:1px solid var(--line);
+      padding:44px 0 24px; border-bottom:1px solid var(--line-2);
       background:
-        radial-gradient(900px 420px at 0% -20%, rgba(37,99,235,.22), transparent 55%),
-        radial-gradient(900px 520px at 110% -30%, rgba(96,165,250,.20), transparent 60%),
+        radial-gradient(1200px 460px at 0% -20%, rgba(37,99,235,.22), transparent 60%),
+        radial-gradient(1000px 520px at 110% -20%, rgba(96,165,250,.22), transparent 65%),
         linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
     }
     .title{
       margin:0; font-weight:900; letter-spacing:.3px;
       font-size:clamp(28px,3.6vw,40px); line-height:1.08;
-      background:linear-gradient(90deg, var(--brand), var(--brand-300));
+      background:linear-gradient(90deg, var(--brand-2), var(--brand-3), var(--brand-4));
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow:0 4px 22px rgba(37,99,235,.22);
+      text-shadow:0 6px 28px rgba(37,99,235,.25);
     }
     .subtitle{margin:10px 0 0; color:var(--muted); font-weight:700; letter-spacing:.2px}
 
@@ -67,36 +95,49 @@
     }
     .langbar{display:flex; gap:8px}
     .chip{
-      border:1px solid var(--line); background:rgba(255,255,255,.04);
+      border:1px solid var(--line-2);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       padding:8px 12px; border-radius:999px; font-weight:900; letter-spacing:.2px; color:var(--text);
       cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
     }
     .chip[aria-pressed="true"]{
-      background:linear-gradient(90deg, var(--brand), var(--brand-300));
+      background:linear-gradient(90deg, var(--brand-2), var(--brand-3));
       border-color:rgba(255,255,255,.18); box-shadow:var(--shadow-soft); transform:translateY(-1px);
       color:#fff;
     }
     .navlink{
-      border:1px solid var(--line); background:rgba(255,255,255,.04);
+      border:1px solid var(--line-2);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       padding:8px 12px; border-radius:10px; font-weight:900; letter-spacing:.2px;
       text-decoration:none; transition:transform .2s ease, border-color .2s ease;
     }
-    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.14)}
+    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.16)}
 
-    /* Layout */
+    /* Store-Badge Row */
+    .stores{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px}
+    .store-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:14px;
+      background:linear-gradient(180deg, rgba(0,0,0,.22), rgba(255,255,255,.06));
+      border:1px solid var(--line-2); text-decoration:none; color:#fff;
+      letter-spacing:.2px; font-weight:900; box-shadow:0 1px 2px rgba(0,0,0,.25);
+    }
+    .store-badge svg{width:22px; height:22px; display:block}
+    .store-badge[aria-disabled="true"]{opacity:.55; cursor:not-allowed}
+    .store-badge:hover{transform:translateY(-1px)}
+
     main{padding:28px 0 56px}
     .grid{display:grid; gap:16px}
     @media (min-width:820px){ .grid-3{grid-template-columns:repeat(3, 1fr)} }
     @media (min-width:700px){ .grid-2{grid-template-columns:1.1fr .9fr} }
 
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--line); border-radius:var(--radius);
+      background:var(--card); border:1px solid var(--line-2); border-radius:var(--radius);
       box-shadow:var(--shadow-lg); padding:18px; backdrop-filter:blur(10px);
     }
     h2{
       margin:.2rem 0 .5rem; font-size:18px; font-weight:900;
-      background:linear-gradient(90deg, var(--brand), var(--brand-300));
+      background:linear-gradient(90deg, var(--brand-2), var(--brand-3), var(--brand-4));
       -webkit-background-clip:text; background-clip:text; color:transparent;
       letter-spacing:.2px;
     }
@@ -105,44 +146,63 @@
     .muted{color:var(--muted); font-weight:600}
     .pill{
       display:inline-flex; align-items:center; gap:.5rem;
-      background:linear-gradient(90deg, var(--brand), var(--brand-300));
+      background:linear-gradient(90deg, var(--brand-2), var(--brand-3));
       color:#fff; border-radius:999px; padding:8px 12px; font-weight:900; letter-spacing:.2px;
       border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow-soft); text-decoration:none;
     }
     .btn{
       display:inline-flex; align-items:center; gap:.6rem;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04); color:var(--text);
+      border:1px solid var(--line-2);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      color:var(--text);
       font-weight:900; letter-spacing:.2px; text-decoration:none;
       padding:10px 14px; border-radius:12px; transition:transform .2s ease, border-color .2s ease, background .2s ease;
     }
-    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.14); background:rgba(255,255,255,.06)}
+    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.16)}
 
     .kbd{
       font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
       background:rgba(255,255,255,.08); padding:.06rem .45rem; border-radius:8px;
-      border:1px solid var(--line)
+      border:1px solid var(--line-2)
     }
 
     footer{
-      border-top:1px solid var(--line); color:var(--muted);
+      border-top:1px solid var(--line-2); color:var(--muted);
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
       padding:22px; text-align:center; font-weight:600; letter-spacing:.2px;
     }
 
     .hidden{display:none}
     .skip{position:absolute; left:-9999px}
-    .skip:focus{left:16px; top:12px; z-index:10; background:var(--brand); color:#fff; padding:.4rem .6rem; border-radius:10px}
+    .skip:focus{left:16px; top:12px; z-index:10; background:var(--brand-3); color:#fff; padding:.4rem .6rem; border-radius:10px}
   </style>
 </head>
-<body>
+<body class="orbs">
   <a class="skip" href="#main">Zum Inhalt springen</a>
 
   <!-- ==================== HERO ==================== -->
   <header class="hero">
     <div class="wrap">
       <h1 class="title" id="site-title">Aurevoir · Info & Legal</h1>
-      <p class="subtitle">Keystone · <span id="verline">Version <code class="kbd" id="ver">1.0.0</code></span></p>
+      <p class="subtitle" id="site-sub">Keystone · Version <code class="kbd" id="ver">1.0.0</code></p>
+
+      <div class="stores" aria-label="Store Badges">
+        <!-- App Store (disabled/preview) -->
+        <a class="store-badge" aria-disabled="true" href="#" title="Coming soon">
+          <!-- Apple SVG -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.53 12.27c.01 3.12 2.73 4.16 2.76 4.17c-.02.06-.43 1.5-1.43 2.97c-.86 1.26-1.76 2.53-3.17 2.56c-1.39.03-1.84-.83-3.43-.83c-1.58 0-2.08.8-3.39.85c-1.36.05-2.39-1.37-3.26-2.62c-1.78-2.58-3.14-7.29-1.31-10.48c.9-1.57 2.51-2.57 4.26-2.6c1.33-.03 2.59.9 3.43.9c.84 0 2.35-1.12 3.97-.95c.68.03 2.6.27 3.83 2.04c-.1.07-2.29 1.34-2.26 4.99M14.76 3.5c.73-.88 1.22-2.1 1.08-3.33c-1.05.04-2.31.7-3.07 1.58c-.67.78-1.25 2.05-1.09 3.25c1.16.09 2.34-.59 3.08-1.5"/></svg>
+          <span>App&nbsp;Store</span>
+        </a>
+        <!-- Google Play (disabled/preview) -->
+        <a class="store-badge" aria-disabled="true" href="#" title="Coming soon">
+          <!-- Play SVG -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 20.5V3.5c0-.66.54-1.2 1.2-1.2c.22 0 .43.06.61.18l10.1 6.3l3.22 2.01c.55.34.72 1.06.39 1.61c-.1.16-.23.3-.39.39l-3.22 2.01L4.81 21.02a1.2 1.2 0 0 1-1.61-.39a1.2 1.2 0 0 1-.2-.62Z"/></svg>
+          <span>Google&nbsp;Play</span>
+        </a>
+        <!-- Brand Badges -->
+        <span class="store-badge" aria-hidden="true" style="background:linear-gradient(90deg, var(--brand-2), var(--brand-3)); border-color:rgba(255,255,255,.18); box-shadow:var(--shadow-soft)">Aurevoir</span>
+        <span class="store-badge" aria-hidden="true">Keystone</span>
+      </div>
 
       <div class="topline">
         <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
@@ -250,7 +310,7 @@
       <a href="#" id="f-imprint">Imprint / Impressum</a> ·
       <a href="#" id="f-support">Support</a>
     </div>
-    <p class="muted">© <span id="year"></span> Aurevoir · Keystone · <span id="vline">v<span id="v2">1.0.0</span></span></p>
+    <p class="muted">© <span id="year"></span> Aurevoir · Keystone · v<span id="v2">1.0.0</span></p>
   </footer>
 
   <script>
@@ -327,6 +387,12 @@
         url.searchParams.set('lang', l);
         if(qp.get('v')) url.searchParams.set('v', version);
         history.replaceState({}, '', url.toString());
+
+        // Hero-Subline per Sprache
+        document.getElementById('site-sub').innerHTML =
+          (l==='de')
+            ? `Keystone · Version <code class="kbd" id="ver">${version}</code>`
+            : `Keystone · Version <code class="kbd" id="ver">${version}</code>`;
       }
 
       btnDe.addEventListener('click', ()=>applyLang('de'));
