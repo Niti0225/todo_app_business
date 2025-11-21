@@ -3,406 +3,443 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurevoir – Startseite</title>
-  <meta name="description" content="Offizielle Info- und Rechteseiten zur App Aurevoir (To-Do & Kalender). Datenschutz, Nutzungsbedingungen, Support und Abo-Infos." />
-  <meta name="color-scheme" content="dark light" />
+  <title>Aurevoir • ToDo Business – Home</title>
+  <meta name="description" content="Offizielle Info- & Rechteseite für die App Aurevoir • ToDo Business – Privacy, Terms, Support und Abo-Modelle." />
+  <!-- Dark erzwingen -->
+  <meta name="color-scheme" content="dark" />
   <style>
-    /* =========================
-       Farb- & Design-Variablen
-       ========================= */
     :root{
-      /* Brand-Verlauf (wie im Screenshot) */
-      --grad-start:#9A4DFF;   /* Amethyst */
-      --grad-end:#20D5F4;     /* Cyan */
-      --brand:#8B5CF6;        /* fallback violet */
-      --brand-2:#22D3EE;      /* fallback cyan */
+      /* Brand */
+      --brand:#2196F3;
+      --accent:#7c3aed;     /* Lila Schimmer */
+      --ok:#22c55e;
 
-      /* Oberfläche (dunkel) */
-      --bg:#0B0B0E;           /* Haupt-Hintergrund */
-      --panel:#14141B;        /* Karten/Paneele */
-      --panel-2:#111117;
-      --border:#252533;
-      --text:#F8FAFC;         /* Primär-Text */
-      --muted:#9AA0A6;        /* Sekundär-Text */
-      --chip:#1E1E27;         /* Chip-Hintergrund */
+      /* Dark-UI (fix) */
+      --bg:#000000;         /* tief schwarz */
+      --bg-soft:#07090d;
+      --card:#0e1218;
+      --card-2:#0b1119;
+      --text:#e5e7eb;
+      --muted:#9aa3af;
+      --border:#141a22;
+      --chip:#0b1320;
+      --chip-border:#1e293b;
 
-      /* Akzente */
-      --ok:#22C55E;
-      --warn:#F59E0B;
-
-      /* Typo */
-      --radius:18px;
-    }
-
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg:#0B0B0E;   /* wir bleiben bewusst dark – deine Wunschfarbe */
-      }
+      --radius:16px;
+      --blur:44px;          /* Weichzeichner für Glow */
+      --emoji-alpha:.10;    /* Sichtbarkeit der Emojis */
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; color:var(--text);
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Inter,Ubuntu,Helvetica,Arial,sans-serif;
-      background: radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--grad-start) 22%, #000) 0%, transparent 60%),
-                  radial-gradient(1200px 600px at 100% -20%, color-mix(in oklab, var(--grad-end) 22%, #000) 0%, transparent 60%),
-                  var(--bg);
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Helvetica,Arial,sans-serif;
       line-height:1.65;
+      overflow-x:hidden;
     }
 
-    /* Deko – weiche Emoji-Bubbles im Hintergrund wie zuvor */
-    .bg-emoji::before,
-    .bg-emoji::after{
-      content:"⭐️ 🌙 ✨ 💎 ⚡️ 🌊 🪄";
-      position:fixed;
-      inset:auto auto 8% -6%;
-      font-size:clamp(40px, 8vw, 120px);
-      opacity:.06;
-      filter:blur(2px);
-      pointer-events:none;
-      z-index:0;
-      white-space:pre;
-      transform:rotate(-8deg);
-    }
-    .bg-emoji::after{
-      content:"💜 🔮 🧊 🌌 💠 🫧 ✨";
-      inset:12% -6% auto auto;
-      transform:rotate(8deg);
-      opacity:.05;
-    }
-
-    /* Container & Layout */
-    .wrap{max-width:1040px; margin:0 auto; padding:24px; position:relative; z-index:1}
-    header{padding:24px 0 14px}
-    .brand-row{display:flex; flex-wrap:wrap; gap:12px 16px; align-items:center; justify-content:space-between}
-    .brand{
-      font-weight:900; letter-spacing:.2px;
-      font-size:clamp(1.6rem, 3vw, 2.2rem);
-      background:linear-gradient(90deg, var(--grad-start), var(--grad-end));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow:0 0 28px color-mix(in oklab, var(--grad-start) 12%, transparent);
-    }
-    .meta{color:var(--muted); font-weight:700}
-
-    /* Sprachumschalter */
-    .lang{display:flex; gap:10px}
-    .chip{
-      background:var(--chip); color:var(--text);
-      border:1px solid var(--border); border-radius:999px;
-      padding:8px 14px; font-weight:800; cursor:pointer; user-select:none;
-    }
-    .chip[aria-pressed="true"]{
-      background:linear-gradient(90deg, var(--grad-start), var(--grad-end));
-      color:#fff; border-color:transparent; box-shadow:0 0 24px rgba(32,213,244,.16);
-    }
-
-    /* Nav-Links */
-    .nav{
-      margin:14px 0 6px; padding:8px;
-      display:flex; flex-wrap:wrap; gap:8px;
-      background:rgba(255,255,255,.02);
-      border:1px solid var(--border); border-radius:14px;
-    }
-    .nav a{
-      text-decoration:none; color:var(--text); font-weight:800;
-      padding:10px 14px; border-radius:12px; background:var(--panel);
-      border:1px solid var(--border);
-    }
-    .nav a:hover{background:var(--panel-2)}
-
-    /* Info-Banner */
-    .note{
-      margin:16px 0 6px; padding:12px 14px;
-      background:linear-gradient(90deg,
-        color-mix(in oklab, var(--grad-start) 25%, transparent),
-        color-mix(in oklab, var(--grad-end) 25%, transparent));
-      border:1px solid var(--border); border-radius:999px; color:#fff; font-weight:800;
-      display:flex; align-items:center; gap:10px;
-    }
-
-    main{margin-top:18px; display:grid; gap:22px}
-    .hero{
-      border-radius:var(--radius);
+    /* Layout */
+    .container{max-width:1100px; margin:0 auto; padding:20px}
+    header.hero{
+      position:relative;
+      isolation:isolate;
       background:
-        radial-gradient(800px 400px at -10% -30%, color-mix(in oklab, var(--grad-start) 18%, transparent), transparent 60%),
-        radial-gradient(900px 380px at 120% -40%, color-mix(in oklab, var(--grad-end) 18%, transparent), transparent 60%),
-        var(--panel);
-      border:1px solid var(--border); padding:22px;
+        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
+        radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
+        linear-gradient(to bottom, var(--bg), var(--bg-soft));
+      border-bottom:1px solid var(--border);
+      overflow:hidden;
     }
-    .hero h1{margin:.2rem 0 .4rem; font-size:clamp(1.4rem,2.4vw,1.9rem); letter-spacing:.2px}
-    .hero p{margin:.2rem 0; color:var(--muted)}
-    .btn-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
-    .btn{
-      display:inline-flex; align-items:center; gap:.6rem;
-      text-decoration:none; color:#fff; font-weight:800;
-      padding:12px 16px; border-radius:12px; border:1px solid transparent;
-      background:linear-gradient(90deg, var(--grad-start), var(--grad-end));
-      box-shadow:0 8px 26px rgba(32,213,244,.16);
-    }
-    .btn.secondary{
-      background:var(--panel); color:var(--text); border-color:var(--border);
-    }
-    .btn:hover{filter:saturate(1.05) brightness(1.03)}
 
-    /* Karten & Grids */
+    /* ✨ Nebel-Glow-Layer */
+    .glow{
+      position:absolute; inset:0; pointer-events:none; z-index:0;
+      filter:blur(var(--blur)) saturate(115%);
+      opacity:.9;
+    }
+    .glow::before,
+    .glow::after{
+      content:"";
+      position:absolute;
+      width:55vmax; height:55vmax; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
+    }
+    .glow::before{ top:-35vmax; left:-20vmax }
+    .glow::after{
+      top:-30vmax; right:-25vmax;
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
+    }
+
+    /* 🌥️ Emoji-Fog – dezent, fix positioniert */
+    .emoji-cloud{
+      position:absolute; inset:0; pointer-events:none; z-index:1;
+      filter:blur(1px);
+    }
+    .bg-emoji{
+      position:absolute; font-size:clamp(24px, 3.2vw, 34px);
+      opacity:var(--emoji-alpha);
+      transform:translate(-50%,-50%);
+      user-select:none;
+    }
+    .e1{ left:10%; top:28% }   /* ✅ */
+    .e2{ left:24%; top:12% }   /* 📅 */
+    .e3{ left:42%; top:22% }   /* ⏱️ */
+    .e4{ left:64%; top:16% }   /* 📈 */
+    .e5{ left:82%; top:30% }   /* 🧭 */
+    .e6{ left:18%; top:46% }   /* 🗂️ */
+    .e7{ left:36%; top:54% }   /* ✨ */
+    .e8{ left:72%; top:50% }   /* 🧠 */
+
+    @media (prefers-reduced-motion: reduce){
+      .glow, .emoji-cloud{ display:none }
+    }
+
+    .title{
+      font-size:clamp(1.8rem,3.2vw,2.4rem);
+      font-weight:900; letter-spacing:.4px; margin:.2rem 0;
+      background:linear-gradient(90deg, var(--brand) 0%, var(--accent) 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      position:relative; z-index:2;
+    }
+    .sub{
+      color:var(--muted); margin:.2rem 0 .4rem;
+      font-weight:700; letter-spacing:.3px;
+      position:relative; z-index:2;
+    }
+    .meta{display:flex; gap:.6rem; flex-wrap:wrap; color:var(--muted); font-weight:700; position:relative; z-index:2}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; padding:.05rem .45rem; border-radius:8px; background:var(--chip); border:1px solid var(--chip-border)}
+
+    /* Language pills + nav */
+    .bar{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:14px 0; position:relative; z-index:2}
+    .pill{
+      border:1px solid var(--border); border-radius:999px; padding:8px 14px;
+      color:var(--text); text-decoration:none; font-weight:800; letter-spacing:.2px; background:var(--card);
+    }
+    .pill[aria-current="true"]{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#fff; border-color:transparent}
+    .tabs{display:flex; gap:12px; flex-wrap:wrap; position:relative; z-index:2}
+    .tab{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:10px 14px; text-decoration:none; color:var(--text);
+      font-weight:800; letter-spacing:.2px;
+    }
+    .tab:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--border))}
+    .tab small{opacity:.65; font-weight:700}
+
+    /* Sections */
     .grid{display:grid; gap:18px}
-    @media (min-width:860px){ .grid{grid-template-columns:1.1fr .9fr} }
+    @media (min-width:880px){ .grid-2{grid-template-columns:1.2fr .8fr} }
 
     .card{
-      background:var(--panel); border:1px solid var(--border);
-      border-radius:var(--radius); padding:18px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      position:relative; z-index:0;
     }
-    .card h3{margin:.2rem 0 .6rem}
-    .muted{color:var(--muted)}
+    h2{font-size:clamp(1.2rem,2.2vw,1.5rem); margin:.2rem 0 .65rem}
+    p{margin:.45rem 0}
 
-    /* Abos / Preise */
-    .plans{display:grid; gap:18px; margin-top:6px}
-    @media (min-width:860px){ .plans{grid-template-columns:1fr 1fr} }
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem;
+      padding:12px 16px; border-radius:12px; text-decoration:none; font-weight:800; letter-spacing:.2px;
+      background:linear-gradient(90deg, var(--brand), var(--accent)); color:#fff; border:1px solid transparent;
+      box-shadow:0 6px 20px color-mix(in oklab, var(--brand) 25%, transparent);
+    }
+    .btn.outline{
+      background:transparent; color:var(--text);
+      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+    }
+    .btn:hover{filter:brightness(1.05)}
+
+    /* Plans */
+    .plans{display:grid; gap:16px; margin-top:10px}
+    @media (min-width:900px){ .plans{grid-template-columns:repeat(2,1fr)} } /* 2 Karten (Free + Pro) */
     .plan{
-      background:var(--panel); border:1px solid var(--border);
-      border-radius:var(--radius); padding:20px; position:relative; overflow:hidden;
-      transition:transform .25s ease, box-shadow .25s ease;
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; position:relative;
+      transition:transform .2s ease;
     }
-    .plan:hover{transform:translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,.35)}
-    .plan h4{margin:.15rem 0 .4rem; font-size:1.15rem}
-    .price{font-size:1.6rem; font-weight:900; margin:.1rem 0 .2rem}
-    .pill{display:inline-block; padding:.15rem .6rem; border-radius:999px; background:var(--chip); border:1px solid var(--border); color:var(--muted); font-weight:800; font-size:.92rem}
-    .features{margin:.6rem 0 0 0; padding-left:1.2rem}
-    .features li{margin:.32rem 0}
-    .features li::marker{content:"✔ "; color:var(--ok)}
-
-    .cta{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
-    .ghost{
-      background:var(--panel-2); color:var(--text); border:1px solid var(--border);
+    .plan:hover{transform:translateY(-3px)}
+    .plan .label{
+      position:absolute; top:12px; right:12px; font-size:.78rem;
+      padding:.2rem .6rem; border-radius:999px; color:#fff;
+      background:linear-gradient(90deg, var(--brand) 0%, var(--accent) 100%);
+      font-weight:800; letter-spacing:.3px;
     }
+    .price{font-size:1.4rem; font-weight:900; margin:.2rem 0 .1rem}
+    .muted{color:var(--muted)}
+    ul.list{margin:.4rem 0 .4rem 1.1rem}
+    ul.list li{margin:.28rem 0}
+    ul.list li::marker{content:"✔ "; color:var(--ok)}
+    .notice{font-size:.92rem; color:var(--muted)}
 
     footer{
-      margin:28px 0 18px; padding-top:16px; color:var(--muted);
-      border-top:1px solid var(--border); font-size:.96rem;
-      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
+      border-top:1px solid var(--border); margin-top:26px; padding:20px;
+      color:var(--muted); text-align:center; background:var(--bg-soft);
     }
-    .links{display:flex; gap:12px; flex-wrap:wrap}
-    .links a{color:var(--text); text-decoration:none; font-weight:800; background:var(--panel); border:1px solid var(--border); padding:8px 12px; border-radius:12px}
-    .links a:hover{background:var(--panel-2)}
-    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:var(--border); padding:.05rem .4rem; border-radius:6px}
   </style>
 </head>
-<body class="bg-emoji">
-  <div class="wrap">
-    <!-- Header -->
-    <header>
-      <div class="brand-row">
-        <div>
-          <div class="brand">Aurevoir – To-Do & Kalender</div>
-          <div class="meta">Keystone · Version <span class="kbd" id="ver">1.0.0</span></div>
-        </div>
-        <div class="lang" role="tablist" aria-label="Language">
-          <button id="btn-de" class="chip" role="tab" aria-selected="true" aria-pressed="true">Deutsch</button>
-          <button id="btn-en" class="chip" role="tab" aria-selected="false" aria-pressed="false">English</button>
-        </div>
+<body>
+  <!-- HERO -->
+  <header class="hero">
+    <!-- weicher Glow -->
+    <div class="glow" aria-hidden="true"></div>
+
+    <!-- schwebende Emoji-Badges -->
+    <div class="emoji-cloud" aria-hidden="true">
+      <span class="bg-emoji e1">✅</span>
+      <span class="bg-emoji e2">📅</span>
+      <span class="bg-emoji e3">⏱️</span>
+      <span class="bg-emoji e4">📈</span>
+      <span class="bg-emoji e5">🧭</span>
+      <span class="bg-emoji e6">🗂️</span>
+      <span class="bg-emoji e7">✨</span>
+      <span class="bg-emoji e8">🧠</span>
+    </div>
+
+    <div class="container" style="position:relative; z-index:2">
+      <h1 class="title" data-i18n="heroTitle">ToDo Business • Produktivität, die mitwächst.</h1>
+      <div class="sub" data-i18n="heroSub">Aufgaben. Kalender. Fokus – und ein faires Pro-Upgrade.</div>
+      <div class="meta">
+        <span>Aurevoir</span> · <span>Keystone</span> ·
+        <span data-i18n="version">Version</span> <span class="kbd" id="ver">1.0.0</span>
       </div>
 
-      <nav class="nav" aria-label="Schnellzugriff">
-        <a href="privacy.html">Privacy / Datenschutz</a>
-        <a href="terms.html">Terms / Nutzungsbedingungen</a>
-        <a href="imprint.html">Imprint / Impressum</a>
-        <a href="support.html">Support</a>
-        <a href="feedback.html">Feedback</a>
-        <a href="#pricing">Premium</a>
+      <!-- Language pills -->
+      <div class="bar">
+        <a href="#" class="pill" id="pill-de" aria-current="true">Deutsch</a>
+        <a href="#" class="pill" id="pill-en">English</a>
+      </div>
+
+      <!-- Tabs -->
+      <nav class="tabs" aria-label="Quick links">
+        <a class="tab" id="tab-home" href="#"><span data-i18n="tabHome">← Home</span></a>
+        <a class="tab" id="tab-privacy" href="privacy.html"><span data-i18n="tabPrivacy">Privacy / Datenschutz</span></a>
+        <a class="tab" id="tab-terms" href="terms.html"><span data-i18n="tabTerms">Terms / Nutzungsbedingungen</span></a>
+        <a class="tab" id="tab-imprint" href="imprint.html"><span data-i18n="tabImprint">Imprint / Impressum</span></a>
+        <a class="tab" id="tab-support" href="support.html"><span data-i18n="tabSupport">Support / Kontakt</span></a>
+        <a class="tab" id="tab-feedback" href="feedback.html"><span data-i18n="tabFeedback">Feedback</span></a>
+        <a class="tab" id="tab-premium" href="premium.html"><span data-i18n="tabPremium">Premium</span> <small>★</small></a>
       </nav>
+    </div>
+  </header>
 
-      <div class="note">✨ <span data-i18n="plans_note">Alle Pläne können sich weiterentwickeln. Preise und Inhalte können sich ändern.</span></div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-      <h1 data-i18n="hero_title">Smarte To-dos. Klarer Kalender. Mehr Fokus.</h1>
-      <p class="muted" data-i18n="hero_sub">
-        Schreibe deine Aufgaben, nutze den Kalender und upgrade auf Pro für Fokus-Timer, Statistiken & Premium-Support.
-      </p>
-      <div class="btn-row">
-        <a class="btn" href="#pricing">⭐ Premium ansehen</a>
-        <a class="btn secondary" href="support.html">✉️ Support</a>
-      </div>
-    </section>
-
-    <!-- Features & Hinweise -->
-    <section class="grid">
-      <div class="card">
-        <h3 data-i18n="feat_title">Was ist in der App?</h3>
-        <ul class="features">
-          <li data-i18n="feat_1">Aufgaben erstellen & verwalten</li>
-          <li data-i18n="feat_2">Kalender nutzen</li>
-          <li data-i18n="feat_3">Listen, Erinnerungen, Fälligkeitsdaten</li>
-          <li data-i18n="feat_4">Optionale lokale Benachrichtigungen</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3 data-i18n="legal_title">Rechtliches</h3>
-        <p class="muted" data-i18n="legal_text">
-          Details zu Datenschutz und Nutzungsbedingungen findest du auf den verlinkten Seiten. Diese Seiten sind zweisprachig (DE/EN) verfügbar.
+  <main class="container">
+    <div class="grid grid-2">
+      <!-- Intro / Features -->
+      <section class="card">
+        <h2 data-i18n="introTitle">Warum Aurevoir ToDo Business?</h2>
+        <p data-i18n="introP1">
+          Behalte Termine, Aufgaben und Prioritäten im Blick – ohne Schnickschnack. Werbefinanziert im Free-Plan,
+          oder werbefrei mit Pro und cleveren Extras wie Fokus-Timer & Smart Scheduling.
         </p>
-        <div class="btn-row">
-          <a class="btn ghost" href="privacy.html">Privacy</a>
-          <a class="btn ghost" href="terms.html">Terms</a>
+        <div class="cta-row">
+          <a class="btn" id="cta-get-started" href="support.html" data-i18n="ctaGetStarted">Loslegen</a>
+          <a class="btn outline" id="cta-read-privacy" href="privacy.html" data-i18n="ctaPrivacy">Privacy / Datenschutz</a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="card">
-      <h3>Premium</h3>
+      <!-- App facts -->
+      <aside class="card">
+        <h2 data-i18n="factsTitle">Kurz & knapp</h2>
+        <ul class="list">
+          <li data-i18n="facts1">Free: Werbung, Aufgaben & Kalender-Basics</li>
+          <li data-i18n="facts2">Pro: Keine Werbung, Fokus-Timer & Smart Scheduling</li>
+          <li data-i18n="facts3">Pro: Erweiterte Statistiken & Premium-Support</li>
+          <li data-i18n="facts4">Abwicklung über App-Store (Apple/Google)</li>
+        </ul>
+        <p class="notice" data-i18n="factsNote">Preise inkl. MwSt. · Abo jederzeit im Store kündbar.</p>
+      </aside>
+    </div>
+
+    <!-- PLANS (Free + Pro) -->
+    <section class="card" id="plans">
+      <h2 data-i18n="plansTitle">Abo-Modelle</h2>
       <div class="plans">
         <!-- Free -->
-        <article class="plan" aria-labelledby="p-free">
-          <div class="pill" data-i18n="free_badge">Mit Werbung</div>
-          <h4 id="p-free" data-i18n="free_title">Kostenlos</h4>
-          <div class="price" aria-label="Preis">0 €</div>
-          <ul class="features">
-            <li data-i18n="free_f1">Basisfunktionen (To-dos, Listen, Erinnerungen)</li>
-            <li data-i18n="free_f2">Sync (begrenzt)</li>
-            <li data-i18n="free_f3">Werbung enthalten</li>
+        <div class="plan">
+          <div class="label" data-i18n="planBadgeFree">FREE</div>
+          <h3 data-i18n="planFree">Kostenlos</h3>
+          <div class="price" data-i18n="priceFree">0 €</div>
+          <div class="muted" data-i18n="priceFreeNote">mit Werbung</div>
+          <ul class="list">
+            <li data-i18n="free1">Aufgaben & Notizen</li>
+            <li data-i18n="free2">Kalender-Grundfunktionen</li>
+            <li data-i18n="free3">Basis-Sync (optional)</li>
           </ul>
-          <div class="cta">
-            <a class="btn ghost" href="#" aria-disabled="true" data-i18n="free_cta">Bereits aktiv</a>
-          </div>
-        </article>
+          <a class="btn outline" href="premium.html" data-i18n="btnAlreadyActive">Bereits aktiv</a>
+        </div>
 
-        <!-- Pro -->
-        <article class="plan" aria-labelledby="p-pro"
-          style="background:
-           radial-gradient(600px 280px at -10% -30%, color-mix(in oklab, var(--grad-start) 14%, transparent), transparent 60%),
-           radial-gradient(680px 260px at 120% -40%, color-mix(in oklab, var(--grad-end) 14%, transparent), transparent 60%),
-           var(--panel);">
-          <div class="pill" style="color:#fff; background:linear-gradient(90deg,var(--grad-start),var(--grad-end)); border-color:transparent">PRO</div>
-          <h4 id="p-pro">Pro</h4>
-          <div class="price">1,99 € <span class="muted" data-i18n="mo">/ Monat</span></div>
-          <ul class="features">
-            <li data-i18n="pro_f0">Keine Werbung</li>
-            <li data-i18n="pro_fa">Aufgaben erstellen & verwalten</li>
-            <li data-i18n="pro_fb">Kalender nutzen</li>
-            <li data-i18n="pro_f1">Fokus-Timer & Smart Scheduling</li>
-            <li data-i18n="pro_f2">Erweiterte Statistiken</li>
-            <li data-i18n="pro_f3">Premium-Support</li>
+        <!-- Pro Monthly -->
+        <div class="plan" style="border-color: color-mix(in oklab, var(--brand) 45%, var(--border));">
+          <div class="label">PRO</div>
+          <h3 data-i18n="planPro">Pro (Monatlich)</h3>
+          <div class="price">1,99 € / <span data-i18n="perMonth">Monat</span></div>
+          <div class="muted" data-i18n="proNote">monatlich kündbar</div>
+          <ul class="list">
+            <li data-i18n="pro1">Keine Werbung</li>
+            <li data-i18n="pro2">Fokus-Timer & Smart Scheduling</li>
+            <li data-i18n="pro3">Erweiterte Statistiken</li>
+            <li data-i18n="pro4">Premium-Support</li>
+            <li data-i18n="pro5">Aufgaben erstellen & verwalten</li>
+            <li data-i18n="pro6">Kalender nutzen</li>
           </ul>
-          <div class="cta">
-            <a class="btn" href="premium.html" data-i18n="pro_cta">Jetzt freischalten</a>
-            <a class="btn ghost" href="terms.html" data-i18n="more_terms">Bedingungen</a>
-          </div>
-        </article>
+          <a class="btn" href="premium.html" data-i18n="btnUnlockNow">Jetzt freischalten</a>
+        </div>
       </div>
-      <p class="muted" style="margin-top:10px" data-i18n="store_note">
-        Käufe/Abos werden über den jeweiligen App-Store abgewickelt. Es gelten deren Bedingungen.
+      <p class="notice" style="margin-top:10px" data-i18n="legalNote">
+        Käufe werden über den jeweiligen App-Store abgerechnet. Es gelten die Store-Bedingungen.
       </p>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-      <div class="links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="imprint.html">Imprint</a>
-        <a href="support.html">Support</a>
-        <a href="feedback.html">Feedback</a>
+  <footer>
+    <div class="container">
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:8px">
+        <a class="tab" id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
+        <a class="tab" id="f-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+        <a class="tab" id="f-imprint" href="imprint.html">Imprint / Impressum</a>
+        <a class="tab" id="f-support" href="support.html">Support</a>
       </div>
-      <div>© <span id="y"></span> Keystone · Aurevoir · v<span class="kbd" id="ver2">1.0.0</span></div>
-    </footer>
-  </div>
+      <div class="muted">
+        © <span id="y"></span> Aurevoir · Keystone · <span data-i18n="allRights">Alle Rechte vorbehalten.</span>
+      </div>
+    </div>
+  </footer>
 
   <script>
-    // Version & Jahr aus Query (?v=1.2.3)
-    const qp = new URLSearchParams(location.search);
-    const v = qp.get('v') || '1.0.0';
-    document.getElementById('ver').textContent = v;
-    document.getElementById('ver2').textContent = v;
+    // ------- Version & Year ----------
     document.getElementById('y').textContent = new Date().getFullYear();
+    const qp = new URLSearchParams(location.search);
+    const version = qp.get('v') || '1.0.0';
+    document.getElementById('ver').textContent = version;
 
-    // Mini i18n (DE/EN)
+    // ------- i18n ----------
     const dict = {
-      de:{
-        plans_note:"Alle Pläne können sich weiterentwickeln. Preise und Inhalte können sich ändern.",
-        hero_title:"Smarte To-dos. Klarer Kalender. Mehr Fokus.",
-        hero_sub:"Schreibe deine Aufgaben, nutze den Kalender und upgrade auf Pro für Fokus-Timer, Statistiken & Premium-Support.",
-        feat_title:"Was ist in der App?",
-        feat_1:"Aufgaben erstellen & verwalten",
-        feat_2:"Kalender nutzen",
-        feat_3:"Listen, Erinnerungen, Fälligkeitsdaten",
-        feat_4:"Optionale lokale Benachrichtigungen",
-        legal_title:"Rechtliches",
-        legal_text:"Details zu Datenschutz und Nutzungsbedingungen findest du auf den verlinkten Seiten. Diese Seiten sind zweisprachig (DE/EN) verfügbar.",
-        free_badge:"Mit Werbung",
-        free_title:"Kostenlos",
-        free_f1:"Basisfunktionen (To-dos, Listen, Erinnerungen)",
-        free_f2:"Sync (begrenzt)",
-        free_f3:"Werbung enthalten",
-        free_cta:"Bereits aktiv",
-        mo:"/ Monat",
-        pro_f0:"Keine Werbung",
-        pro_fa:"Aufgaben erstellen & verwalten",
-        pro_fb:"Kalender nutzen",
-        pro_f1:"Fokus-Timer & Smart Scheduling",
-        pro_f2:"Erweiterte Statistiken",
-        pro_f3:"Premium-Support",
-        pro_cta:"Jetzt freischalten",
-        more_terms:"Bedingungen",
-        store_note:"Käufe/Abos werden über den jeweiligen App-Store abgewickelt. Es gelten deren Bedingungen."
+      de: {
+        heroTitle:"ToDo Business • Produktivität, die mitwächst.",
+        heroSub:"Aufgaben. Kalender. Fokus – und ein faires Pro-Upgrade.",
+        version:"Version",
+        tabHome:"← Home",
+        tabPrivacy:"Privacy / Datenschutz",
+        tabTerms:"Terms / Nutzungsbedingungen",
+        tabImprint:"Imprint / Impressum",
+        tabSupport:"Support / Kontakt",
+        tabFeedback:"Feedback",
+        tabPremium:"Premium",
+        introTitle:"Warum Aurevoir ToDo Business?",
+        introP1:"Behalte Termine, Aufgaben und Prioritäten im Blick – ohne Schnickschnack. Werbefinanziert im Free-Plan, oder werbefrei mit Pro und cleveren Extras wie Fokus-Timer & Smart Scheduling.",
+        ctaGetStarted:"Loslegen",
+        ctaPrivacy:"Privacy / Datenschutz",
+        factsTitle:"Kurz & knapp",
+        facts1:"Free: Werbung, Aufgaben & Kalender-Basics",
+        facts2:"Pro: Keine Werbung, Fokus-Timer & Smart Scheduling",
+        facts3:"Pro: Erweiterte Statistiken & Premium-Support",
+        facts4:"Abwicklung über App-Store (Apple/Google)",
+        factsNote:"Preise inkl. MwSt. · Abo jederzeit im Store kündbar.",
+        plansTitle:"Abo-Modelle",
+        planBadgeFree:"FREE",
+        planFree:"Kostenlos",
+        priceFree:"0 €",
+        priceFreeNote:"mit Werbung",
+        free1:"Aufgaben & Notizen",
+        free2:"Kalender-Grundfunktionen",
+        free3:"Basis-Sync (optional)",
+        btnAlreadyActive:"Bereits aktiv",
+        planPro:"Pro (Monatlich)",
+        perMonth:"Monat",
+        proNote:"monatlich kündbar",
+        pro1:"Keine Werbung",
+        pro2:"Fokus-Timer & Smart Scheduling",
+        pro3:"Erweiterte Statistiken",
+        pro4:"Premium-Support",
+        pro5:"Aufgaben erstellen & verwalten",
+        pro6:"Kalender nutzen",
+        btnUnlockNow:"Jetzt freischalten",
+        legalNote:"Käufe werden über den jeweiligen App-Store abgerechnet. Es gelten die Store-Bedingungen.",
+        allRights:"Alle Rechte vorbehalten."
       },
-      en:{
-        plans_note:"All plans may evolve. Prices and features can change.",
-        hero_title:"Smarter to-dos. Clear calendar. More focus.",
-        hero_sub:"Write your tasks, use the calendar, and go Pro for focus timer, stats & premium support.",
-        feat_title:"What’s in the app?",
-        feat_1:"Create & manage tasks",
-        feat_2:"Use the calendar",
-        feat_3:"Lists, reminders, due dates",
-        feat_4:"Optional local notifications",
-        legal_title:"Legal",
-        legal_text:"See the linked pages for privacy and terms. All pages are available in DE/EN.",
-        free_badge:"With ads",
-        free_title:"Free",
-        free_f1:"Core features (to-dos, lists, reminders)",
-        free_f2:"Sync (limited)",
-        free_f3:"Ads included",
-        free_cta:"Active",
-        mo:"/ month",
-        pro_f0:"No ads",
-        pro_fa:"Create & manage tasks",
-        pro_fb:"Use the calendar",
-        pro_f1:"Focus timer & smart scheduling",
-        pro_f2:"Advanced statistics",
-        pro_f3:"Premium support",
-        pro_cta:"Unlock now",
-        more_terms:"Terms",
-        store_note:"Purchases/subscriptions are processed by the relevant app store."
+      en: {
+        heroTitle:"ToDo Business • Productivity that grows with you.",
+        heroSub:"Tasks. Calendar. Focus – plus a fair Pro upgrade.",
+        version:"Version",
+        tabHome:"← Home",
+        tabPrivacy:"Privacy",
+        tabTerms:"Terms of Use",
+        tabImprint:"Imprint",
+        tabSupport:"Support / Contact",
+        tabFeedback:"Feedback",
+        tabPremium:"Premium",
+        introTitle:"Why Aurevoir ToDo Business?",
+        introP1:"Keep track of tasks, dates and priorities without noise. Ad-supported in Free or ad-free with Pro and smart extras like Focus Timer & Smart Scheduling.",
+        ctaGetStarted:"Get started",
+        ctaPrivacy:"Privacy",
+        factsTitle:"At a glance",
+        facts1:"Free: Ads, tasks & calendar basics",
+        facts2:"Pro: No ads, Focus Timer & Smart Scheduling",
+        facts3:"Pro: Advanced stats & premium support",
+        facts4:"Billing via app stores (Apple/Google)",
+        factsNote:"VAT incl. · Cancel anytime in the store.",
+        plansTitle:"Plans",
+        planBadgeFree:"FREE",
+        planFree:"Free",
+        priceFree:"€0",
+        priceFreeNote:"with ads",
+        free1:"Tasks & notes",
+        free2:"Calendar essentials",
+        free3:"Basic sync (optional)",
+        btnAlreadyActive:"Active",
+        planPro:"Pro (Monthly)",
+        perMonth:"month",
+        proNote:"cancel monthly",
+        pro1:"No ads",
+        pro2:"Focus Timer & Smart Scheduling",
+        pro3:"Advanced statistics",
+        pro4:"Premium support",
+        pro5:"Create & manage tasks",
+        pro6:"Use calendar",
+        btnUnlockNow:"Unlock now",
+        legalNote:"Purchases are processed by the respective app store. Store terms apply.",
+        allRights:"All rights reserved."
       }
     };
 
-    const nodes = document.querySelectorAll("[data-i18n]");
-    const btnDe = document.getElementById('btn-de');
-    const btnEn = document.getElementById('btn-en');
-
     function setLang(lang){
-      const t = dict[lang] || dict.de;
-      nodes.forEach(n=>{
-        const k = n.getAttribute('data-i18n');
-        if(t[k]) n.textContent = t[k];
+      const d = dict[lang] || dict.de;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(d[key]) el.textContent = d[key];
       });
-      document.documentElement.lang = lang === 'en' ? 'en' : 'de';
-      btnDe.setAttribute('aria-pressed', lang==='de');
-      btnEn.setAttribute('aria-pressed', lang==='en');
-      btnDe.setAttribute('aria-selected', lang==='de');
-      btnEn.setAttribute('aria-selected', lang==='en');
-      localStorage.setItem('lang', lang);
+      // pills state
+      document.getElementById('pill-de').setAttribute('aria-current', lang==='de');
+      document.getElementById('pill-en').setAttribute('aria-current', lang==='en');
+      // add ?lang to main links
+      const links = ['tab-home','tab-privacy','tab-terms','tab-imprint','tab-support','tab-feedback','tab-premium','f-privacy','f-terms','f-imprint','f-support','cta-get-started','cta-read-privacy'];
+      const qp = new URLSearchParams(location.search);
+      const v = qp.get('v');
+      links.forEach(id=>{
+        const a = document.getElementById(id);
+        if(!a) return;
+        const url = new URL(a.getAttribute('href'), location.href);
+        url.searchParams.set('lang', lang);
+        if(v) url.searchParams.set('v', v);
+        a.setAttribute('href', url.toString());
+      });
+      localStorage.setItem('aurevoir_lang', lang);
     }
 
-    // Auto wählen (Speicher > Browser)
-    const stored = localStorage.getItem('lang');
-    const initial = stored || (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
-    setLang(initial);
+    // init lang from ?lang, storage or browser
+    const urlLang = new URLSearchParams(location.search).get('lang');
+    const stored = localStorage.getItem('aurevoir_lang');
+    const browser = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+    setLang(urlLang || stored || browser);
 
-    btnDe.addEventListener('click', ()=>setLang('de'));
-    btnEn.addEventListener('click', ()=>setLang('en'));
+    // handlers
+    document.getElementById('pill-de').addEventListener('click', e=>{e.preventDefault(); setLang('de');});
+    document.getElementById('pill-en').addEventListener('click', e=>{e.preventDefault(); setLang('en');});
   </script>
 </body>
 </html>
