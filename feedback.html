@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>App-Feedback · Aurevoir</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Sende uns Feedback zur App · Send feedback for the app." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉️</text></svg>">
+  <style>
+    :root{
+      --bg:#0E0E12; --bg-alt:#121218; --card:#181822;
+      --muted:#9AA0A6; --text:#EAEAF1; --line:rgba(255,255,255,.06);
+      --grad-start:#9A4DFF; --grad-end:#20D5F4;
+      --accent:#16a34a;
+      --radius:18px; --radius-sm:12px;
+      --shadow-lg:0 10px 30px rgba(0,0,0,.45);
+      --shadow-soft:0 8px 24px rgba(32,213,244,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(154,77,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(32,213,244,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg-alt) 60%, var(--bg));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--grad-end); outline-offset:2px; border-radius:10px}
+
+    .wrap{max-width:940px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    .hero{
+      padding:42px 0 20px; position:relative; border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 400px at -10% -20%, rgba(154,77,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 110% -30%, rgba(32,213,244,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+    }
+    .title{
+      margin:0; font-weight:900; letter-spacing:.3px;
+      font-size:clamp(28px,3.6vw,40px); line-height:1.1;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 4px 24px rgba(154,77,255,.15);
+    }
+    .subtitle{margin:10px 0 0; color:var(--muted); font-weight:600; letter-spacing:.2px}
+
+    /* Top row */
+    .topline{margin-top:16px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .langbar{display:flex; gap:8px}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+      cursor:pointer; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .chip[aria-pressed="true"]{
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      border-color:rgba(255,255,255,.2); box-shadow:var(--shadow-soft); transform:translateY(-1px);
+    }
+    .navlink{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:10px; font-weight:800; letter-spacing:.2px;
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .navlink:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.12)}
+
+    main{padding:28px 0 48px}
+    .grid{display:grid; gap:16px}
+    @media (min-width:760px){ .grid{grid-template-columns:1fr 1fr} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); padding:22px; backdrop-filter:blur(10px);
+    }
+    h2{
+      margin:.2em 0 .4em; font-size:18px; font-weight:900; letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    p{margin:.5em 0}
+    ul{margin:.4em 0 .2em 1.2em}
+    li{margin:.25em 0}
+    .muted{color:var(--muted); font-weight:600}
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:rgba(255,255,255,.08); padding:.15rem .45rem; border-radius:8px;
+      border:1px solid var(--line);
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem;
+      padding:12px 16px; border-radius:12px; font-weight:900; letter-spacing:.2px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(90deg, var(--grad-start), var(--grad-end));
+      color:white; box-shadow:var(--shadow-soft); transition:transform .15s ease, filter .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
+
+    footer{
+      border-top:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+    }
+    .brandline{margin-top:6px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.02)}
+    .hidden{display:none}
+    .links a{color:inherit; text-decoration:underline dotted}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">App Feedback</h1>
+      <p class="subtitle">Aurevoir · Keystone</p>
+
+      <div class="topline">
+        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
+          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
+          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+        </div>
+        <nav>
+          <a class="navlink" href="index.html">← Home</a>
+          <a class="navlink" href="privacy_de.html">Privacy / Datenschutz</a>
+          <a class="navlink" href="terms_de.html">Terms / Nutzungsbedingungen</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- =================== Deutsch =================== -->
+    <section id="sec-de">
+      <div class="card">
+        <h2>Schnellstart</h2>
+        <p>Der Button öffnet deine E-Mail-App mit einer Vorlage. Geräte- & App-Infos fügen wir automatisch hinzu.</p>
+        <p>
+          <a id="btn-mail-de" class="btn" href="#">
+            ✉️ Feedback senden
+          </a>
+        </p>
+        <p class="muted" style="margin-top:.6rem">
+          Öffnet sich keine E-Mail-App? Schreibe an
+          <a class="links" href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Was hilft uns?</h2>
+          <ul>
+            <li>Was dir an der App gefällt</li>
+            <li>Ideen & Feature-Wünsche</li>
+            <li>Fehlermeldungen (kurze Beschreibung)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Nützliche Details</h2>
+          <ul>
+            <li>Gerät & OS (z. B. Pixel 7 · Android 15)</li>
+            <li>App-Version (<code class="kbd" id="v-de">–</code>)</li>
+            <li>Schritte zum Reproduzieren</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Datenschutz</h2>
+        <p class="muted">
+          Deine E-Mail wird ausschließlich zur Bearbeitung deiner Anfrage genutzt. Details in unserer
+          <a class="links" href="privacy_de.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- =================== English =================== -->
+    <section id="sec-en" class="hidden">
+      <div class="card">
+        <h2>Quick Start</h2>
+        <p>The button opens your email app with a template. Device and app info is added automatically.</p>
+        <p>
+          <a id="btn-mail-en" class="btn" href="#">
+            ✉️ Send Feedback
+          </a>
+        </p>
+        <p class="muted" style="margin-top:.6rem">
+          If no email app opens, please write to
+          <a class="links" href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>What helps us?</h2>
+          <ul>
+            <li>What you like about the app</li>
+            <li>Ideas & feature requests</li>
+            <li>Bug reports (short description)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Useful details</h2>
+          <ul>
+            <li>Device & OS (e.g., Pixel 7 · Android 15)</li>
+            <li>App version (<code class="kbd" id="v-en">–</code>)</li>
+            <li>Steps to reproduce</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Privacy</h2>
+        <p class="muted">
+          Your email will only be used to process your request. See our
+          <a class="links" href="privacy_en.html" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="privacy_de.html" target="_blank" rel="noopener">Privacy / Datenschutz</a> ·
+      <a href="support_de.html" target="_blank" rel="noopener">Support</a>
+    </div>
+    <p class="muted">
+      © <span id="year"></span> Aurevoir · Keystone · Version
+      <code class="kbd" id="ver">1.0.0</code>
+    </p>
+    <div class="brandline" aria-hidden="true">
+      <span>Powered by</span>
+      <span style="font-weight:900; background:linear-gradient(90deg,var(--grad-start),var(--grad-end)); -webkit-background-clip:text; background-clip:text; color:transparent;">Keystone</span>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      // ---- Year + version
+      const now = new Date();
+      document.getElementById('year').textContent = now.getFullYear();
+      const qp = new URLSearchParams(location.search);
+      const version = qp.get('v') || '1.0.0';
+      document.getElementById('ver').textContent = version;
+      document.getElementById('v-de').textContent = version;
+      document.getElementById('v-en').textContent = version;
+
+      // ---- Language handling (?lang=de|en + localStorage + browser fallback)
+      const saved = localStorage.getItem('fb_lang');
+      const fromQS = (qp.get('lang') || '').toLowerCase();
+      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
+      let lang = (fromQS === 'de' || fromQS === 'en') ? fromQS
+                : (saved === 'de' || saved === 'en') ? saved
+                : (browserIsDe ? 'de' : 'en');
+
+      const btnDe = document.getElementById('btn-de');
+      const btnEn = document.getElementById('btn-en');
+      const secDe = document.getElementById('sec-de');
+      const secEn = document.getElementById('sec-en');
+
+      function applyLang(l){
+        lang = l;
+        localStorage.setItem('fb_lang', l);
+        document.documentElement.lang = l === 'de' ? 'de' : 'en';
+        btnDe.setAttribute('aria-pressed', l === 'de' ? 'true' : 'false');
+        btnEn.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+        if(l === 'de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
+        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
+        const url = new URL(location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState({}, '', url.toString());
+      }
+      btnDe.addEventListener('click', ()=>applyLang('de'));
+      btnEn.addEventListener('click', ()=>applyLang('en'));
+      applyLang(lang);
+
+      // ---- UA / device info
+      function getUAInfo(){
+        const ua = navigator.userAgent || '';
+        const platform = navigator.platform || '';
+        return `${platform} | ${ua}`.slice(0, 400); // keep short
+      }
+
+      // ---- Mailto builders (localized)
+      function buildMailtoDE(){
+        const to = 'keystone@aurevoir.de';
+        const subject = `App-Feedback – Aurevoir v${version}`;
+        const body = [
+          'Hi Aurevoir-Team,',
+          '',
+          'mein Feedback:',
+          '• Das gefällt mir:',
+          '• Das könnte besser sein:',
+          '• Bug/Problem (Schritte zum Reproduzieren):',
+          '',
+          '---',
+          `Gerät/OS: ${getUAInfo()}`,
+          `App-Version: ${version}`,
+        ].join('\n');
+        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+      function buildMailtoEN(){
+        const to = 'keystone@aurevoir.de';
+        const subject = `App Feedback – Aurevoir v${version}`;
+        const body = [
+          'Hi Aurevoir team,',
+          '',
+          'here is my feedback:',
+          '• What I like:',
+          '• What could be improved:',
+          '• Bug/issue (steps to reproduce):',
+          '',
+          '---',
+          `Device/OS: ${getUAInfo()}`,
+          `App version: ${version}`,
+        ].join('\n');
+        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+
+      // ---- Bind buttons
+      const btnMailDE = document.getElementById('btn-mail-de');
+      const btnMailEN = document.getElementById('btn-mail-en');
+      btnMailDE.setAttribute('href', buildMailtoDE());
+      btnMailEN.setAttribute('href', buildMailtoEN());
+    })();
+  </script>
+</body>
+</html>
+
