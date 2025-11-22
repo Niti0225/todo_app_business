@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Premium Upgrade · Aurevoir</title>
   <meta name="description" content="Aurevoir Premium – Preise, Vorteile, Datenschutz & rechtliche Hinweise." />
+  <!-- Dark erzwingen -->
   <meta name="color-scheme" content="dark" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
 
   <style>
     :root{
-      /* Brand (wie index) */
+      /* Brand (match index) */
       --brand:#2196F3;
       --accent:#7c3aed;
       --ok:#22c55e;
@@ -37,7 +38,7 @@
       line-height:1.65; overflow-x:hidden;
     }
 
-    /* Header / Hero (gleiches Feeling wie index) */
+    /* ===== Header / Hero (gleich wie index) ===== */
     header.hero{
       position:relative; isolation:isolate; overflow:hidden;
       background:
@@ -78,6 +79,7 @@
     .chip{
       border:1px solid var(--line); background:var(--card);
       color:var(--text); padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+      cursor:pointer;
     }
     .chip[aria-pressed="true"]{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; border-color:transparent}
     .navlink{
@@ -87,8 +89,9 @@
     .navlink:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--line))}
 
     main{padding:28px 0 48px}
+
     .plans{display:grid; gap:18px; margin-top:16px}
-    @media (min-width:900px){ .plans{grid-template-columns:repeat(2,1fr)} } /* Free + Pro */
+    @media (min-width:900px){ .plans{grid-template-columns:repeat(2,1fr)} } /* nur Free + Pro */
 
     .card{
       background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
@@ -310,7 +313,7 @@
       btnEn.addEventListener('click', ()=>applyLang('en'));
       applyLang(lang);
 
-      // (Optional) Kauf-Buttons – hier könntest du später Deep Links setzen
+      // Kauf-Buttons (später Deep Links ersetzen)
       document.getElementById('buy-pro-de').setAttribute('href', '#');
       document.getElementById('buy-pro-en').setAttribute('href', '#');
     })();
