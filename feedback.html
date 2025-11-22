@@ -6,48 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Dark erzwingen -->
   <meta name="color-scheme" content="dark" />
-  <meta name="description" content="Sende uns Feedback zur App · Send feedback for the app." />
+  <meta name="description" content="Sende uns Feedback zur App. Schneller Kontakt mit Vorlage und Geräteinfos." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉️</text></svg>">
 
   <style>
     :root{
-      /* Brand (match index/premium) */
+      /* Brand – wie index.html */
       --brand:#2196F3;
-      --accent:#7c3aed;
+      --accent:#7c3aed;    /* Lila Schimmer */
       --ok:#22c55e;
 
-      /* Dark UI */
-      --bg:#000000;
+      /* Dark UI (fix) */
+      --bg:#000000;        /* tief schwarz */
       --bg-soft:#07090d;
       --card:#0e1218;
       --text:#e5e7eb;
       --muted:#9aa3af;
-      --line:#141a22;
+      --border:#141a22;
+
+      --chip:#0b1320;
+      --chip-border:#1e293b;
 
       --radius:18px;
       --blur:44px;
-      --emoji-alpha:.10;
+      --emoji-alpha:.12;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; color:var(--text); background:var(--bg);
-      font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      font-family:system-ui,-apple-system,"Segoe UI",Inter,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
       line-height:1.65; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ===== Header / Hero (gleich wie index/premium) ===== */
+    /* ===== HERO ===== */
     header.hero{
       position:relative; isolation:isolate; overflow:hidden;
       background:
         radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
         radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
-      border-bottom:1px solid var(--line);
+      border-bottom:1px solid var(--border);
     }
-    .glow{position:absolute; inset:0; filter:blur(var(--blur)); opacity:.9; pointer-events:none}
+    .glow{position:absolute; inset:0; filter:blur(var(--blur)) saturate(115%); opacity:.9; pointer-events:none}
     .glow::before,.glow::after{
       content:""; position:absolute; width:55vmax; height:55vmax; border-radius:50%;
       background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
@@ -55,6 +58,7 @@
     .glow::before{ top:-35vmax; left:-20vmax }
     .glow::after{ top:-30vmax; right:-25vmax; background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%) }
 
+    /* Emoji-Nebel */
     .emoji-cloud{position:absolute; inset:0; pointer-events:none; filter:blur(1px)}
     .bg-emoji{position:absolute; font-size:clamp(24px,3.2vw,34px); opacity:var(--emoji-alpha); transform:translate(-50%,-50%); user-select:none}
     .e1{ left:10%; top:28% } .e2{ left:24%; top:12% } .e3{ left:42%; top:22% }
@@ -62,189 +66,207 @@
     .e7{ left:36%; top:54% } .e8{ left:72%; top:50% }
     @media (prefers-reduced-motion:reduce){ .glow,.emoji-cloud{display:none} }
 
-    .wrap{max-width:940px; margin:0 auto; padding:20px}
+    .wrap{max-width:980px; margin:0 auto; padding:22px}
 
     .title{
-      margin:.2rem 0; font-weight:900; letter-spacing:.3px;
+      margin:.2rem 0; font-weight:900; letter-spacing:.35px;
       font-size:clamp(28px,3.6vw,40px); line-height:1.1;
       background:linear-gradient(90deg,var(--brand),var(--accent));
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow:0 4px 24px rgba(124,58,237,.15);
+      text-shadow:0 6px 28px rgba(124,58,237,.18);
       position:relative; z-index:2;
     }
     .subtitle{color:var(--muted); font-weight:700; position:relative; z-index:2}
 
-    .topline{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:12px; position:relative; z-index:2}
+    .topline{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:14px; position:relative; z-index:2}
+
     .langbar{display:flex; gap:8px}
     .chip{
-      border:1px solid var(--line); background:var(--card);
-      color:var(--text); padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px;
-      cursor:pointer;
+      border:1px solid var(--border); background:var(--card);
+      color:var(--text); padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px; cursor:pointer;
     }
     .chip[aria-pressed="true"]{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; border-color:transparent}
-    .navlink{
-      border:1px solid var(--line); background:var(--card);
-      padding:8px 12px; border-radius:12px; font-weight:800; letter-spacing:.2px; color:var(--text); text-decoration:none;
+
+    .tabs{display:flex; gap:10px; flex-wrap:wrap}
+    .tab{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:10px 14px; text-decoration:none; color:var(--text);
+      font-weight:800; letter-spacing:.2px;
     }
-    .navlink:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--line))}
+    .tab:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--border))}
 
-    main{padding:28px 0 48px}
-
+    /* ===== MAIN ===== */
+    main{padding:30px 0 50px}
     .grid{display:grid; gap:16px}
-    @media (min-width:760px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (min-width:820px){ .grid-2{grid-template-columns:1.1fr .9fr} }
 
     .card{
-      background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:0 10px 24px rgba(0,0,0,.22); padding:22px;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:22px;
+      box-shadow:0 10px 24px rgba(0,0,0,.22); position:relative;
     }
-    h2{margin:.2em 0 .4em; font-size:18px; font-weight:900; letter-spacing:.2px;
-       background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    h2{
+      margin:.2em 0 .5em; font-size:18px; font-weight:900; letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
     p{margin:.5em 0}
     ul{margin:.4em 0 .2em 1.2em}
-    li{margin:.25em 0}
+    li{margin:.28em 0}
     .muted{color:var(--muted); font-weight:600}
+
     .kbd{
       font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      background:rgba(255,255,255,.08); padding:.15rem .45rem; border-radius:8px; border:1px solid var(--line);
+      background:rgba(255,255,255,.08); padding:.15rem .45rem; border-radius:8px; border:1px solid var(--border);
     }
+
     .btn{
-      display:inline-flex; align-items:center; gap:.6rem;
-      padding:12px 16px; border-radius:12px; font-weight:900; letter-spacing:.2px;
-      border:1px solid color-mix(in oklab, var(--brand) 35%, var(--line));
-      background:linear-gradient(90deg, var(--brand), var(--accent));
-      color:white; box-shadow:0 8px 24px color-mix(in oklab, var(--brand) 20%, transparent);
-      text-decoration:none;
+      display:inline-flex; align-items:center; gap:.65rem;
+      padding:12px 16px; border-radius:12px; font-weight:900; letter-spacing:.2px; text-decoration:none;
+      background:linear-gradient(90deg, var(--brand), var(--accent)); color:#fff;
+      border:1px solid color-mix(in oklab, var(--brand) 40%, var(--border));
+      box-shadow:0 10px 26px color-mix(in oklab, var(--brand) 22%, transparent);
     }
-    .btn:hover{filter:brightness(1.05)}
+    .btn:hover{filter:brightness(1.06)}
+    .btn.ghost{
+      background:transparent; color:var(--text);
+      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+      box-shadow:none;
+    }
 
     footer{
-      border-top:1px solid var(--line); background:var(--bg-soft);
+      border-top:1px solid var(--border); background:var(--bg-soft);
       color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
     }
+    .links{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:8px}
     .links a{color:var(--text); text-decoration:underline dotted}
-    .brandline{margin-top:6px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.02)}
+    .brandline{margin-top:6px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.02)}
     .hidden{display:none}
+
+    /* kleine Emojis in Section-Headern */
+    .emoji{filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
   </style>
 </head>
 <body>
+  <!-- ===== HERO ===== -->
   <header class="hero">
     <div class="glow" aria-hidden="true"></div>
     <div class="emoji-cloud" aria-hidden="true">
-      <span class="bg-emoji e1">✅</span><span class="bg-emoji e2">📅</span><span class="bg-emoji e3">⏱️</span>
-      <span class="bg-emoji e4">📈</span><span class="bg-emoji e5">🧭</span><span class="bg-emoji e6">🗂️</span>
-      <span class="bg-emoji e7">✨</span><span class="bg-emoji e8">🧠</span>
+      <span class="bg-emoji e1">✅</span>
+      <span class="bg-emoji e2">📅</span>
+      <span class="bg-emoji e3">⏱️</span>
+      <span class="bg-emoji e4">📈</span>
+      <span class="bg-emoji e5">🧭</span>
+      <span class="bg-emoji e6">🗂️</span>
+      <span class="bg-emoji e7">✨</span>
+      <span class="bg-emoji e8">🧠</span>
     </div>
 
-    <div class="wrap">
-      <h1 class="title">App Feedback</h1>
-      <p class="subtitle">Aurevoir · Keystone</p>
+    <div class="wrap" style="position:relative; z-index:2">
+      <h1 class="title">✉️ App-Feedback</h1>
+      <div class="subtitle">Aurevoir · Keystone</div>
 
       <div class="topline">
         <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
           <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
           <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
         </div>
-        <nav>
-          <a class="navlink" href="index.html">← Home</a>
-          <a class="navlink" href="privacy.html">Privacy / Datenschutz</a>
-          <a class="navlink" href="terms.html">Terms / Nutzungsbedingungen</a>
-          <a class="navlink" href="support.html">Support</a>
-          <a class="navlink" href="impressum.html">Impressum</a>
+        <nav class="tabs" aria-label="Quick links">
+          <a class="tab" id="tab-home" href="index.html">← Home</a>
+          <a class="tab" id="tab-privacy" href="privacy.html">Privacy / Datenschutz</a>
+          <a class="tab" id="tab-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+          <a class="tab" id="tab-support" href="support.html">Support</a>
+          <a class="tab" id="tab-imprint" href="impressum.html">Impressum</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- =================== Deutsch =================== -->
+    <!-- ===== Deutsch ===== -->
     <section id="sec-de">
-      <div class="card">
-        <h2>Schnellstart</h2>
-        <p>Der Button öffnet deine E-Mail-App mit einer Vorlage. Geräte- & App-Infos fügen wir automatisch hinzu.</p>
-        <p><a id="btn-mail-de" class="btn" href="#">✉️ Feedback senden</a></p>
-        <p class="muted" style="margin-top:.6rem">
-          Öffnet sich keine E-Mail-App? Schreib an <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
-        </p>
-      </div>
-
-      <div class="grid">
+      <div class="grid grid-2">
         <div class="card">
-          <h2>Was hilft uns?</h2>
+          <h2><span class="emoji">🚀</span> Schnellstart</h2>
+          <p>Der Button öffnet deine E-Mail-App mit Vorlage. Geräte- & App-Infos packen wir automatisch rein.</p>
+          <p><a id="btn-mail-de" class="btn" href="#">✉️ Feedback senden</a></p>
+          <p class="muted" style="margin-top:.6rem">Nichts passiert? Schreib direkt an <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</p>
+        </div>
+
+        <div class="card">
+          <h2><span class="emoji">🧩</span> Was hilft uns?</h2>
           <ul>
             <li>Was dir an der App gefällt</li>
             <li>Ideen & Feature-Wünsche</li>
             <li>Fehlermeldungen (kurz beschreiben)</li>
           </ul>
-        </div>
-        <div class="card">
-          <h2>Nützliche Details</h2>
-          <ul>
-            <li>Gerät & OS (z. B. Pixel 8 · Android 15)</li>
-            <li>App-Version (<code class="kbd" id="v-de">–</code>)</li>
-            <li>Schritte zum Reproduzieren</li>
-          </ul>
+          <p class="muted">Je genauer, desto schneller können wir fixen. 🙏</p>
         </div>
       </div>
 
-      <div class="card">
-        <h2>Datenschutz</h2>
-        <p class="muted">
-          Deine E-Mail wird ausschließlich zur Bearbeitung deiner Anfrage genutzt. Details in unserer
-          <a href="privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
-        </p>
+      <div class="card" style="margin-top:16px">
+        <h2><span class="emoji">🔧</span> Nützliche Details</h2>
+        <ul>
+          <li>Gerät & OS (z. B. Pixel 8 · Android 15)</li>
+          <li>App-Version: <code class="kbd" id="v-de">–</code></li>
+          <li>Schritte zum Reproduzieren</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h2><span class="emoji">🔒</span> Datenschutz</h2>
+        <p class="muted">Deine E-Mail nutzen wir nur zur Bearbeitung deiner Anfrage. Details in unserer <a href="privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
       </div>
     </section>
 
-    <!-- =================== English =================== -->
+    <!-- ===== English ===== -->
     <section id="sec-en" class="hidden">
-      <div class="card">
-        <h2>Quick Start</h2>
-        <p>The button opens your email app with a template. Device and app info will be added automatically.</p>
-        <p><a id="btn-mail-en" class="btn" href="#">✉️ Send Feedback</a></p>
-        <p class="muted" style="margin-top:.6rem">
-          If no email app opens, please write to <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
-        </p>
-      </div>
-
-      <div class="grid">
+      <div class="grid grid-2">
         <div class="card">
-          <h2>What helps us?</h2>
+          <h2><span class="emoji">🚀</span> Quick Start</h2>
+          <p>The button opens your email app with a template. Device & app info is added automatically.</p>
+          <p><a id="btn-mail-en" class="btn" href="#">✉️ Send Feedback</a></p>
+          <p class="muted" style="margin-top:.6rem">No email app? Write to <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</p>
+        </div>
+
+        <div class="card">
+          <h2><span class="emoji">🧩</span> What helps us?</h2>
           <ul>
             <li>What you like about the app</li>
             <li>Ideas & feature requests</li>
             <li>Bug reports (short description)</li>
           </ul>
-        </div>
-        <div class="card">
-          <h2>Useful details</h2>
-          <ul>
-            <li>Device & OS (e.g., Pixel 8 · Android 15)</li>
-            <li>App version (<code class="kbd" id="v-en">–</code>)</li>
-            <li>Steps to reproduce</li>
-          </ul>
+          <p class="muted">The more details you share, the faster we can fix. 🙏</p>
         </div>
       </div>
 
-      <div class="card">
-        <h2>Privacy</h2>
-        <p class="muted">
-          Your email will only be used to process your request. See our
-          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-        </p>
+      <div class="card" style="margin-top:16px">
+        <h2><span class="emoji">🔧</span> Useful details</h2>
+        <ul>
+          <li>Device & OS (e.g., Pixel 8 · Android 15)</li>
+          <li>App version: <code class="kbd" id="v-en">–</code></li>
+          <li>Steps to reproduce</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h2><span class="emoji">🔒</span> Privacy</h2>
+        <p class="muted">Your email will only be used to process your request. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="links">
-      <a href="privacy.html" target="_blank" rel="noopener">Privacy / Datenschutz</a> ·
-      <a href="terms.html" target="_blank" rel="noopener">Terms</a> ·
-      <a href="support.html" target="_blank" rel="noopener">Support</a>
+      <a id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
+      <a id="f-terms" href="terms.html">Terms</a>
+      <a id="f-support" href="support.html">Support</a>
+      <a id="f-imprint" href="impressum.html">Impressum</a>
     </div>
-    <p class="muted">
+    <div class="muted">
       © <span id="year"></span> Aurevoir · Keystone · Version <code class="kbd" id="ver">1.0.0</code>
-    </p>
-    <div class="brandline" aria-hidden="true">
+    </div>
+    <div class="brandline" aria-hidden="true" style="margin-top:8px">
       <span>Powered by</span>
       <span style="font-weight:900; background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">Keystone</span>
     </div>
@@ -252,7 +274,7 @@
 
   <script>
     (function(){
-      // ---- Year + version from ?v=1.2.3
+      // Jahr & Version aus ?v übernehmen
       document.getElementById('year').textContent = new Date().getFullYear();
       const qp = new URLSearchParams(location.search);
       const version = qp.get('v') || '1.0.0';
@@ -260,7 +282,20 @@
       document.getElementById('v-de').textContent = version;
       document.getElementById('v-en').textContent = version;
 
-      // ---- Language handling (?lang=de|en + localStorage + browser fallback)
+      // Helper: ?lang/?v an Links hängen (relativ halten)
+      function addQueryParamsToLinks(ids, lang){
+        const v = new URLSearchParams(location.search).get('v');
+        ids.forEach(id=>{
+          const a = document.getElementById(id);
+          if(!a) return;
+          const url = new URL(a.getAttribute('href'), location.href);
+          if(lang) url.searchParams.set('lang', lang);
+          if(v) url.searchParams.set('v', v);
+          a.setAttribute('href', url.pathname + url.search);
+        });
+      }
+
+      // Sprache initialisieren (QS > localStorage > Browser)
       const saved = localStorage.getItem('fb_lang');
       const fromQS = (qp.get('lang') || '').toLowerCase();
       const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
@@ -272,26 +307,38 @@
       const secEn = document.getElementById('sec-en');
 
       function applyLang(l){
-        lang = l; localStorage.setItem('fb_lang', l);
-        document.documentElement.lang = (l==='de'?'de':'en');
+        lang = l;
+        localStorage.setItem('fb_lang', l);
+        document.documentElement.lang = l==='de'?'de':'en';
         btnDe.setAttribute('aria-pressed', l==='de');
         btnEn.setAttribute('aria-pressed', l==='en');
         if(l==='de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
         else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
-        const url = new URL(location.href); url.searchParams.set('lang', l); history.replaceState({},'',url.toString());
+
+        // Links updaten
+        addQueryParamsToLinks(
+          ['tab-home','tab-privacy','tab-terms','tab-support','tab-imprint','f-privacy','f-terms','f-support','f-imprint'],
+          l
+        );
+
+        // URL sauber halten
+        const url = new URL(location.href);
+        url.searchParams.set('lang', l);
+        if(version) url.searchParams.set('v', version);
+        history.replaceState({}, '', url.toString());
       }
       btnDe.addEventListener('click', ()=>applyLang('de'));
       btnEn.addEventListener('click', ()=>applyLang('en'));
       applyLang(lang);
 
-      // ---- UA / device info
+      // Device/UA kurz erfassen
       function getUAInfo(){
         const ua = navigator.userAgent || '';
         const platform = navigator.platform || '';
-        return `${platform} | ${ua}`.slice(0, 400); // kurz halten
+        return `${platform} | ${ua}`.slice(0, 400);
       }
 
-      // ---- Mailto builders (localized)
+      // Mailto-Builder
       function buildMailtoDE(){
         const to = 'keystone@aurevoir.de';
         const subject = `App-Feedback – Aurevoir v${version}`;
@@ -305,7 +352,7 @@
           '',
           '---',
           `Gerät/OS: ${getUAInfo()}`,
-          `App-Version: ${version}`,
+          `App-Version: ${version}`
         ].join('\n');
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
@@ -322,12 +369,12 @@
           '',
           '---',
           `Device/OS: ${getUAInfo()}`,
-          `App version: ${version}`,
+          `App version: ${version}`
         ].join('\n');
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
 
-      // ---- Bind buttons
+      // Buttons binden
       const btnMailDE = document.getElementById('btn-mail-de');
       const btnMailEN = document.getElementById('btn-mail-en');
       btnMailDE.setAttribute('href', buildMailtoDE());
