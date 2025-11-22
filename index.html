@@ -317,17 +317,23 @@
     const version = qp.get('v') || '1.0.0';
     document.getElementById('ver').textContent = version;
 
-    // Hilfsfunktion: fügt ?lang (& ?v) an relative Links an
+    // Hilfsfunktion: stabil ?lang (& ?v) an RELATIVE Links anhängen, ohne Pfad zu ändern
+    function applyParams(href, lang, v){
+      const parts = href.split('?');
+      const path = parts[0];
+      const sp = new URLSearchParams(parts[1] || '');
+      sp.set('lang', lang);
+      if (v) sp.set('v', v); else sp.delete('v');
+      const qs = sp.toString();
+      return qs ? `${path}?${qs}` : path;
+    }
     function setQueryParams(idList, lang){
       const v = new URLSearchParams(location.search).get('v');
       idList.forEach(id=>{
         const a = document.getElementById(id);
         if(!a) return;
-        const baseHref = a.getAttribute('href');        // z.B. "support.html"
-        const url = new URL(baseHref, location.href);   // absolute URL auf gleicher Origin
-        url.searchParams.set('lang', lang);
-        if(v) url.searchParams.set('v', v);
-        a.setAttribute('href', url.pathname + url.search); // wieder RELATIV halten
+        const base = a.getAttribute('href');   // bleibt z. B. "support.html"
+        a.setAttribute('href', applyParams(base, lang, v));
       });
     }
 
