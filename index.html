@@ -215,10 +215,11 @@
 
       <!-- Tabs -->
       <nav class="tabs" aria-label="Quick links">
-        <a class="tab" id="tab-home" href="#"><span data-i18n="tabHome">← Home</span></a>
+        <a class="tab" id="tab-home" href="index.html"><span data-i18n="tabHome">← Home</span></a>
         <a class="tab" id="tab-privacy" href="privacy.html"><span data-i18n="tabPrivacy">Privacy / Datenschutz</span></a>
-        <a class="tab" id="tab-terms" href="terms.html"><span data-i18n="tabTerms">Terms / Nutzungsbedingungen</span></a>
-        <a class="tab" id="tab-imprint" href="imprint.html"><span data-i18n="tabImprint">Imprint / Impressum</span></a>
+        <!-- Bis eigene terms.html existiert, auf privacy.html leiten -->
+        <a class="tab" id="tab-terms" href="privacy.html"><span data-i18n="tabTerms">Terms / Nutzungsbedingungen</span></a>
+        <a class="tab" id="tab-imprint" href="impressum.html"><span data-i18n="tabImprint">Imprint / Impressum</span></a>
         <a class="tab" id="tab-support" href="support.html"><span data-i18n="tabSupport">Support / Kontakt</span></a>
         <a class="tab" id="tab-feedback" href="feedback.html"><span data-i18n="tabFeedback">Feedback</span></a>
         <a class="tab" id="tab-premium" href="premium.html"><span data-i18n="tabPremium">Premium</span> <small>★</small></a>
@@ -299,8 +300,8 @@
     <div class="container">
       <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:8px">
         <a class="tab" id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
-        <a class="tab" id="f-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
-        <a class="tab" id="f-imprint" href="imprint.html">Imprint / Impressum</a>
+        <a class="tab" id="f-terms" href="privacy.html">Terms / Nutzungsbedingungen</a>
+        <a class="tab" id="f-imprint" href="impressum.html">Imprint / Impressum</a>
         <a class="tab" id="f-support" href="support.html">Support</a>
       </div>
       <div class="muted">
@@ -315,6 +316,20 @@
     const qp = new URLSearchParams(location.search);
     const version = qp.get('v') || '1.0.0';
     document.getElementById('ver').textContent = version;
+
+    // Hilfsfunktion: fügt ?lang (& ?v) an relative Links an
+    function setQueryParams(idList, lang){
+      const v = new URLSearchParams(location.search).get('v');
+      idList.forEach(id=>{
+        const a = document.getElementById(id);
+        if(!a) return;
+        const baseHref = a.getAttribute('href');        // z.B. "support.html"
+        const url = new URL(baseHref, location.href);   // absolute URL auf gleicher Origin
+        url.searchParams.set('lang', lang);
+        if(v) url.searchParams.set('v', v);
+        a.setAttribute('href', url.pathname + url.search); // wieder RELATIV halten
+      });
+    }
 
     // ------- i18n ----------
     const dict = {
@@ -416,18 +431,16 @@
       // pills state
       document.getElementById('pill-de').setAttribute('aria-current', lang==='de');
       document.getElementById('pill-en').setAttribute('aria-current', lang==='en');
-      // add ?lang to main links
-      const links = ['tab-home','tab-privacy','tab-terms','tab-imprint','tab-support','tab-feedback','tab-premium','f-privacy','f-terms','f-imprint','f-support','cta-get-started','cta-read-privacy'];
-      const qp = new URLSearchParams(location.search);
-      const v = qp.get('v');
-      links.forEach(id=>{
-        const a = document.getElementById(id);
-        if(!a) return;
-        const url = new URL(a.getAttribute('href'), location.href);
-        url.searchParams.set('lang', lang);
-        if(v) url.searchParams.set('v', v);
-        a.setAttribute('href', url.toString());
-      });
+
+      // alle Link-IDs, die die Query-Parameter bekommen sollen
+      const linkIds = [
+        'tab-home','tab-privacy','tab-terms','tab-imprint',
+        'tab-support','tab-feedback','tab-premium',
+        'f-privacy','f-terms','f-imprint','f-support',
+        'cta-get-started','cta-read-privacy'
+      ];
+      setQueryParams(linkIds, lang);
+
       localStorage.setItem('aurevoir_lang', lang);
     }
 
