@@ -2,22 +2,25 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>App-Feedback · Aurevoir</title>
+  <title>App-Feedback · Keystone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Dark erzwingen -->
   <meta name="color-scheme" content="dark" />
-  <meta name="description" content="Sende uns Feedback zur App. Schneller Kontakt mit Vorlage und Geräteinfos." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉️</text></svg>">
+  <meta
+    name="description"
+    content="Sende Feedback zur App ToDo Business. Schneller Kontakt mit Vorlage und Geräteinfos."
+  />
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✉️</text></svg>"
+  />
 
   <style>
     :root{
-      /* Brand – wie index.html */
       --brand:#2196F3;
-      --accent:#7c3aed;    /* Lila Schimmer */
+      --accent:#7c3aed;
       --ok:#22c55e;
 
-      /* Dark UI (fix) */
-      --bg:#000000;        /* tief schwarz */
+      --bg:#000000;
       --bg-soft:#07090d;
       --card:#0e1218;
       --text:#e5e7eb;
@@ -34,123 +37,287 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
-      margin:0; color:var(--text); background:var(--bg);
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
       font-family:system-ui,-apple-system,"Segoe UI",Inter,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
-      line-height:1.65; overflow-x:hidden;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.65;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ===== HERO ===== */
     header.hero{
-      position:relative; isolation:isolate; overflow:hidden;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
       background:
         radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
         radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
       border-bottom:1px solid var(--border);
     }
-    .glow{position:absolute; inset:0; filter:blur(var(--blur)) saturate(115%); opacity:.9; pointer-events:none}
-    .glow::before,.glow::after{
-      content:""; position:absolute; width:55vmax; height:55vmax; border-radius:50%;
+
+    .glow{
+      position:absolute;
+      inset:0;
+      filter:blur(var(--blur)) saturate(115%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .glow::before,
+    .glow::after{
+      content:"";
+      position:absolute;
+      width:55vmax;
+      height:55vmax;
+      border-radius:50%;
       background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
     }
+
     .glow::before{ top:-35vmax; left:-20vmax }
-    .glow::after{ top:-30vmax; right:-25vmax; background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%) }
+    .glow::after{
+      top:-30vmax;
+      right:-25vmax;
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
+    }
 
-    /* Emoji-Nebel */
-    .emoji-cloud{position:absolute; inset:0; pointer-events:none; filter:blur(1px)}
-    .bg-emoji{position:absolute; font-size:clamp(24px,3.2vw,34px); opacity:var(--emoji-alpha); transform:translate(-50%,-50%); user-select:none}
-    .e1{ left:10%; top:28% } .e2{ left:24%; top:12% } .e3{ left:42%; top:22% }
-    .e4{ left:64%; top:16% } .e5{ left:82%; top:30% } .e6{ left:18%; top:46% }
-    .e7{ left:36%; top:54% } .e8{ left:72%; top:50% }
-    @media (prefers-reduced-motion:reduce){ .glow,.emoji-cloud{display:none} }
+    .emoji-cloud{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      filter:blur(1px);
+    }
 
-    .wrap{max-width:980px; margin:0 auto; padding:22px}
+    .bg-emoji{
+      position:absolute;
+      font-size:clamp(24px,3.2vw,34px);
+      opacity:var(--emoji-alpha);
+      transform:translate(-50%,-50%);
+      user-select:none;
+    }
+
+    .e1{ left:10%; top:28% }
+    .e2{ left:24%; top:12% }
+    .e3{ left:42%; top:22% }
+    .e4{ left:64%; top:16% }
+    .e5{ left:82%; top:30% }
+    .e6{ left:18%; top:46% }
+    .e7{ left:36%; top:54% }
+    .e8{ left:72%; top:50% }
+
+    @media (prefers-reduced-motion:reduce){
+      .glow,.emoji-cloud{display:none}
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:22px;
+    }
 
     .title{
-      margin:.2rem 0; font-weight:900; letter-spacing:.35px;
-      font-size:clamp(28px,3.6vw,40px); line-height:1.1;
+      margin:.2rem 0;
+      font-weight:900;
+      letter-spacing:.35px;
+      font-size:clamp(28px,3.6vw,40px);
+      line-height:1.1;
       background:linear-gradient(90deg,var(--brand),var(--accent));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
       text-shadow:0 6px 28px rgba(124,58,237,.18);
-      position:relative; z-index:2;
+      position:relative;
+      z-index:2;
     }
-    .subtitle{color:var(--muted); font-weight:700; position:relative; z-index:2}
 
-    .topline{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:14px; position:relative; z-index:2}
-
-    .langbar{display:flex; gap:8px}
-    .chip{
-      border:1px solid var(--border); background:var(--card);
-      color:var(--text); padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px; cursor:pointer;
+    .subtitle{
+      color:var(--muted);
+      font-weight:700;
+      position:relative;
+      z-index:2;
     }
-    .chip[aria-pressed="true"]{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; border-color:transparent}
 
-    .tabs{display:flex; gap:10px; flex-wrap:wrap}
+    .topline{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:14px;
+      position:relative;
+      z-index:2;
+    }
+
+    .lang-indicator{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:8px 14px;
+      background:var(--card);
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .lang-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      box-shadow:0 0 12px rgba(33,150,243,.28);
+      flex:0 0 auto;
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .tab{
-      background:var(--card); border:1px solid var(--border);
-      border-radius:12px; padding:10px 14px; text-decoration:none; color:var(--text);
-      font-weight:800; letter-spacing:.2px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 14px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
-    .tab:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--border))}
 
-    /* ===== MAIN ===== */
+    .tab:hover{
+      transform:translateY(-1px);
+      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+    }
+
     main{padding:30px 0 50px}
-    .grid{display:grid; gap:16px}
-    @media (min-width:820px){ .grid-2{grid-template-columns:1.1fr .9fr} }
+
+    .grid{
+      display:grid;
+      gap:16px;
+    }
+
+    @media (min-width:820px){
+      .grid-2{grid-template-columns:1.1fr .9fr}
+    }
 
     .card{
-      background:var(--card); border:1px solid var(--border);
-      border-radius:var(--radius); padding:22px;
-      box-shadow:0 10px 24px rgba(0,0,0,.22); position:relative;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      position:relative;
     }
+
     h2{
-      margin:.2em 0 .5em; font-size:18px; font-weight:900; letter-spacing:.2px;
+      margin:.2em 0 .5em;
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:.2px;
       background:linear-gradient(90deg,var(--brand),var(--accent));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
+
     p{margin:.5em 0}
-    ul{margin:.4em 0 .2em 1.2em}
-    li{margin:.28em 0}
-    .muted{color:var(--muted); font-weight:600}
+
+    ul{
+      margin:.4em 0 .2em 1.2em;
+    }
+
+    li{
+      margin:.28em 0;
+    }
+
+    .muted{
+      color:var(--muted);
+      font-weight:600;
+    }
 
     .kbd{
       font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      background:rgba(255,255,255,.08); padding:.15rem .45rem; border-radius:8px; border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      padding:.15rem .45rem;
+      border-radius:8px;
+      border:1px solid var(--border);
     }
 
     .btn{
-      display:inline-flex; align-items:center; gap:.65rem;
-      padding:12px 16px; border-radius:12px; font-weight:900; letter-spacing:.2px; text-decoration:none;
-      background:linear-gradient(90deg, var(--brand), var(--accent)); color:#fff;
+      display:inline-flex;
+      align-items:center;
+      gap:.65rem;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:900;
+      letter-spacing:.2px;
+      text-decoration:none;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      color:#fff;
       border:1px solid color-mix(in oklab, var(--brand) 40%, var(--border));
       box-shadow:0 10px 26px color-mix(in oklab, var(--brand) 22%, transparent);
+      transition:filter .2s ease, transform .2s ease;
     }
-    .btn:hover{filter:brightness(1.06)}
-    .btn.ghost{
-      background:transparent; color:var(--text);
-      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
-      box-shadow:none;
+
+    .btn:hover{
+      filter:brightness(1.06);
+      transform:translateY(-1px);
     }
 
     footer{
-      border-top:1px solid var(--border); background:var(--bg-soft);
-      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+      border-top:1px solid var(--border);
+      background:var(--bg-soft);
+      color:var(--muted);
+      padding:20px;
+      text-align:center;
+      font-weight:600;
+      letter-spacing:.2px;
     }
-    .links{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:8px}
-    .links a{color:var(--text); text-decoration:underline dotted}
-    .brandline{margin-top:6px; display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.02)}
+
+    .links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:8px;
+    }
+
+    .links a{
+      color:var(--text);
+      text-decoration:underline dotted;
+    }
+
+    .brandline{
+      margin-top:6px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.02);
+    }
+
     .hidden{display:none}
 
-    /* kleine Emojis in Section-Headern */
-    .emoji{filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
+    .emoji{
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));
+    }
   </style>
 </head>
 <body>
-  <!-- ===== HERO ===== -->
   <header class="hero">
     <div class="glow" aria-hidden="true"></div>
+
     <div class="emoji-cloud" aria-hidden="true">
       <span class="bg-emoji e1">✅</span>
       <span class="bg-emoji e2">📅</span>
@@ -163,18 +330,19 @@
     </div>
 
     <div class="wrap" style="position:relative; z-index:2">
-      <h1 class="title">✉️ App-Feedback</h1>
-      <div class="subtitle">Aurevoir · Keystone</div>
+      <h1 class="title" id="page-title">✉️ App-Feedback</h1>
+      <div class="subtitle" id="page-subtitle">ToDo Business · Keystone</div>
 
       <div class="topline">
-        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
-          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
-          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+        <div class="lang-indicator">
+          <span class="lang-dot" aria-hidden="true"></span>
+          <span id="lang-indicator-text">Sprache: Deutsch</span>
         </div>
+
         <nav class="tabs" aria-label="Quick links">
           <a class="tab" id="tab-home" href="index.html">← Home</a>
-          <a class="tab" id="tab-privacy" href="privacy.html">Privacy / Datenschutz</a>
-          <a class="tab" id="tab-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+          <a class="tab" id="tab-privacy" href="privacy.html">Datenschutz</a>
+          <a class="tab" id="tab-terms" href="terms.html">Nutzungsbedingungen</a>
           <a class="tab" id="tab-support" href="support.html">Support</a>
           <a class="tab" id="tab-imprint" href="impressum.html">Impressum</a>
         </nav>
@@ -183,202 +351,286 @@
   </header>
 
   <main class="wrap">
-    <!-- ===== Deutsch ===== -->
     <section id="sec-de">
       <div class="grid grid-2">
         <div class="card">
           <h2><span class="emoji">🚀</span> Schnellstart</h2>
-          <p>Der Button öffnet deine E-Mail-App mit Vorlage. Geräte- & App-Infos packen wir automatisch rein.</p>
+          <p>Der Button öffnet deine E-Mail-App mit einer Vorlage. Geräte- und App-Infos werden direkt ergänzt.</p>
           <p><a id="btn-mail-de" class="btn" href="#">✉️ Feedback senden</a></p>
-          <p class="muted" style="margin-top:.6rem">Nichts passiert? Schreib direkt an <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</p>
+          <p class="muted" style="margin-top:.6rem">
+            Falls nichts passiert, schreib direkt an
+            <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
+          </p>
         </div>
 
         <div class="card">
           <h2><span class="emoji">🧩</span> Was hilft uns?</h2>
           <ul>
             <li>Was dir an der App gefällt</li>
-            <li>Ideen & Feature-Wünsche</li>
-            <li>Fehlermeldungen (kurz beschreiben)</li>
+            <li>Ideen und Feature-Wünsche</li>
+            <li>Fehlermeldungen mit kurzer Beschreibung</li>
           </ul>
-          <p class="muted">Je genauer, desto schneller können wir fixen. 🙏</p>
+          <p class="muted">Je genauer dein Feedback ist, desto besser können wir helfen. 🙏</p>
         </div>
       </div>
 
       <div class="card" style="margin-top:16px">
         <h2><span class="emoji">🔧</span> Nützliche Details</h2>
         <ul>
-          <li>Gerät & OS (z. B. Pixel 8 · Android 15)</li>
+          <li>Gerät und Betriebssystem</li>
           <li>App-Version: <code class="kbd" id="v-de">–</code></li>
-          <li>Schritte zum Reproduzieren</li>
+          <li>Schritte zum Reproduzieren eines Problems</li>
         </ul>
       </div>
 
       <div class="card" style="margin-top:16px">
         <h2><span class="emoji">🔒</span> Datenschutz</h2>
-        <p class="muted">Deine E-Mail nutzen wir nur zur Bearbeitung deiner Anfrage. Details in unserer <a href="privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+        <p class="muted">
+          Deine E-Mail wird nur zur Bearbeitung deiner Anfrage verwendet.
+          Mehr dazu in unserer
+          <a href="privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+        </p>
       </div>
     </section>
 
-    <!-- ===== English ===== -->
     <section id="sec-en" class="hidden">
       <div class="grid grid-2">
         <div class="card">
           <h2><span class="emoji">🚀</span> Quick Start</h2>
-          <p>The button opens your email app with a template. Device & app info is added automatically.</p>
+          <p>The button opens your email app with a template. Device and app info is added automatically.</p>
           <p><a id="btn-mail-en" class="btn" href="#">✉️ Send Feedback</a></p>
-          <p class="muted" style="margin-top:.6rem">No email app? Write to <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.</p>
+          <p class="muted" style="margin-top:.6rem">
+            If nothing happens, write directly to
+            <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>.
+          </p>
         </div>
 
         <div class="card">
           <h2><span class="emoji">🧩</span> What helps us?</h2>
           <ul>
             <li>What you like about the app</li>
-            <li>Ideas & feature requests</li>
-            <li>Bug reports (short description)</li>
+            <li>Ideas and feature requests</li>
+            <li>Bug reports with a short description</li>
           </ul>
-          <p class="muted">The more details you share, the faster we can fix. 🙏</p>
+          <p class="muted">The more precise your feedback is, the better we can help. 🙏</p>
         </div>
       </div>
 
       <div class="card" style="margin-top:16px">
         <h2><span class="emoji">🔧</span> Useful details</h2>
         <ul>
-          <li>Device & OS (e.g., Pixel 8 · Android 15)</li>
+          <li>Device and operating system</li>
           <li>App version: <code class="kbd" id="v-en">–</code></li>
-          <li>Steps to reproduce</li>
+          <li>Steps to reproduce an issue</li>
         </ul>
       </div>
 
       <div class="card" style="margin-top:16px">
         <h2><span class="emoji">🔒</span> Privacy</h2>
-        <p class="muted">Your email will only be used to process your request. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+        <p class="muted">
+          Your email will only be used to process your request.
+          See our
+          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="links">
-      <a id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
+      <a id="f-privacy" href="privacy.html">Datenschutz</a>
       <a id="f-terms" href="terms.html">Terms</a>
       <a id="f-support" href="support.html">Support</a>
       <a id="f-imprint" href="impressum.html">Impressum</a>
     </div>
     <div class="muted">
-      © <span id="year"></span> Aurevoir · Keystone · Version <code class="kbd" id="ver">1.0.0</code>
+      © <span id="year"></span> Keystone · Version <code class="kbd" id="ver">1.0.0</code>
     </div>
     <div class="brandline" aria-hidden="true" style="margin-top:8px">
       <span>Powered by</span>
-      <span style="font-weight:900; background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">Keystone</span>
+      <span style="font-weight:900; background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">
+        Keystone
+      </span>
     </div>
   </footer>
 
   <script>
-    (function(){
-      // Jahr & Version aus ?v übernehmen
+    (function () {
       document.getElementById('year').textContent = new Date().getFullYear();
+
       const qp = new URLSearchParams(location.search);
       const version = qp.get('v') || '1.0.0';
+
       document.getElementById('ver').textContent = version;
       document.getElementById('v-de').textContent = version;
       document.getElementById('v-en').textContent = version;
 
-      // Helper: ?lang/?v an Links hängen (relativ halten)
-      function addQueryParamsToLinks(ids, lang){
-        const v = new URLSearchParams(location.search).get('v');
-        ids.forEach(id=>{
-          const a = document.getElementById(id);
-          if(!a) return;
-          const url = new URL(a.getAttribute('href'), location.href);
-          if(lang) url.searchParams.set('lang', lang);
-          if(v) url.searchParams.set('v', v);
-          a.setAttribute('href', url.pathname + url.search);
+      function applyParams(href, lang, v) {
+        const parts = href.split('?');
+        const path = parts[0];
+        const sp = new URLSearchParams(parts[1] || '');
+
+        sp.set('lang', lang);
+
+        if (v) sp.set('v', v);
+        else sp.delete('v');
+
+        const qs = sp.toString();
+        return qs ? `${path}?${qs}` : path;
+      }
+
+      function setQueryParams(ids, lang, v) {
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+
+          const base = el.getAttribute('href');
+          el.setAttribute('href', applyParams(base, lang, v));
         });
       }
 
-      // Sprache initialisieren (QS > localStorage > Browser)
-      const saved = localStorage.getItem('fb_lang');
-      const fromQS = (qp.get('lang') || '').toLowerCase();
-      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
-      let lang = (fromQS==='de'||fromQS==='en') ? fromQS : (saved || (browserIsDe ? 'de' : 'en'));
-
-      const btnDe = document.getElementById('btn-de');
-      const btnEn = document.getElementById('btn-en');
-      const secDe = document.getElementById('sec-de');
-      const secEn = document.getElementById('sec-en');
-
-      function applyLang(l){
-        lang = l;
-        localStorage.setItem('fb_lang', l);
-        document.documentElement.lang = l==='de'?'de':'en';
-        btnDe.setAttribute('aria-pressed', l==='de');
-        btnEn.setAttribute('aria-pressed', l==='en');
-        if(l==='de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
-        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
-
-        // Links updaten
-        addQueryParamsToLinks(
-          ['tab-home','tab-privacy','tab-terms','tab-support','tab-imprint','f-privacy','f-terms','f-support','f-imprint'],
-          l
-        );
-
-        // URL sauber halten
-        const url = new URL(location.href);
-        url.searchParams.set('lang', l);
-        if(version) url.searchParams.set('v', version);
-        history.replaceState({}, '', url.toString());
-      }
-      btnDe.addEventListener('click', ()=>applyLang('de'));
-      btnEn.addEventListener('click', ()=>applyLang('en'));
-      applyLang(lang);
-
-      // Device/UA kurz erfassen
-      function getUAInfo(){
+      function getUAInfo() {
         const ua = navigator.userAgent || '';
         const platform = navigator.platform || '';
         return `${platform} | ${ua}`.slice(0, 400);
       }
 
-      // Mailto-Builder
-      function buildMailtoDE(){
+      function buildMailtoDE() {
         const to = 'keystone@aurevoir.de';
-        const subject = `App-Feedback – Aurevoir v${version}`;
+        const subject = `App-Feedback – ToDo Business v${version}`;
         const body = [
-          'Hi Aurevoir-Team,',
+          'Hallo,',
           '',
-          'mein Feedback:',
+          'mein Feedback zur App:',
           '• Das gefällt mir:',
           '• Das könnte besser sein:',
-          '• Bug/Problem (Schritte zum Reproduzieren):',
+          '• Bug/Problem (inkl. Schritte):',
           '',
           '---',
           `Gerät/OS: ${getUAInfo()}`,
           `App-Version: ${version}`
         ].join('\n');
+
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
-      function buildMailtoEN(){
+
+      function buildMailtoEN() {
         const to = 'keystone@aurevoir.de';
-        const subject = `App Feedback – Aurevoir v${version}`;
+        const subject = `App Feedback – ToDo Business v${version}`;
         const body = [
-          'Hi Aurevoir team,',
+          'Hello,',
           '',
-          'here is my feedback:',
+          'here is my feedback about the app:',
           '• What I like:',
           '• What could be improved:',
-          '• Bug/issue (steps to reproduce):',
+          '• Bug/issue (including steps):',
           '',
           '---',
           `Device/OS: ${getUAInfo()}`,
           `App version: ${version}`
         ].join('\n');
+
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
 
-      // Buttons binden
-      const btnMailDE = document.getElementById('btn-mail-de');
-      const btnMailEN = document.getElementById('btn-mail-en');
-      btnMailDE.setAttribute('href', buildMailtoDE());
-      btnMailEN.setAttribute('href', buildMailtoEN());
+      const dict = {
+        de: {
+          title: '✉️ App-Feedback',
+          subtitle: 'ToDo Business · Keystone',
+          langIndicator: 'Sprache: Deutsch',
+          navHome: '← Home',
+          navPrivacy: 'Datenschutz',
+          navTerms: 'Nutzungsbedingungen',
+          navSupport: 'Support',
+          navImprint: 'Impressum',
+          footerPrivacy: 'Datenschutz',
+          footerTerms: 'Terms',
+          footerSupport: 'Support',
+          footerImprint: 'Impressum'
+        },
+        en: {
+          title: '✉️ App Feedback',
+          subtitle: 'ToDo Business · Keystone',
+          langIndicator: 'Language: English',
+          navHome: '← Home',
+          navPrivacy: 'Privacy',
+          navTerms: 'Terms of Use',
+          navSupport: 'Support',
+          navImprint: 'Imprint',
+          footerPrivacy: 'Privacy',
+          footerTerms: 'Terms',
+          footerSupport: 'Support',
+          footerImprint: 'Imprint'
+        }
+      };
+
+      const saved = localStorage.getItem('aurevoir_lang');
+      const fromQS = (qp.get('lang') || '').toLowerCase();
+      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
+
+      const lang =
+        (fromQS === 'de' || fromQS === 'en')
+          ? fromQS
+          : ((saved === 'de' || saved === 'en') ? saved : (browserIsDe ? 'de' : 'en'));
+
+      const secDe = document.getElementById('sec-de');
+      const secEn = document.getElementById('sec-en');
+
+      function applyLang(currentLang) {
+        const d = dict[currentLang] || dict.de;
+
+        localStorage.setItem('aurevoir_lang', currentLang);
+        document.documentElement.lang = currentLang;
+
+        document.getElementById('page-title').textContent = d.title;
+        document.getElementById('page-subtitle').textContent = d.subtitle;
+        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
+
+        document.getElementById('tab-home').textContent = d.navHome;
+        document.getElementById('tab-privacy').textContent = d.navPrivacy;
+        document.getElementById('tab-terms').textContent = d.navTerms;
+        document.getElementById('tab-support').textContent = d.navSupport;
+        document.getElementById('tab-imprint').textContent = d.navImprint;
+
+        document.getElementById('f-privacy').textContent = d.footerPrivacy;
+        document.getElementById('f-terms').textContent = d.footerTerms;
+        document.getElementById('f-support').textContent = d.footerSupport;
+        document.getElementById('f-imprint').textContent = d.footerImprint;
+
+        if (currentLang === 'de') {
+          secDe.classList.remove('hidden');
+          secEn.classList.add('hidden');
+        } else {
+          secEn.classList.remove('hidden');
+          secDe.classList.add('hidden');
+        }
+
+        setQueryParams(
+          [
+            'tab-home',
+            'tab-privacy',
+            'tab-terms',
+            'tab-support',
+            'tab-imprint',
+            'f-privacy',
+            'f-terms',
+            'f-support',
+            'f-imprint'
+          ],
+          currentLang,
+          version
+        );
+
+        const url = new URL(location.href);
+        url.searchParams.set('lang', currentLang);
+        if (version) url.searchParams.set('v', version);
+        history.replaceState({}, '', url.toString());
+      }
+
+      document.getElementById('btn-mail-de').setAttribute('href', buildMailtoDE());
+      document.getElementById('btn-mail-en').setAttribute('href', buildMailtoEN());
+
+      applyLang(lang);
     })();
   </script>
 </body>
