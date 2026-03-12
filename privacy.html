@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy · Datenschutz – Aurevoir</title>
+  <title>Privacy · Datenschutz – Keystone</title>
   <meta name="color-scheme" content="dark" />
   <meta
     name="description"
-    content="Aurevoir App – Privacy Policy / Datenschutzerklärung."
+    content="ToDo Business App – Privacy Policy / Datenschutzerklärung."
   />
   <link
     rel="icon"
@@ -15,292 +15,223 @@
   />
 
   <style>
-    :root {
-      --brand: #2196f3;
-      --accent: #7c3aed;
-      --ok: #22c55e;
+    :root{
+      --brand:#2196F3;
+      --accent:#7c3aed;
+      --ok:#22c55e;
 
-      --bg: #000000;
-      --bg-soft: #07090d;
-      --card: #0e1218;
-      --text: #e5e7eb;
-      --muted: #9aa3af;
-      --border: #141a22;
+      --bg:#000000;
+      --bg-soft:#07090d;
+      --card:#0e1218;
+      --text:#e5e7eb;
+      --muted:#9aa3af;
+      --border:#141a22;
 
-      --radius: 18px;
-      --blur: 44px;
-      --emoji-alpha: 0.12;
+      --radius:18px;
+      --blur:44px;
+      --emoji-alpha:.12;
     }
 
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
+      font-family:system-ui,-apple-system,"Segoe UI",Inter,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      line-height:1.65;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    html,
-    body {
-      height: 100%;
-    }
-
-    body {
-      margin: 0;
-      color: var(--text);
-      background: var(--bg);
-      font-family: system-ui, -apple-system, "Segoe UI", Inter, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
-      line-height: 1.65;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    header.hero {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
+    header.hero{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
       background:
-        radial-gradient(
-          1200px 600px at 85% -10%,
-          color-mix(in oklab, var(--brand) 13%, transparent) 0%,
-          transparent 60%
-        ),
-        radial-gradient(
-          900px 500px at 10% -10%,
-          color-mix(in oklab, var(--accent) 16%, transparent) 0%,
-          transparent 60%
-        ),
+        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
+        radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
-      border-bottom: 1px solid var(--border);
+      border-bottom:1px solid var(--border);
     }
 
-    .glow {
-      position: absolute;
-      inset: 0;
-      filter: blur(var(--blur)) saturate(115%);
-      opacity: 0.9;
-      pointer-events: none;
+    .glow{
+      position:absolute;
+      inset:0;
+      filter:blur(var(--blur)) saturate(115%);
+      opacity:.9;
+      pointer-events:none;
     }
 
-    .glow::before,
-    .glow::after {
-      content: "";
-      position: absolute;
-      width: 55vmax;
-      height: 55vmax;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle at 30% 30%,
-        color-mix(in oklab, var(--brand) 32%, transparent),
-        transparent 60%
-      );
+    .glow::before,.glow::after{
+      content:"";
+      position:absolute;
+      width:55vmax;
+      height:55vmax;
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
     }
 
-    .glow::before {
-      top: -35vmax;
-      left: -20vmax;
+    .glow::before{ top:-35vmax; left:-20vmax }
+    .glow::after{
+      top:-30vmax; right:-25vmax;
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
     }
 
-    .glow::after {
-      top: -30vmax;
-      right: -25vmax;
-      background: radial-gradient(
-        circle at 70% 40%,
-        color-mix(in oklab, var(--accent) 38%, transparent),
-        transparent 60%
-      );
+    .emoji-cloud{
+      position:absolute; inset:0; pointer-events:none; filter:blur(1px);
     }
 
-    .emoji-cloud {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      filter: blur(1px);
+    .bg-emoji{
+      position:absolute;
+      font-size:clamp(24px,3.2vw,34px);
+      opacity:var(--emoji-alpha);
+      transform:translate(-50%,-50%);
+      user-select:none;
     }
 
-    .bg-emoji {
-      position: absolute;
-      font-size: clamp(24px, 3.2vw, 34px);
-      opacity: var(--emoji-alpha);
-      transform: translate(-50%, -50%);
-      user-select: none;
+    .e1{ left:10%; top:28% }
+    .e2{ left:24%; top:12% }
+    .e3{ left:42%; top:22% }
+    .e4{ left:64%; top:16% }
+    .e5{ left:82%; top:30% }
+    .e6{ left:18%; top:46% }
+    .e7{ left:36%; top:54% }
+    .e8{ left:72%; top:50% }
+
+    @media (prefers-reduced-motion:reduce){
+      .glow,.emoji-cloud{display:none}
     }
 
-    .e1 { left: 10%; top: 28%; }
-    .e2 { left: 24%; top: 12%; }
-    .e3 { left: 42%; top: 22%; }
-    .e4 { left: 64%; top: 16%; }
-    .e5 { left: 82%; top: 30%; }
-    .e6 { left: 18%; top: 46%; }
-    .e7 { left: 36%; top: 54%; }
-    .e8 { left: 72%; top: 50%; }
+    .wrap{max-width:980px; margin:0 auto; padding:22px}
 
-    @media (prefers-reduced-motion: reduce) {
-      .glow,
-      .emoji-cloud {
-        display: none;
-      }
+    .title{
+      margin:.2rem 0;
+      font-weight:900;
+      letter-spacing:.35px;
+      font-size:clamp(28px,3.6vw,40px);
+      line-height:1.1;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 6px 28px rgba(124,58,237,.18);
+      position:relative;
+      z-index:2;
     }
 
-    .wrap {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 22px;
+    .subtitle{
+      color:var(--muted);
+      font-weight:700;
+      position:relative;
+      z-index:2;
     }
 
-    .title {
-      margin: 0.2rem 0;
-      font-weight: 900;
-      letter-spacing: 0.35px;
-      font-size: clamp(28px, 3.6vw, 40px);
-      line-height: 1.1;
-      background: linear-gradient(90deg, var(--brand), var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 6px 28px rgba(124, 58, 237, 0.18);
-      position: relative;
-      z-index: 2;
+    .topline{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:14px;
+      position:relative;
+      z-index:2;
     }
 
-    .subtitle {
-      color: var(--muted);
-      font-weight: 700;
-      position: relative;
-      z-index: 2;
+    .lang-indicator{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:8px 14px;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      background:var(--card);
     }
 
-    .topline {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      position: relative;
-      z-index: 2;
+    .lang-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
+      flex:0 0 auto;
     }
 
-    .lang-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-weight: 800;
-      letter-spacing: 0.2px;
+    .tabs{display:flex; gap:10px; flex-wrap:wrap}
+    .tab{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 14px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
     }
 
-    .lang-status .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(90deg, var(--brand), var(--accent));
-      box-shadow: 0 0 12px color-mix(in oklab, var(--brand) 45%, transparent);
-      flex: 0 0 auto;
+    .tab:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--border))}
+
+    main{padding:30px 0 50px}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      margin:14px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      position:relative;
     }
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    h2{
+      margin:.2em 0 .6em;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
-    .tab {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 14px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 800;
-      letter-spacing: 0.2px;
+    h3{margin:.6em 0 .4em; font-weight:900}
+    .muted{color:var(--muted); font-weight:600}
+
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:rgba(255,255,255,.08);
+      padding:.1rem .45rem;
+      border-radius:8px;
+      border:1px solid var(--border);
     }
 
-    .tab:hover {
-      border-color: color-mix(in oklab, var(--brand) 45%, var(--border));
+    .grid{display:grid; gap:14px}
+    @media (min-width:860px){ .two{grid-template-columns:1fr 1fr} }
+
+    footer{
+      border-top:1px solid var(--border);
+      background:var(--bg-soft);
+      color:var(--muted);
+      padding:20px;
+      text-align:center;
+      font-weight:600;
+      letter-spacing:.2px;
     }
 
-    main {
-      padding: 30px 0 50px;
+    .links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:8px;
     }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px;
-      margin: 14px 0;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
-      position: relative;
-    }
-
-    h2 {
-      margin: 0.2em 0 0.6em;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 0.2px;
-      background: linear-gradient(90deg, var(--brand), var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    h3 {
-      margin: 0.6em 0 0.4em;
-      font-weight: 900;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .kbd {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 0.1rem 0.45rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-
-    .grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    @media (min-width: 860px) {
-      .two {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-soft);
-      color: var(--muted);
-      padding: 20px;
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-    }
-
-    .links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
-
-    .links a {
-      color: var(--text);
-      text-decoration: underline dotted;
-    }
-
-    .hidden {
-      display: none;
-    }
+    .links a{color:var(--text); text-decoration:underline dotted}
+    .hidden{display:none}
   </style>
 </head>
 <body>
@@ -318,20 +249,20 @@
       <span class="bg-emoji e8">🔑</span>
     </div>
 
-    <div class="wrap" style="position: relative; z-index: 2">
+    <div class="wrap" style="position:relative; z-index:2">
       <h1 class="title" id="page-title">Privacy · Datenschutz</h1>
 
       <p class="subtitle">
-        <span id="last-label">Last update / Letzte Aktualisierung</span>:
+        <span id="last-label">Letzte Aktualisierung</span>:
         <span class="kbd" id="last">2025-01-01</span> ·
         <span id="version-label">Version</span>:
         <span class="kbd" id="ver">1.0.0</span>
       </p>
 
       <div class="topline">
-        <div class="lang-status">
-          <span class="dot" aria-hidden="true"></span>
-          <span id="lang-label">Sprache: Deutsch</span>
+        <div class="lang-indicator">
+          <span class="lang-dot" aria-hidden="true"></span>
+          <span id="lang-indicator-text">Sprache: Deutsch</span>
         </div>
 
         <nav class="tabs" aria-label="Quick links">
@@ -348,29 +279,25 @@
     <section id="sec-de">
       <div class="card">
         <h2>1) Verantwortlicher</h2>
-        <p>Verantwortlich für die Verarbeitung personenbezogener Daten im Zusammenhang mit der App <strong>Aurevoir</strong> ist:</p>
-        <p>
-          <strong>Keystone · Aurevoir</strong><br>
-          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
-        </p>
+        <p>Verantwortlich für die Verarbeitung personenbezogener Daten im Zusammenhang mit der App <strong>ToDo Business</strong> ist:</p>
+        <p><strong>Keystone</strong><br>
+          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
       </div>
 
       <div class="card">
         <h2>2) Verarbeitete Datenarten und Zwecke</h2>
         <p class="muted">Wir verarbeiten nur Daten, die für die Nutzung und Bereitstellung der App erforderlich sind. Keine Werbetracker.</p>
-
         <div class="grid two">
           <div>
             <h3>Datenarten</h3>
             <ul>
               <li><strong>Accountdaten</strong> wie z. B. E-Mail-Adresse über Firebase Auth.</li>
-              <li><strong>Inhaltsdaten</strong> wie Aufgaben, Notizen, Fälligkeiten über Firestore / Storage.</li>
+              <li><strong>Inhaltsdaten</strong> wie Aufgaben, Notizen und Fälligkeiten über Firestore / Storage.</li>
               <li><strong>Technische Metadaten</strong> wie Gerät, Betriebssystem oder App-Version für Support und Stabilität.</li>
               <li><strong>Kauf- und Abo-Status</strong> über RevenueCat bzw. Apple / Google.</li>
               <li><strong>Benachrichtigungen</strong> lokal auf dem Gerät, ohne Push-ID.</li>
             </ul>
           </div>
-
           <div>
             <h3>Zwecke</h3>
             <ul>
@@ -381,7 +308,6 @@
             </ul>
           </div>
         </div>
-
         <p class="muted">Lokale Benachrichtigungen werden ausschließlich offline auf deinem Gerät ausgelöst.</p>
       </div>
 
@@ -445,27 +371,22 @@
 
       <div class="card">
         <h2>11) Kontakt</h2>
-        <p>
-          <strong>Keystone · Aurevoir</strong><br>
-          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
-        </p>
+        <p><strong>Keystone</strong><br>
+          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
       </div>
     </section>
 
     <section id="sec-en" class="hidden">
       <div class="card">
         <h2>1) Controller</h2>
-        <p>The controller responsible for processing personal data in connection with the <strong>Aurevoir</strong> app is:</p>
-        <p>
-          <strong>Keystone · Aurevoir</strong><br>
-          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
-        </p>
+        <p>The controller responsible for processing personal data in connection with the <strong>ToDo Business</strong> app is:</p>
+        <p><strong>Keystone</strong><br>
+          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
       </div>
 
       <div class="card">
         <h2>2) Data categories and purposes</h2>
         <p class="muted">We only process data that is necessary to provide and operate the app. No ad trackers.</p>
-
         <div class="grid two">
           <div>
             <h3>Data categories</h3>
@@ -477,7 +398,6 @@
               <li><strong>Notifications</strong> stored locally on the device, without push identifiers.</li>
             </ul>
           </div>
-
           <div>
             <h3>Purposes</h3>
             <ul>
@@ -488,7 +408,6 @@
             </ul>
           </div>
         </div>
-
         <p class="muted">Local notifications are triggered offline on your device only.</p>
       </div>
 
@@ -552,10 +471,8 @@
 
       <div class="card">
         <h2>11) Contact</h2>
-        <p>
-          <strong>Keystone · Aurevoir</strong><br>
-          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a>
-        </p>
+        <p><strong>Keystone</strong><br>
+          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
       </div>
     </section>
   </main>
@@ -566,11 +483,11 @@
       <a id="f-imprint" href="impressum.html">Impressum</a>
       <a id="f-support" href="support.html">Support</a>
     </div>
-    <div class="muted">© <span id="year"></span> Aurevoir · Keystone</div>
+    <div class="muted">© <span id="year"></span> Keystone</div>
   </footer>
 
   <script>
-    (function () {
+    (function(){
       document.getElementById('year').textContent = new Date().getFullYear();
 
       const qp = new URLSearchParams(location.search);
@@ -580,30 +497,24 @@
       document.getElementById('ver').textContent = version;
       document.getElementById('last').textContent = last;
 
-      function applyParams(href, lang, v, lastValue) {
+      function applyParams(href, lang, v, lastValue){
         const parts = href.split('?');
         const path = parts[0];
         const sp = new URLSearchParams(parts[1] || '');
         sp.set('lang', lang);
 
-        if (v) {
-          sp.set('v', v);
-        } else {
-          sp.delete('v');
-        }
+        if (v) sp.set('v', v);
+        else sp.delete('v');
 
-        if (lastValue) {
-          sp.set('last', lastValue);
-        } else {
-          sp.delete('last');
-        }
+        if (lastValue) sp.set('last', lastValue);
+        else sp.delete('last');
 
         const qs = sp.toString();
         return qs ? `${path}?${qs}` : path;
       }
 
-      function setQueryParams(ids, lang, v, lastValue) {
-        ids.forEach((id) => {
+      function setQueryParams(ids, lang, v, lastValue){
+        ids.forEach(id => {
           const a = document.getElementById(id);
           if (!a) return;
           const base = a.getAttribute('href');
@@ -613,11 +524,10 @@
 
       const dict = {
         de: {
-          htmlLang: 'de',
           pageTitle: 'Privacy · Datenschutz',
           lastLabel: 'Letzte Aktualisierung',
           versionLabel: 'Version',
-          langLabel: 'Sprache: Deutsch',
+          langIndicator: 'Sprache: Deutsch',
           tabHome: '← Home',
           tabTerms: 'Terms / Nutzungsbedingungen',
           tabSupport: 'Support',
@@ -627,11 +537,10 @@
           footerSupport: 'Support'
         },
         en: {
-          htmlLang: 'en',
           pageTitle: 'Privacy Policy',
           lastLabel: 'Last update',
           versionLabel: 'Version',
-          langLabel: 'Language: English',
+          langIndicator: 'Language: English',
           tabHome: '← Home',
           tabTerms: 'Terms of Use',
           tabSupport: 'Support',
@@ -651,16 +560,15 @@
         ? urlLang
         : (storedLang || browserLang);
 
-      function setLang(currentLang) {
+      function setLang(currentLang){
         const d = dict[currentLang] || dict.de;
-
-        document.documentElement.lang = d.htmlLang;
+        document.documentElement.lang = currentLang;
         localStorage.setItem('aurevoir_lang', currentLang);
 
         document.getElementById('page-title').textContent = d.pageTitle;
         document.getElementById('last-label').textContent = d.lastLabel;
         document.getElementById('version-label').textContent = d.versionLabel;
-        document.getElementById('lang-label').textContent = d.langLabel;
+        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
 
         document.getElementById('tab-home').textContent = d.tabHome;
         document.getElementById('tab-terms').textContent = d.tabTerms;
@@ -683,7 +591,7 @@
         }
 
         setQueryParams(
-          ['tab-home', 'tab-terms', 'tab-support', 'tab-imprint', 'f-terms', 'f-imprint', 'f-support'],
+          ['tab-home','tab-terms','tab-support','tab-imprint','f-terms','f-imprint','f-support'],
           currentLang,
           version,
           last
