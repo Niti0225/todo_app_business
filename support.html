@@ -34,6 +34,7 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       color:var(--text);
@@ -64,7 +65,8 @@
       pointer-events:none;
     }
 
-    .glow::before,.glow::after{
+    .glow::before,
+    .glow::after{
       content:"";
       position:absolute;
       width:55vmax;
@@ -75,7 +77,8 @@
 
     .glow::before{ top:-35vmax; left:-20vmax }
     .glow::after{
-      top:-30vmax; right:-25vmax;
+      top:-30vmax;
+      right:-25vmax;
       background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
     }
 
@@ -183,10 +186,13 @@
       color:var(--text);
       font-weight:800;
       letter-spacing:.2px;
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
 
     .tab:hover{
+      transform:translateY(-1px);
       border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
     }
 
     main{
@@ -275,6 +281,12 @@
       color:#fff;
       border:1px solid transparent;
       box-shadow:0 6px 20px color-mix(in oklab, var(--brand) 25%, transparent);
+      transition:filter .2s ease, transform .2s ease;
+    }
+
+    .btn:hover{
+      filter:brightness(1.05);
+      transform:translateY(-1px);
     }
 
     .btn.outline{
@@ -369,8 +381,9 @@
 
         <nav class="tabs" aria-label="Quick links">
           <a class="tab" id="tab-home" href="index.html">← Home</a>
-          <a class="tab" id="tab-privacy" href="privacy.html">Privacy / Datenschutz</a>
-          <a class="tab" id="tab-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+          <a class="tab" id="tab-privacy" href="privacy.html">Datenschutz</a>
+          <a class="tab" id="tab-terms" href="terms.html">Nutzungsbedingungen</a>
+          <a class="tab" id="tab-feedback" href="feedback.html">Feedback</a>
           <a class="tab" id="tab-imprint" href="impressum.html">Impressum</a>
         </nav>
       </div>
@@ -389,8 +402,12 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn" href="mailto:keystone@aurevoir.de?subject=ToDo%20Business%20Support">Support kontaktieren</a>
-          <a class="btn outline" href="feedback.html">Feedback senden</a>
+          <a
+            class="btn"
+            id="btn-support-de"
+            href="#"
+          >Support kontaktieren</a>
+          <a class="btn outline" id="btn-feedback-de" href="feedback.html">Feedback senden</a>
         </div>
       </div>
 
@@ -419,7 +436,7 @@
       <div class="card">
         <h2>E-Mail-Vorlage</h2>
         <p class="muted">Du kannst diesen Text einfach kopieren:</p>
-        <div class="template">Hallo,
+        <div class="template" id="template-de">Hallo,
 
 ich brauche Hilfe bei ToDo Business.
 
@@ -465,8 +482,12 @@ Danke.</div>
         </div>
 
         <div class="cta-row">
-          <a class="btn" href="mailto:keystone@aurevoir.de?subject=ToDo%20Business%20Support">Contact support</a>
-          <a class="btn outline" href="feedback.html">Send feedback</a>
+          <a
+            class="btn"
+            id="btn-support-en"
+            href="#"
+          >Contact support</a>
+          <a class="btn outline" id="btn-feedback-en" href="feedback.html">Send feedback</a>
         </div>
       </div>
 
@@ -495,7 +516,7 @@ Danke.</div>
       <div class="card">
         <h2>Email template</h2>
         <p class="muted">You can copy this text:</p>
-        <div class="template">Hello,
+        <div class="template" id="template-en">Hello,
 
 I need help with ToDo Business.
 
@@ -534,8 +555,9 @@ Thank you.</div>
   <footer>
     <div class="links">
       <a id="f-home" href="index.html">Home</a>
-      <a id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
-      <a id="f-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+      <a id="f-privacy" href="privacy.html">Datenschutz</a>
+      <a id="f-terms" href="terms.html">Terms</a>
+      <a id="f-feedback" href="feedback.html">Feedback</a>
       <a id="f-imprint" href="impressum.html">Impressum</a>
     </div>
     <div class="muted">© <span id="year"></span> Keystone</div>
@@ -553,6 +575,7 @@ Thank you.</div>
         const parts = href.split('?');
         const path = parts[0];
         const sp = new URLSearchParams(parts[1] || '');
+
         sp.set('lang', lang);
 
         if (v) sp.set('v', v);
@@ -571,6 +594,71 @@ Thank you.</div>
         });
       }
 
+      function buildSupportMailDe() {
+        const to = 'keystone@aurevoir.de';
+        const subject = `ToDo Business Support v${version}`;
+        const body = [
+          'Hallo,',
+          '',
+          'ich brauche Hilfe bei ToDo Business.',
+          '',
+          'Mein Problem:',
+          '[Bitte hier kurz beschreiben]',
+          '',
+          'Gerät:',
+          '[zum Beispiel iPhone / Android]',
+          '',
+          'Betriebssystem:',
+          '[Version]',
+          '',
+          'App-Version:',
+          version,
+          '',
+          'Schritte zum Problem:',
+          '1.',
+          '2.',
+          '3.',
+          '',
+          'Danke.'
+        ].join('\n');
+
+        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+
+      function buildSupportMailEn() {
+        const to = 'keystone@aurevoir.de';
+        const subject = `ToDo Business Support v${version}`;
+        const body = [
+          'Hello,',
+          '',
+          'I need help with ToDo Business.',
+          '',
+          'My issue:',
+          '[Please describe it briefly]',
+          '',
+          'Device:',
+          '[for example iPhone / Android]',
+          '',
+          'Operating system:',
+          '[Version]',
+          '',
+          'App version:',
+          version,
+          '',
+          'Steps to reproduce:',
+          '1.',
+          '2.',
+          '3.',
+          '',
+          'Thank you.'
+        ].join('\n');
+
+        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+
+      document.getElementById('btn-support-de').setAttribute('href', buildSupportMailDe());
+      document.getElementById('btn-support-en').setAttribute('href', buildSupportMailEn());
+
       const dict = {
         de: {
           pageTitle: 'Support / Kontakt',
@@ -578,12 +666,14 @@ Thank you.</div>
           versionLabel: 'Version',
           langIndicator: 'Sprache: Deutsch',
           tabHome: '← Home',
-          tabPrivacy: 'Privacy / Datenschutz',
-          tabTerms: 'Terms / Nutzungsbedingungen',
+          tabPrivacy: 'Datenschutz',
+          tabTerms: 'Nutzungsbedingungen',
+          tabFeedback: 'Feedback',
           tabImprint: 'Impressum',
           footerHome: 'Home',
-          footerPrivacy: 'Privacy / Datenschutz',
-          footerTerms: 'Terms / Nutzungsbedingungen',
+          footerPrivacy: 'Datenschutz',
+          footerTerms: 'Terms',
+          footerFeedback: 'Feedback',
           footerImprint: 'Impressum'
         },
         en: {
@@ -594,10 +684,12 @@ Thank you.</div>
           tabHome: '← Home',
           tabPrivacy: 'Privacy',
           tabTerms: 'Terms of Use',
+          tabFeedback: 'Feedback',
           tabImprint: 'Imprint',
           footerHome: 'Home',
           footerPrivacy: 'Privacy',
-          footerTerms: 'Terms of Use',
+          footerTerms: 'Terms',
+          footerFeedback: 'Feedback',
           footerImprint: 'Imprint'
         }
       };
@@ -609,10 +701,11 @@ Thank you.</div>
 
       const lang = (urlLang === 'de' || urlLang === 'en')
         ? urlLang
-        : (storedLang || browserLang);
+        : ((storedLang === 'de' || storedLang === 'en') ? storedLang : browserLang);
 
       function setLang(currentLang){
         const d = dict[currentLang] || dict.de;
+
         document.documentElement.lang = currentLang;
         localStorage.setItem('aurevoir_lang', currentLang);
 
@@ -624,11 +717,13 @@ Thank you.</div>
         document.getElementById('tab-home').textContent = d.tabHome;
         document.getElementById('tab-privacy').textContent = d.tabPrivacy;
         document.getElementById('tab-terms').textContent = d.tabTerms;
+        document.getElementById('tab-feedback').textContent = d.tabFeedback;
         document.getElementById('tab-imprint').textContent = d.tabImprint;
 
         document.getElementById('f-home').textContent = d.footerHome;
         document.getElementById('f-privacy').textContent = d.footerPrivacy;
         document.getElementById('f-terms').textContent = d.footerTerms;
+        document.getElementById('f-feedback').textContent = d.footerFeedback;
         document.getElementById('f-imprint').textContent = d.footerImprint;
 
         const secDe = document.getElementById('sec-de');
@@ -643,7 +738,20 @@ Thank you.</div>
         }
 
         setQueryParams(
-          ['tab-home','tab-privacy','tab-terms','tab-imprint','f-home','f-privacy','f-terms','f-imprint'],
+          [
+            'tab-home',
+            'tab-privacy',
+            'tab-terms',
+            'tab-feedback',
+            'tab-imprint',
+            'f-home',
+            'f-privacy',
+            'f-terms',
+            'f-feedback',
+            'f-imprint',
+            'btn-feedback-de',
+            'btn-feedback-en'
+          ],
           currentLang,
           version
         );
