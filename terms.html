@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms / Nutzungsbedingungen – Keystone</title>
+  <meta name="color-scheme" content="dark" />
+  <meta
+    name="description"
+    content="ToDo Business App – Nutzungsbedingungen / Terms of Use."
+  />
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>"
+  />
+
+  <style>
+    :root{
+      --brand:#2196F3;
+      --accent:#7c3aed;
+      --ok:#22c55e;
+
+      --bg:#000000;
+      --bg-soft:#07090d;
+      --card:#0e1218;
+      --text:#e5e7eb;
+      --muted:#9aa3af;
+      --border:#141a22;
+
+      --radius:18px;
+      --blur:44px;
+      --emoji-alpha:.12;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
+      font-family:system-ui,-apple-system,"Segoe UI",Inter,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      line-height:1.65;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    header.hero{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
+        radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
+        linear-gradient(to bottom, var(--bg), var(--bg-soft));
+      border-bottom:1px solid var(--border);
+    }
+
+    .glow{
+      position:absolute;
+      inset:0;
+      filter:blur(var(--blur)) saturate(115%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .glow::before,.glow::after{
+      content:"";
+      position:absolute;
+      width:55vmax;
+      height:55vmax;
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
+    }
+
+    .glow::before{ top:-35vmax; left:-20vmax }
+    .glow::after{
+      top:-30vmax; right:-25vmax;
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
+    }
+
+    .emoji-cloud{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      filter:blur(1px);
+    }
+
+    .bg-emoji{
+      position:absolute;
+      font-size:clamp(24px,3.2vw,34px);
+      opacity:var(--emoji-alpha);
+      transform:translate(-50%,-50%);
+      user-select:none;
+    }
+
+    .e1{ left:10%; top:28% }
+    .e2{ left:24%; top:12% }
+    .e3{ left:42%; top:22% }
+    .e4{ left:64%; top:16% }
+    .e5{ left:82%; top:30% }
+    .e6{ left:18%; top:46% }
+    .e7{ left:36%; top:54% }
+    .e8{ left:72%; top:50% }
+
+    @media (prefers-reduced-motion:reduce){
+      .glow,.emoji-cloud{display:none}
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:22px;
+    }
+
+    .title{
+      margin:.2rem 0;
+      font-weight:900;
+      letter-spacing:.35px;
+      font-size:clamp(28px,3.6vw,40px);
+      line-height:1.1;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 6px 28px rgba(124,58,237,.18);
+      position:relative;
+      z-index:2;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      font-weight:700;
+      position:relative;
+      z-index:2;
+    }
+
+    .topline{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:14px;
+      position:relative;
+      z-index:2;
+    }
+
+    .lang-indicator{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:8px 14px;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      background:var(--card);
+    }
+
+    .lang-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
+      flex:0 0 auto;
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .tab{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 14px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .tab:hover{
+      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+    }
+
+    main{
+      padding:30px 0 50px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      margin:14px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      position:relative;
+    }
+
+    h2{
+      margin:.2em 0 .6em;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    h3{
+      margin:.6em 0 .4em;
+      font-weight:900;
+    }
+
+    .muted{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:rgba(255,255,255,.08);
+      padding:.1rem .45rem;
+      border-radius:8px;
+      border:1px solid var(--border);
+    }
+
+    ul{
+      padding-left:1.2rem;
+    }
+
+    li{
+      margin:.32rem 0;
+    }
+
+    .links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:8px;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      background:var(--bg-soft);
+      color:var(--muted);
+      padding:20px;
+      text-align:center;
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+
+    .links a{
+      color:var(--text);
+      text-decoration:underline dotted;
+    }
+
+    .hidden{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="glow" aria-hidden="true"></div>
+
+    <div class="emoji-cloud" aria-hidden="true">
+      <span class="bg-emoji e1">📄</span>
+      <span class="bg-emoji e2">⚖️</span>
+      <span class="bg-emoji e3">✅</span>
+      <span class="bg-emoji e4">📱</span>
+      <span class="bg-emoji e5">🔒</span>
+      <span class="bg-emoji e6">🧾</span>
+      <span class="bg-emoji e7">✨</span>
+      <span class="bg-emoji e8">🛡️</span>
+    </div>
+
+    <div class="wrap" style="position:relative; z-index:2">
+      <h1 class="title" id="page-title">Terms / Nutzungsbedingungen</h1>
+
+      <p class="subtitle">
+        <span id="last-label">Letzte Aktualisierung</span>:
+        <span class="kbd" id="last">2025-01-01</span> ·
+        <span id="version-label">Version</span>:
+        <span class="kbd" id="ver">1.0.0</span>
+      </p>
+
+      <div class="topline">
+        <div class="lang-indicator">
+          <span class="lang-dot" aria-hidden="true"></span>
+          <span id="lang-indicator-text">Sprache: Deutsch</span>
+        </div>
+
+        <nav class="tabs" aria-label="Quick links">
+          <a class="tab" id="tab-home" href="index.html">← Home</a>
+          <a class="tab" id="tab-privacy" href="privacy.html">Privacy / Datenschutz</a>
+          <a class="tab" id="tab-support" href="support.html">Support</a>
+          <a class="tab" id="tab-imprint" href="impressum.html">Impressum</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="sec-de">
+      <div class="card">
+        <h2>1) Geltungsbereich</h2>
+        <p>Diese Nutzungsbedingungen gelten für die Nutzung der App <strong>ToDo Business</strong> und der zugehörigen Informationsseiten von <strong>Keystone</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h2>2) Leistungsbeschreibung</h2>
+        <p>Die App dient der Organisation und Verwaltung von Aufgaben, Terminen, Notizen und ähnlichen Inhalten. Je nach gewähltem Modell können kostenlose oder kostenpflichtige Funktionen zur Verfügung stehen.</p>
+      </div>
+
+      <div class="card">
+        <h2>3) Kostenlose und kostenpflichtige Funktionen</h2>
+        <ul>
+          <li>Ein Teil der App kann kostenlos genutzt werden.</li>
+          <li>Zusätzliche Premium- oder Pro-Funktionen können kostenpflichtig angeboten werden.</li>
+          <li>Preise, Laufzeiten und enthaltene Leistungen werden in der App bzw. im jeweiligen Store angezeigt.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4) Käufe und Abonnements</h2>
+        <p>Käufe und Abonnements werden über den jeweiligen App-Store abgewickelt, also insbesondere über Apple App Store oder Google Play Store.</p>
+        <ul>
+          <li>Es gelten zusätzlich die Bedingungen des jeweiligen Stores.</li>
+          <li>Die Verwaltung, Verlängerung und Kündigung von Abonnements erfolgt über den jeweiligen Store-Account des Nutzers.</li>
+          <li>Bereits berechnete Zeiträume werden grundsätzlich nicht anteilig erstattet, soweit nicht gesetzlich oder durch den Store etwas anderes vorgesehen ist.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5) Registrierung und Nutzerkonto</h2>
+        <p>Für bestimmte Funktionen kann ein Nutzerkonto erforderlich sein. Der Nutzer ist dafür verantwortlich, dass seine Angaben korrekt sind und seine Zugangsdaten geschützt werden.</p>
+      </div>
+
+      <div class="card">
+        <h2>6) Pflichten der Nutzer</h2>
+        <ul>
+          <li>Die App darf nur rechtmäßig und im Rahmen dieser Bedingungen genutzt werden.</li>
+          <li>Es dürfen keine rechtswidrigen, beleidigenden, schädigenden oder missbräuchlichen Inhalte eingestellt oder verarbeitet werden.</li>
+          <li>Technische Schutzmaßnahmen der App dürfen nicht umgangen oder manipuliert werden.</li>
+          <li>Die App darf nicht für missbräuchliche, automatisierte oder schädliche Zwecke verwendet werden.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>7) Verfügbarkeit</h2>
+        <p>Keystone bemüht sich um eine möglichst unterbrechungsfreie Verfügbarkeit der App. Eine jederzeitige, ununterbrochene oder fehlerfreie Verfügbarkeit kann jedoch nicht garantiert werden.</p>
+      </div>
+
+      <div class="card">
+        <h2>8) Änderungen der App</h2>
+        <p>Keystone kann Funktionen, Inhalte oder das Design der App jederzeit anpassen, erweitern, einschränken oder einstellen, soweit dadurch keine zwingenden gesetzlichen oder vertraglichen Rechte des Nutzers verletzt werden.</p>
+      </div>
+
+      <div class="card">
+        <h2>9) Haftung</h2>
+        <p>Keystone haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit.</p>
+        <p>Bei leichter Fahrlässigkeit haftet Keystone nur bei Verletzung wesentlicher Vertragspflichten. In diesem Fall ist die Haftung auf den typischerweise vorhersehbaren Schaden begrenzt.</p>
+        <p>Im Übrigen ist die Haftung ausgeschlossen, soweit gesetzlich zulässig.</p>
+      </div>
+
+      <div class="card">
+        <h2>10) Inhalte und Datensicherung</h2>
+        <p>Der Nutzer ist grundsätzlich selbst dafür verantwortlich, wichtige Inhalte und Daten zusätzlich zu sichern, sofern dies für ihn erforderlich ist.</p>
+      </div>
+
+      <div class="card">
+        <h2>11) Datenschutz</h2>
+        <p>Informationen zur Verarbeitung personenbezogener Daten finden sich in der <a href="privacy.html">Datenschutzerklärung</a>.</p>
+      </div>
+
+      <div class="card">
+        <h2>12) Kündigung und Sperrung</h2>
+        <p>Keystone kann den Zugang zur App oder zu einzelnen Funktionen sperren oder beenden, wenn ein schwerwiegender Verstoß gegen diese Nutzungsbedingungen vorliegt oder ein berechtigtes Sicherheitsinteresse besteht.</p>
+      </div>
+
+      <div class="card">
+        <h2>13) Änderungen dieser Bedingungen</h2>
+        <p>Diese Nutzungsbedingungen können angepasst werden, wenn dafür ein sachlicher Grund besteht, etwa wegen neuer Funktionen, gesetzlicher Änderungen oder technischer Weiterentwicklungen.</p>
+      </div>
+
+      <div class="card">
+        <h2>14) Anwendbares Recht</h2>
+        <p>Es gilt das Recht der Bundesrepublik Deutschland, soweit dem keine zwingenden Verbraucherschutzvorschriften entgegenstehen.</p>
+      </div>
+
+      <div class="card">
+        <h2>15) Kontakt</h2>
+        <p><strong>Keystone</strong><br>
+          E-Mail: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </div>
+    </section>
+
+    <section id="sec-en" class="hidden">
+      <div class="card">
+        <h2>1) Scope</h2>
+        <p>These Terms of Use apply to the use of the <strong>ToDo Business</strong> app and the related information pages provided by <strong>Keystone</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h2>2) Service description</h2>
+        <p>The app is intended for organizing and managing tasks, dates, notes and similar content. Depending on the selected plan, free or paid features may be available.</p>
+      </div>
+
+      <div class="card">
+        <h2>3) Free and paid features</h2>
+        <ul>
+          <li>Parts of the app may be used free of charge.</li>
+          <li>Additional premium or pro features may be offered for a fee.</li>
+          <li>Prices, subscription periods and included services are displayed in the app or in the respective store.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>4) Purchases and subscriptions</h2>
+        <p>Purchases and subscriptions are processed via the respective app store, in particular Apple App Store or Google Play Store.</p>
+        <ul>
+          <li>The additional terms of the respective store also apply.</li>
+          <li>Management, renewal and cancellation of subscriptions are handled through the user’s respective store account.</li>
+          <li>Already billed periods are generally not refunded on a pro-rata basis unless required by law or by the store rules.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5) Registration and user account</h2>
+        <p>Certain features may require a user account. The user is responsible for keeping account information accurate and protecting login credentials.</p>
+      </div>
+
+      <div class="card">
+        <h2>6) User obligations</h2>
+        <ul>
+          <li>The app may only be used lawfully and in accordance with these terms.</li>
+          <li>No unlawful, abusive, harmful or offensive content may be uploaded, processed or shared through the app.</li>
+          <li>Technical protection measures of the app must not be bypassed or manipulated.</li>
+          <li>The app must not be used for abusive, automated or harmful purposes.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>7) Availability</h2>
+        <p>Keystone aims to provide the app with as little interruption as possible. However, uninterrupted, error-free or permanent availability cannot be guaranteed.</p>
+      </div>
+
+      <div class="card">
+        <h2>8) Changes to the app</h2>
+        <p>Keystone may modify, expand, restrict or discontinue functions, content or the design of the app at any time, provided that no mandatory legal or contractual user rights are violated.</p>
+      </div>
+
+      <div class="card">
+        <h2>9) Liability</h2>
+        <p>Keystone shall be fully liable in cases of intent, gross negligence and damages resulting from injury to life, body or health.</p>
+        <p>In cases of slight negligence, Keystone shall only be liable for breaches of essential contractual obligations. In such cases, liability is limited to the foreseeable typical damage.</p>
+        <p>Otherwise, liability is excluded to the extent permitted by law.</p>
+      </div>
+
+      <div class="card">
+        <h2>10) Content and backup</h2>
+        <p>The user is generally responsible for making additional backups of important content and data if required.</p>
+      </div>
+
+      <div class="card">
+        <h2>11) Privacy</h2>
+        <p>Information on the processing of personal data can be found in the <a href="privacy.html">Privacy Policy</a>.</p>
+      </div>
+
+      <div class="card">
+        <h2>12) Termination and suspension</h2>
+        <p>Keystone may suspend or terminate access to the app or individual features if there is a serious breach of these Terms of Use or a legitimate security-related reason.</p>
+      </div>
+
+      <div class="card">
+        <h2>13) Changes to these terms</h2>
+        <p>These Terms of Use may be updated for valid reasons, for example due to new features, legal changes or technical developments.</p>
+      </div>
+
+      <div class="card">
+        <h2>14) Governing law</h2>
+        <p>The laws of the Federal Republic of Germany shall apply unless mandatory consumer protection provisions provide otherwise.</p>
+      </div>
+
+      <div class="card">
+        <h2>15) Contact</h2>
+        <p><strong>Keystone</strong><br>
+          Email: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a id="f-home" href="index.html">Home</a>
+      <a id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
+      <a id="f-imprint" href="impressum.html">Impressum</a>
+      <a id="f-support" href="support.html">Support</a>
+    </div>
+    <div class="muted">© <span id="year"></span> Keystone</div>
+  </footer>
+
+  <script>
+    (function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const qp = new URLSearchParams(location.search);
+      const version = qp.get('v') || '1.0.0';
+      const last = qp.get('last') || '2025-01-01';
+
+      document.getElementById('ver').textContent = version;
+      document.getElementById('last').textContent = last;
+
+      function applyParams(href, lang, v, lastValue){
+        const parts = href.split('?');
+        const path = parts[0];
+        const sp = new URLSearchParams(parts[1] || '');
+        sp.set('lang', lang);
+
+        if (v) sp.set('v', v);
+        else sp.delete('v');
+
+        if (lastValue) sp.set('last', lastValue);
+        else sp.delete('last');
+
+        const qs = sp.toString();
+        return qs ? `${path}?${qs}` : path;
+      }
+
+      function setQueryParams(ids, lang, v, lastValue){
+        ids.forEach(id => {
+          const a = document.getElementById(id);
+          if (!a) return;
+          const base = a.getAttribute('href');
+          a.setAttribute('href', applyParams(base, lang, v, lastValue));
+        });
+      }
+
+      const dict = {
+        de: {
+          pageTitle: 'Terms / Nutzungsbedingungen',
+          lastLabel: 'Letzte Aktualisierung',
+          versionLabel: 'Version',
+          langIndicator: 'Sprache: Deutsch',
+          tabHome: '← Home',
+          tabPrivacy: 'Privacy / Datenschutz',
+          tabSupport: 'Support',
+          tabImprint: 'Impressum',
+          footerHome: 'Home',
+          footerPrivacy: 'Privacy / Datenschutz',
+          footerImprint: 'Impressum',
+          footerSupport: 'Support'
+        },
+        en: {
+          pageTitle: 'Terms of Use',
+          lastLabel: 'Last update',
+          versionLabel: 'Version',
+          langIndicator: 'Language: English',
+          tabHome: '← Home',
+          tabPrivacy: 'Privacy',
+          tabSupport: 'Support',
+          tabImprint: 'Imprint',
+          footerHome: 'Home',
+          footerPrivacy: 'Privacy',
+          footerImprint: 'Imprint',
+          footerSupport: 'Support'
+        }
+      };
+
+      const urlLang = qp.get('lang');
+      const storedLang = localStorage.getItem('aurevoir_lang');
+      const browserLang =
+        (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+
+      const lang = (urlLang === 'de' || urlLang === 'en')
+        ? urlLang
+        : (storedLang || browserLang);
+
+      function setLang(currentLang){
+        const d = dict[currentLang] || dict.de;
+        document.documentElement.lang = currentLang;
+        localStorage.setItem('aurevoir_lang', currentLang);
+
+        document.getElementById('page-title').textContent = d.pageTitle;
+        document.getElementById('last-label').textContent = d.lastLabel;
+        document.getElementById('version-label').textContent = d.versionLabel;
+        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
+
+        document.getElementById('tab-home').textContent = d.tabHome;
+        document.getElementById('tab-privacy').textContent = d.tabPrivacy;
+        document.getElementById('tab-support').textContent = d.tabSupport;
+        document.getElementById('tab-imprint').textContent = d.tabImprint;
+
+        document.getElementById('f-home').textContent = d.footerHome;
+        document.getElementById('f-privacy').textContent = d.footerPrivacy;
+        document.getElementById('f-imprint').textContent = d.footerImprint;
+        document.getElementById('f-support').textContent = d.footerSupport;
+
+        const secDe = document.getElementById('sec-de');
+        const secEn = document.getElementById('sec-en');
+
+        if (currentLang === 'de') {
+          secDe.classList.remove('hidden');
+          secEn.classList.add('hidden');
+        } else {
+          secEn.classList.remove('hidden');
+          secDe.classList.add('hidden');
+        }
+
+        setQueryParams(
+          ['tab-home','tab-privacy','tab-support','tab-imprint','f-home','f-privacy','f-imprint','f-support'],
+          currentLang,
+          version,
+          last
+        );
+
+        const url = new URL(location.href);
+        url.searchParams.set('lang', currentLang);
+        if (version) url.searchParams.set('v', version);
+        if (last) url.searchParams.set('last', last);
+        history.replaceState({}, '', url.toString());
+      }
+
+      setLang(lang);
+    })();
+  </script>
+</body>
+</html>
