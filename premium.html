@@ -186,10 +186,12 @@
       letter-spacing:.2px;
       color:var(--text);
       text-decoration:none;
+      transition:border-color .2s ease, transform .2s ease;
     }
 
     .navlink:hover{
       border-color:color-mix(in oklab, var(--brand) 45%, var(--line));
+      transform:translateY(-1px);
     }
 
     main{
@@ -283,6 +285,12 @@
       color:#fff;
       box-shadow:0 8px 24px color-mix(in oklab, var(--brand) 20%, transparent);
       text-decoration:none;
+      transition:filter .2s ease, transform .2s ease;
+    }
+
+    .btn:hover{
+      filter:brightness(1.05);
+      transform:translateY(-1px);
     }
 
     .btn[aria-disabled="true"]{
@@ -357,8 +365,8 @@
 
         <nav class="nav" aria-label="Quick links">
           <a class="navlink" id="nav-home" href="index.html">← Home</a>
-          <a class="navlink" id="nav-privacy" href="privacy.html">Privacy / Datenschutz</a>
-          <a class="navlink" id="nav-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+          <a class="navlink" id="nav-privacy" href="privacy.html">Datenschutz</a>
+          <a class="navlink" id="nav-terms" href="terms.html">Nutzungsbedingungen</a>
           <a class="navlink" id="nav-support" href="support.html">Support</a>
           <a class="navlink" id="nav-imprint" href="impressum.html">Impressum</a>
         </nav>
@@ -494,7 +502,7 @@
   <footer>
     <div class="links">
       <a id="footer-home" href="index.html">Home</a> ·
-      <a id="footer-privacy" href="privacy.html">Privacy / Datenschutz</a> ·
+      <a id="footer-privacy" href="privacy.html">Datenschutz</a> ·
       <a id="footer-terms" href="terms.html">Terms</a> ·
       <a id="footer-support" href="support.html">Support</a> ·
       <a id="footer-imprint" href="impressum.html">Impressum</a>
@@ -543,12 +551,12 @@
           pageSubtitle: 'ToDo Business · Keystone',
           langIndicator: 'Sprache: Deutsch',
           navHome: '← Home',
-          navPrivacy: 'Privacy / Datenschutz',
-          navTerms: 'Terms / Nutzungsbedingungen',
+          navPrivacy: 'Datenschutz',
+          navTerms: 'Nutzungsbedingungen',
           navSupport: 'Support',
           navImprint: 'Impressum',
           footerHome: 'Home',
-          footerPrivacy: 'Privacy / Datenschutz',
+          footerPrivacy: 'Datenschutz',
           footerTerms: 'Terms',
           footerSupport: 'Support',
           footerImprint: 'Impressum'
@@ -578,7 +586,7 @@
       const lang =
         (urlLang === 'de' || urlLang === 'en')
           ? urlLang
-          : (storedLang || browserLang);
+          : ((storedLang === 'de' || storedLang === 'en') ? storedLang : browserLang);
 
       function setLang(currentLang) {
         const d = dict[currentLang] || dict.de;
