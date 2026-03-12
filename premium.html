@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Premium Upgrade · Aurevoir</title>
-  <meta name="description" content="Aurevoir Premium – Preise, Vorteile, Datenschutz & rechtliche Hinweise." />
-  <!-- Dark erzwingen -->
+  <title>Premium Upgrade – Keystone</title>
+  <meta
+    name="description"
+    content="ToDo Business Premium – Preise, Vorteile sowie rechtliche und datenschutzbezogene Hinweise."
+  />
   <meta name="color-scheme" content="dark" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>"
+  />
 
   <style>
     :root{
-      /* Brand (match index) */
       --brand:#2196F3;
       --accent:#7c3aed;
       --ok:#22c55e;
 
-      /* Dark UI */
       --bg:#000000;
       --bg-soft:#07090d;
       --card:#0e1218;
@@ -31,139 +34,344 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
-      margin:0; color:var(--text); background:var(--bg);
-      font-family:ui-sans-serif,system-ui,Inter,Segoe UI,Roboto,Arial;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      line-height:1.65; overflow-x:hidden;
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
+      font-family:ui-sans-serif,system-ui,Inter,"Segoe UI",Roboto,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.65;
+      overflow-x:hidden;
     }
 
-    /* ===== Header / Hero (gleich wie index) ===== */
     header.hero{
-      position:relative; isolation:isolate; overflow:hidden;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
       background:
         radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
         radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
       border-bottom:1px solid var(--line);
     }
-    .glow{position:absolute; inset:0; filter:blur(var(--blur)); opacity:.9; pointer-events:none}
-    .glow::before,.glow::after{
-      content:""; position:absolute; width:55vmax; height:55vmax; border-radius:50%;
+
+    .glow{
+      position:absolute;
+      inset:0;
+      filter:blur(var(--blur));
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .glow::before,
+    .glow::after{
+      content:"";
+      position:absolute;
+      width:55vmax;
+      height:55vmax;
+      border-radius:50%;
       background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
     }
+
     .glow::before{ top:-35vmax; left:-20vmax }
-    .glow::after{ top:-30vmax; right:-25vmax; background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%) }
+    .glow::after{
+      top:-30vmax;
+      right:-25vmax;
+      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
+    }
 
-    .emoji-cloud{position:absolute; inset:0; pointer-events:none; filter:blur(1px)}
-    .bg-emoji{position:absolute; font-size:clamp(24px,3.2vw,34px); opacity:var(--emoji-alpha); transform:translate(-50%,-50%); user-select:none}
-    .e1{ left:10%; top:28% } .e2{ left:24%; top:12% } .e3{ left:42%; top:22% }
-    .e4{ left:64%; top:16% } .e5{ left:82%; top:30% } .e6{ left:18%; top:46% }
-    .e7{ left:36%; top:54% } .e8{ left:72%; top:50% }
-    @media (prefers-reduced-motion:reduce){ .glow,.emoji-cloud{display:none} }
+    .emoji-cloud{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      filter:blur(1px);
+    }
 
-    .wrap{max-width:980px; margin:0 auto; padding:20px}
+    .bg-emoji{
+      position:absolute;
+      font-size:clamp(24px,3.2vw,34px);
+      opacity:var(--emoji-alpha);
+      transform:translate(-50%,-50%);
+      user-select:none;
+    }
+
+    .e1{ left:10%; top:28% }
+    .e2{ left:24%; top:12% }
+    .e3{ left:42%; top:22% }
+    .e4{ left:64%; top:16% }
+    .e5{ left:82%; top:30% }
+    .e6{ left:18%; top:46% }
+    .e7{ left:36%; top:54% }
+    .e8{ left:72%; top:50% }
+
+    @media (prefers-reduced-motion:reduce){
+      .glow,.emoji-cloud{display:none}
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:20px;
+    }
 
     .title{
-      margin:.2rem 0; font-weight:900; letter-spacing:.3px;
-      font-size:clamp(28px,3.6vw,40px); line-height:1.1;
+      margin:.2rem 0;
+      font-weight:900;
+      letter-spacing:.3px;
+      font-size:clamp(28px,3.6vw,40px);
+      line-height:1.1;
       background:linear-gradient(90deg,var(--brand),var(--accent));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
       text-shadow:0 4px 24px rgba(124,58,237,.15);
-      position:relative; z-index:2;
+      position:relative;
+      z-index:2;
     }
-    .subtitle{color:var(--muted); font-weight:700; position:relative; z-index:2}
 
-    .topline{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:12px; position:relative; z-index:2}
-    .langbar{display:flex; gap:8px}
-    .chip{
-      border:1px solid var(--line); background:var(--card);
-      color:var(--text); padding:8px 12px; border-radius:999px; font-weight:800; letter-spacing:.2px;
-      cursor:pointer;
+    .subtitle{
+      color:var(--muted);
+      font-weight:700;
+      position:relative;
+      z-index:2;
     }
-    .chip[aria-pressed="true"]{background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff; border-color:transparent}
+
+    .topline{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:12px;
+      position:relative;
+      z-index:2;
+    }
+
+    .lang-indicator{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 14px;
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:.2px;
+      background:var(--card);
+    }
+
+    .lang-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
+      flex:0 0 auto;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .navlink{
-      border:1px solid var(--line); background:var(--card);
-      padding:8px 12px; border-radius:12px; font-weight:800; letter-spacing:.2px; color:var(--text); text-decoration:none;
+      border:1px solid var(--line);
+      background:var(--card);
+      padding:8px 12px;
+      border-radius:12px;
+      font-weight:800;
+      letter-spacing:.2px;
+      color:var(--text);
+      text-decoration:none;
     }
-    .navlink:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--line))}
 
-    main{padding:28px 0 48px}
+    .navlink:hover{
+      border-color:color-mix(in oklab, var(--brand) 45%, var(--line));
+    }
 
-    .plans{display:grid; gap:18px; margin-top:16px}
-    @media (min-width:900px){ .plans{grid-template-columns:repeat(2,1fr)} } /* nur Free + Pro */
+    main{
+      padding:28px 0 48px;
+    }
+
+    .plans{
+      display:grid;
+      gap:18px;
+      margin-top:16px;
+    }
+
+    @media (min-width:900px){
+      .plans{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
 
     .card{
-      background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:0 10px 24px rgba(0,0,0,.22); padding:22px; min-height:360px;
-      display:flex; flex-direction:column; justify-content:space-between;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      padding:22px;
     }
-    h2{margin:.2em 0 .4em; font-size:20px; font-weight:900; letter-spacing:.2px;
-       background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .price{font-size:22px; font-weight:900}
-    .muted{color:var(--muted); font-weight:600}
-    ul{margin:.6em 0 .2em 1.2em}
-    li{margin:.35em 0}
-    .check::marker{content:"✔  "}
-    .notice{font-size:.95rem; color:var(--muted)}
+
+    .plan-card{
+      min-height:360px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    h2{
+      margin:.2em 0 .4em;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.2px;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    h3{
+      margin:.6em 0 .35em;
+      font-size:16px;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .price{
+      font-size:22px;
+      font-weight:900;
+    }
+
+    .muted{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    ul{
+      margin:.6em 0 .2em 1.2em;
+    }
+
+    li{
+      margin:.35em 0;
+    }
+
+    .check li::marker{
+      content:"✔  ";
+      color:var(--ok);
+    }
+
+    .notice{
+      font-size:.95rem;
+      color:var(--muted);
+    }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
-      padding:12px 16px; border-radius:12px; font-weight:900; letter-spacing:.2px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:900;
+      letter-spacing:.2px;
       border:1px solid color-mix(in oklab, var(--brand) 35%, var(--line));
-      background:linear-gradient(90deg,var(--brand),var(--accent)); color:#fff;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      color:#fff;
       box-shadow:0 8px 24px color-mix(in oklab, var(--brand) 20%, transparent);
+      text-decoration:none;
     }
-    .btn[aria-disabled="true"]{opacity:.7; pointer-events:none}
 
-    .legal{margin-top:28px}
-    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.08);padding:.1rem .45rem;border-radius:8px;border:1px solid var(--line)}
+    .btn[aria-disabled="true"]{
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    .legal{
+      margin-top:28px;
+    }
+
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:rgba(255,255,255,.08);
+      padding:.1rem .45rem;
+      border-radius:8px;
+      border:1px solid var(--line);
+    }
+
+    .links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:8px;
+    }
+
+    .links a{
+      color:var(--text);
+      text-decoration:underline dotted;
+    }
 
     footer{
-      border-top:1px solid var(--line); background:var(--bg-soft);
-      color:var(--muted); padding:20px; text-align:center; font-weight:600; letter-spacing:.2px;
+      border-top:1px solid var(--line);
+      background:var(--bg-soft);
+      color:var(--muted);
+      padding:20px;
+      text-align:center;
+      font-weight:600;
+      letter-spacing:.2px;
     }
-    .links a{color:var(--text); text-decoration:underline dotted}
-    .hidden{display:none}
+
+    .hidden{
+      display:none;
+    }
   </style>
 </head>
 <body>
   <header class="hero">
     <div class="glow" aria-hidden="true"></div>
+
     <div class="emoji-cloud" aria-hidden="true">
-      <span class="bg-emoji e1">✅</span><span class="bg-emoji e2">📅</span><span class="bg-emoji e3">⏱️</span>
-      <span class="bg-emoji e4">📈</span><span class="bg-emoji e5">🧭</span><span class="bg-emoji e6">🗂️</span>
-      <span class="bg-emoji e7">✨</span><span class="bg-emoji e8">🧠</span>
+      <span class="bg-emoji e1">✅</span>
+      <span class="bg-emoji e2">📅</span>
+      <span class="bg-emoji e3">⏱️</span>
+      <span class="bg-emoji e4">📈</span>
+      <span class="bg-emoji e5">🧭</span>
+      <span class="bg-emoji e6">🗂️</span>
+      <span class="bg-emoji e7">✨</span>
+      <span class="bg-emoji e8">🧠</span>
     </div>
 
     <div class="wrap">
-      <h1 class="title">Premium Upgrade</h1>
-      <p class="subtitle">Aurevoir · Keystone</p>
+      <h1 class="title" id="page-title">Premium Upgrade</h1>
+      <p class="subtitle" id="page-subtitle">ToDo Business · Keystone</p>
 
       <div class="topline">
-        <div class="langbar" role="group" aria-label="Sprache wählen / Choose language">
-          <button id="btn-de" class="chip" type="button" aria-pressed="true">Deutsch</button>
-          <button id="btn-en" class="chip" type="button" aria-pressed="false">English</button>
+        <div class="lang-indicator">
+          <span class="lang-dot" aria-hidden="true"></span>
+          <span id="lang-indicator-text">Sprache: Deutsch</span>
         </div>
-        <nav>
-          <a class="navlink" href="index.html">← Home</a>
-          <a class="navlink" href="privacy.html">Privacy / Datenschutz</a>
-          <a class="navlink" href="terms.html">Terms / Nutzungsbedingungen</a>
-          <a class="navlink" href="support.html">Support</a>
-          <a class="navlink" href="impressum.html">Impressum</a>
+
+        <nav class="nav" aria-label="Quick links">
+          <a class="navlink" id="nav-home" href="index.html">← Home</a>
+          <a class="navlink" id="nav-privacy" href="privacy.html">Privacy / Datenschutz</a>
+          <a class="navlink" id="nav-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
+          <a class="navlink" id="nav-support" href="support.html">Support</a>
+          <a class="navlink" id="nav-imprint" href="impressum.html">Impressum</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- ============ Deutsch ============ -->
     <section id="sec-de">
       <p class="notice">✨ Alle Pläne können sich weiterentwickeln. Preise inkl. MwSt.</p>
 
       <div class="plans">
-        <!-- Free -->
-        <article class="card">
+        <article class="card plan-card">
           <div>
             <h2>Kostenlos</h2>
             <p class="price">0 €</p>
@@ -174,11 +382,12 @@
               <li>Basis-Sync (optional)</li>
             </ul>
           </div>
-          <div><a class="btn" aria-disabled="true">Bereits aktiv</a></div>
+          <div>
+            <a class="btn" aria-disabled="true">Bereits aktiv</a>
+          </div>
         </article>
 
-        <!-- Pro Monthly (erweitert) -->
-        <article class="card" style="border-color: color-mix(in oklab, var(--brand) 45%, var(--line));">
+        <article class="card plan-card" style="border-color:color-mix(in oklab, var(--brand) 45%, var(--line));">
           <div>
             <h2>Pro (Monatlich)</h2>
             <p class="price">1,99 € / Monat</p>
@@ -188,11 +397,13 @@
               <li>Fokus-Timer & Smart Scheduling</li>
               <li>Erweiterte Statistiken</li>
               <li>Premium-Support</li>
-              <li>Aufgaben erstellen &amp; verwalten</li>
+              <li>Aufgaben erstellen & verwalten</li>
               <li>Kalender nutzen</li>
             </ul>
           </div>
-          <div><a id="buy-pro-de" class="btn" href="#">Jetzt freischalten</a></div>
+          <div>
+            <a id="buy-pro-de" class="btn" href="#">Jetzt freischalten</a>
+          </div>
         </article>
       </div>
 
@@ -200,25 +411,28 @@
         <div class="card">
           <h2>Rechtliche Hinweise</h2>
           <ul class="check">
-            <li>Abrechnung über den jeweiligen App-Store (Apple/Google).</li>
-            <li>Automatische Verlängerung, sofern nicht mind. 24 h vor Ablauf gekündigt.</li>
-            <li>Verwaltung/Kündigung jederzeit in den Store-Einstellungen.</li>
-            <li>Alle Preise inkl. gesetzlicher MwSt.</li>
+            <li>Die Abrechnung erfolgt über den jeweiligen App-Store (Apple oder Google).</li>
+            <li>Abos verlängern sich automatisch, sofern sie nicht rechtzeitig im Store gekündigt werden.</li>
+            <li>Die Verwaltung und Kündigung erfolgt direkt in deinen Store-Einstellungen.</li>
+            <li>Alle Preise verstehen sich inklusive gesetzlicher MwSt., soweit anwendbar.</li>
             <li>Support: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
           </ul>
-          <p class="muted">Mehr in <a href="privacy.html" target="_blank" rel="noopener">Datenschutz</a> &amp; <a href="terms.html" target="_blank" rel="noopener">Nutzungsbedingungen</a>.</p>
+          <p class="muted">
+            Mehr Informationen findest du in der
+            <a href="privacy.html">Datenschutzerklärung</a>
+            und in den
+            <a href="terms.html">Nutzungsbedingungen</a>.
+          </p>
           <p class="muted">Version: <code class="kbd" id="ver-de">1.0.0</code></p>
         </div>
       </section>
     </section>
 
-    <!-- ============ English ============ -->
     <section id="sec-en" class="hidden">
       <p class="notice">✨ Plans may evolve. Prices include VAT where applicable.</p>
 
       <div class="plans">
-        <!-- Free -->
-        <article class="card">
+        <article class="card plan-card">
           <div>
             <h2>Free</h2>
             <p class="price">€0</p>
@@ -229,11 +443,12 @@
               <li>Basic sync (optional)</li>
             </ul>
           </div>
-          <div><a class="btn" aria-disabled="true">Already active</a></div>
+          <div>
+            <a class="btn" aria-disabled="true">Already active</a>
+          </div>
         </article>
 
-        <!-- Pro Monthly (extended) -->
-        <article class="card" style="border-color: color-mix(in oklab, var(--brand) 45%, var(--line));">
+        <article class="card plan-card" style="border-color:color-mix(in oklab, var(--brand) 45%, var(--line));">
           <div>
             <h2>Pro (Monthly)</h2>
             <p class="price">€1.99 / month</p>
@@ -243,11 +458,13 @@
               <li>Focus Timer & Smart Scheduling</li>
               <li>Advanced statistics</li>
               <li>Premium support</li>
-              <li>Create &amp; manage tasks</li>
+              <li>Create & manage tasks</li>
               <li>Use calendar</li>
             </ul>
           </div>
-          <div><a id="buy-pro-en" class="btn" href="#">Unlock now</a></div>
+          <div>
+            <a id="buy-pro-en" class="btn" href="#">Unlock now</a>
+          </div>
         </article>
       </div>
 
@@ -255,13 +472,19 @@
         <div class="card">
           <h2>Legal</h2>
           <ul class="check">
-            <li>Billed via the respective app store (Apple/Google).</li>
-            <li>Auto-renew unless cancelled at least 24 h before the end of the period.</li>
-            <li>Manage/cancel anytime in your store settings.</li>
+            <li>Billing is handled via the respective app store (Apple or Google).</li>
+            <li>Subscriptions renew automatically unless cancelled in time through your store settings.</li>
+            <li>You can manage or cancel subscriptions directly in your store account.</li>
             <li>Prices include VAT where applicable.</li>
             <li>Support: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
           </ul>
-          <p class="muted">See <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> &amp; <a href="terms.html" target="_blank" rel="noopener">Terms of Use</a>.</p>
+          <p class="muted">
+            See the
+            <a href="privacy.html">Privacy Policy</a>
+            and the
+            <a href="terms.html">Terms of Use</a>
+            for more information.
+          </p>
           <p class="muted">Version: <code class="kbd" id="ver-en">1.0.0</code></p>
         </div>
       </section>
@@ -270,50 +493,151 @@
 
   <footer>
     <div class="links">
-      <a href="index.html">Home</a> ·
-      <a href="privacy.html" target="_blank" rel="noopener">Privacy / Datenschutz</a> ·
-      <a href="terms.html" target="_blank" rel="noopener">Terms</a> ·
-      <a href="support.html" target="_blank" rel="noopener">Support</a> ·
-      <a href="impressum.html" target="_blank" rel="noopener">Impressum</a>
+      <a id="footer-home" href="index.html">Home</a> ·
+      <a id="footer-privacy" href="privacy.html">Privacy / Datenschutz</a> ·
+      <a id="footer-terms" href="terms.html">Terms</a> ·
+      <a id="footer-support" href="support.html">Support</a> ·
+      <a id="footer-imprint" href="impressum.html">Impressum</a>
     </div>
-    <p class="muted">© <span id="year"></span> Aurevoir · Keystone · Version <code class="kbd" id="ver">1.0.0</code></p>
+    <p class="muted">
+      © <span id="year"></span> Keystone · Version <code class="kbd" id="ver">1.0.0</code>
+    </p>
   </footer>
 
   <script>
-    (function(){
-      // Jahr & Version (?v=)
+    (function () {
       document.getElementById('year').textContent = new Date().getFullYear();
+
       const qp = new URLSearchParams(location.search);
       const version = qp.get('v') || '1.0.0';
+
       document.getElementById('ver').textContent = version;
       document.getElementById('ver-de').textContent = version;
       document.getElementById('ver-en').textContent = version;
 
-      // Sprache (?lang=de|en, localStorage, Browser)
-      const saved = localStorage.getItem('premium_lang');
-      const fromQS = (qp.get('lang') || '').toLowerCase();
-      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
-      let lang = (fromQS==='de'||fromQS==='en') ? fromQS : (saved|| (browserIsDe?'de':'en'));
+      function applyParams(href, lang, v) {
+        const parts = href.split('?');
+        const path = parts[0];
+        const sp = new URLSearchParams(parts[1] || '');
+        sp.set('lang', lang);
 
-      const btnDe = document.getElementById('btn-de');
-      const btnEn = document.getElementById('btn-en');
-      const secDe = document.getElementById('sec-de');
-      const secEn = document.getElementById('sec-en');
+        if (v) sp.set('v', v);
+        else sp.delete('v');
 
-      function applyLang(l){
-        lang = l; localStorage.setItem('premium_lang', l);
-        document.documentElement.lang = (l==='de'?'de':'en');
-        btnDe.setAttribute('aria-pressed', l==='de');
-        btnEn.setAttribute('aria-pressed', l==='en');
-        if(l==='de'){ secDe.classList.remove('hidden'); secEn.classList.add('hidden'); }
-        else { secEn.classList.remove('hidden'); secDe.classList.add('hidden'); }
-        const url = new URL(location.href); url.searchParams.set('lang', l); history.replaceState({},'',url.toString());
+        const qs = sp.toString();
+        return qs ? `${path}?${qs}` : path;
       }
-      btnDe.addEventListener('click', ()=>applyLang('de'));
-      btnEn.addEventListener('click', ()=>applyLang('en'));
-      applyLang(lang);
 
-      // Kauf-Buttons (später Deep Links ersetzen)
+      function setQueryParams(ids, lang, v) {
+        ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const base = el.getAttribute('href');
+          el.setAttribute('href', applyParams(base, lang, v));
+        });
+      }
+
+      const dict = {
+        de: {
+          pageTitle: 'Premium Upgrade',
+          pageSubtitle: 'ToDo Business · Keystone',
+          langIndicator: 'Sprache: Deutsch',
+          navHome: '← Home',
+          navPrivacy: 'Privacy / Datenschutz',
+          navTerms: 'Terms / Nutzungsbedingungen',
+          navSupport: 'Support',
+          navImprint: 'Impressum',
+          footerHome: 'Home',
+          footerPrivacy: 'Privacy / Datenschutz',
+          footerTerms: 'Terms',
+          footerSupport: 'Support',
+          footerImprint: 'Impressum'
+        },
+        en: {
+          pageTitle: 'Premium Upgrade',
+          pageSubtitle: 'ToDo Business · Keystone',
+          langIndicator: 'Language: English',
+          navHome: '← Home',
+          navPrivacy: 'Privacy',
+          navTerms: 'Terms of Use',
+          navSupport: 'Support',
+          navImprint: 'Imprint',
+          footerHome: 'Home',
+          footerPrivacy: 'Privacy',
+          footerTerms: 'Terms',
+          footerSupport: 'Support',
+          footerImprint: 'Imprint'
+        }
+      };
+
+      const urlLang = qp.get('lang');
+      const storedLang = localStorage.getItem('aurevoir_lang');
+      const browserLang =
+        (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+
+      const lang =
+        (urlLang === 'de' || urlLang === 'en')
+          ? urlLang
+          : (storedLang || browserLang);
+
+      function setLang(currentLang) {
+        const d = dict[currentLang] || dict.de;
+
+        document.documentElement.lang = currentLang;
+        localStorage.setItem('aurevoir_lang', currentLang);
+
+        document.getElementById('page-title').textContent = d.pageTitle;
+        document.getElementById('page-subtitle').textContent = d.pageSubtitle;
+        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
+
+        document.getElementById('nav-home').textContent = d.navHome;
+        document.getElementById('nav-privacy').textContent = d.navPrivacy;
+        document.getElementById('nav-terms').textContent = d.navTerms;
+        document.getElementById('nav-support').textContent = d.navSupport;
+        document.getElementById('nav-imprint').textContent = d.navImprint;
+
+        document.getElementById('footer-home').textContent = d.footerHome;
+        document.getElementById('footer-privacy').textContent = d.footerPrivacy;
+        document.getElementById('footer-terms').textContent = d.footerTerms;
+        document.getElementById('footer-support').textContent = d.footerSupport;
+        document.getElementById('footer-imprint').textContent = d.footerImprint;
+
+        const secDe = document.getElementById('sec-de');
+        const secEn = document.getElementById('sec-en');
+
+        if (currentLang === 'de') {
+          secDe.classList.remove('hidden');
+          secEn.classList.add('hidden');
+        } else {
+          secEn.classList.remove('hidden');
+          secDe.classList.add('hidden');
+        }
+
+        setQueryParams(
+          [
+            'nav-home',
+            'nav-privacy',
+            'nav-terms',
+            'nav-support',
+            'nav-imprint',
+            'footer-home',
+            'footer-privacy',
+            'footer-terms',
+            'footer-support',
+            'footer-imprint'
+          ],
+          currentLang,
+          version
+        );
+
+        const url = new URL(location.href);
+        url.searchParams.set('lang', currentLang);
+        if (version) url.searchParams.set('v', version);
+        history.replaceState({}, '', url.toString());
+      }
+
+      setLang(lang);
+
       document.getElementById('buy-pro-de').setAttribute('href', '#');
       document.getElementById('buy-pro-en').setAttribute('href', '#');
     })();
