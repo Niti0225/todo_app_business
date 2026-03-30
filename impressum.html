@@ -5,6 +5,7 @@
   <title>Impressum • Keystone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
+    id="meta-description"
     name="description"
     content="Impressum / Imprint von Keystone – rechtliche Angaben, Kontakt, Haftung und Hinweise in Deutsch und Englisch."
   />
@@ -17,7 +18,6 @@
   <style>
     :root{
       color-scheme: dark;
-
       --bg:#0E0E12;
       --bg-alt:#121218;
       --card:#181822;
@@ -27,7 +27,6 @@
       --grad-start:#9A4DFF;
       --grad-end:#20D5F4;
       --radius:18px;
-      --radius-sm:12px;
       --shadow-lg:0 10px 30px rgba(0,0,0,.45);
       --shadow-soft:0 8px 24px rgba(32,213,244,.12);
     }
@@ -129,6 +128,13 @@
       flex-wrap:wrap;
     }
 
+    .lang-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .lang-indicator{
       display:inline-flex;
       align-items:center;
@@ -149,6 +155,27 @@
       background:linear-gradient(90deg,var(--grad-start),var(--grad-end));
       box-shadow:0 0 12px rgba(32,213,244,.25);
       flex:0 0 auto;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+    }
+
+    .lang-btn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(90deg, rgba(154,77,255,.18), rgba(32,213,244,.18));
+      border-color:rgba(255,255,255,.14);
+      box-shadow:var(--shadow-soft);
     }
 
     .nav{
@@ -176,6 +203,7 @@
     }
 
     main{padding:28px 0 48px}
+    .grid{display:grid;gap:22px}
 
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
@@ -197,8 +225,6 @@
       color:transparent;
     }
 
-    .grid{display:grid;gap:22px}
-
     .row{
       display:grid;
       grid-template-columns:220px 1fr;
@@ -208,29 +234,11 @@
     }
 
     .row:last-child{border-bottom:none}
-
-    .k{
-      color:var(--muted);
-      font-weight:700;
-    }
-
-    .v{
-      font-weight:800;
-    }
-
-    .muted{
-      color:var(--muted);
-      font-weight:600;
-    }
-
+    .k{color:var(--muted);font-weight:700}
+    .v{font-weight:800}
+    .muted{color:var(--muted);font-weight:600}
     .block{margin:14px 0}
-
-    .stamp{
-      margin-top:8px;
-      color:var(--muted);
-      font-size:13px;
-      font-weight:600;
-    }
+    .stamp{margin-top:8px;color:var(--muted);font-size:13px;font-weight:600}
 
     .actions{
       display:flex;
@@ -258,7 +266,6 @@
       transform:translateY(-2px);
       border-color:rgba(255,255,255,.12);
       box-shadow:var(--shadow-soft);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
     }
 
     footer{
@@ -299,14 +306,23 @@
   <header class="hero" role="banner" aria-label="Kopfbereich">
     <div class="wrap">
       <h1 class="title" id="page-title">Impressum • Imprint</h1>
-      <p class="subtitle" id="page-subtitle">
-        ToDo Business · Keystone · Version <code id="v" class="small">1.0.0</code>
+      <p class="subtitle">
+        <span id="subtitle-app">ToDo Business · Keystone</span> ·
+        <span id="subtitle-version-label">Version</span>
+        <code id="v" class="small">1.0.0</code>
       </p>
 
       <div class="topline">
-        <div class="lang-indicator">
-          <span class="lang-dot" aria-hidden="true"></span>
-          <span id="lang-indicator-text">Sprache: Deutsch</span>
+        <div class="lang-row">
+          <div class="lang-indicator">
+            <span class="lang-dot" aria-hidden="true"></span>
+            <span id="lang-indicator-text">Sprache: Deutsch</span>
+          </div>
+
+          <div class="lang-switch" aria-label="Language switcher">
+            <button class="lang-btn" id="lang-de" type="button">DE</button>
+            <button class="lang-btn" id="lang-en" type="button">EN</button>
+          </div>
         </div>
 
         <nav class="nav" aria-label="Quick links">
@@ -326,7 +342,7 @@
 
         <div class="row">
           <div class="k">Name</div>
-          <div class="v">Leonit Sadiku</div>
+          <div class="v">[Hier später vollständigen Namen eintragen]</div>
         </div>
         <div class="row">
           <div class="k">Projekt / App</div>
@@ -339,16 +355,28 @@
           </div>
         </div>
         <div class="row">
+          <div class="k">Adresse</div>
+          <div class="v">[Noch nicht final – später ergänzen, falls rechtlich erforderlich]</div>
+        </div>
+        <div class="row">
           <div class="k">Telefon</div>
-          <div class="v">Keine Angabe</div>
+          <div class="v">[Optional / später ergänzen]</div>
         </div>
         <div class="row">
           <div class="k">Umsatzsteuer-ID</div>
-          <div class="v">Nicht vorhanden / falls später vorhanden hier ergänzen</div>
+          <div class="v">[Falls vorhanden später ergänzen]</div>
         </div>
         <div class="row">
           <div class="k">Verantwortlich i.S.d.P.</div>
-          <div class="v">Leonit Sadiku</div>
+          <div class="v">[Später final ergänzen]</div>
+        </div>
+
+        <div class="block">
+          <h2>Hinweis</h2>
+          <p class="muted">
+            Dieses Impressum ist noch nicht final. Die endgültigen rechtlichen Angaben werden ergänzt,
+            sobald alle erforderlichen Daten feststehen.
+          </p>
         </div>
 
         <div class="block">
@@ -388,19 +416,7 @@
           </p>
         </div>
 
-        <div class="block">
-          <h2>EU-Streitbeilegung</h2>
-          <p class="muted">
-            Plattform der EU-Kommission zur Online-Streitbeilegung:
-            <a class="under" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">
-              ec.europa.eu/consumers/odr/
-            </a>.
-            Wir sind nicht verpflichtet und in der Regel nicht bereit, an Streitbeilegungsverfahren vor
-            einer Verbraucherschlichtungsstelle teilzunehmen.
-          </p>
-        </div>
-
-        <div class="stamp">Zuletzt aktualisiert: <span id="date-de">21.11.2025</span></div>
+        <div class="stamp">Zuletzt aktualisiert: <span id="date-de">30.03.2026</span></div>
 
         <div class="actions">
           <a class="btn" id="back-de" href="index.html">← Zurück zur Startseite</a>
@@ -414,7 +430,7 @@
 
         <div class="row">
           <div class="k">Name</div>
-          <div class="v">Leonit Sadiku</div>
+          <div class="v">[Add full legal name later]</div>
         </div>
         <div class="row">
           <div class="k">Project / App</div>
@@ -427,16 +443,27 @@
           </div>
         </div>
         <div class="row">
+          <div class="k">Address</div>
+          <div class="v">[Not final yet – add later if legally required]</div>
+        </div>
+        <div class="row">
           <div class="k">Phone</div>
-          <div class="v">Not provided</div>
+          <div class="v">[Optional / add later]</div>
         </div>
         <div class="row">
           <div class="k">VAT ID</div>
-          <div class="v">Not available / add later if applicable</div>
+          <div class="v">[Add later if applicable]</div>
         </div>
         <div class="row">
           <div class="k">Editorially Responsible</div>
-          <div class="v">Leonit Sadiku</div>
+          <div class="v">[Add later]</div>
+        </div>
+
+        <div class="block">
+          <h2>Notice</h2>
+          <p class="muted">
+            This imprint is not final yet. The final legal information will be added once all required details are confirmed.
+          </p>
         </div>
 
         <div class="block">
@@ -476,18 +503,7 @@
           </p>
         </div>
 
-        <div class="block">
-          <h2>EU Online Dispute Resolution</h2>
-          <p class="muted">
-            EU Commission platform for online dispute resolution:
-            <a class="under" href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">
-              ec.europa.eu/consumers/odr/
-            </a>.
-            We are not obliged and generally not willing to participate in consumer arbitration proceedings.
-          </p>
-        </div>
-
-        <div class="stamp">Last updated: <span id="date-en">21 Nov 2025</span></div>
+        <div class="stamp">Last updated: <span id="date-en">March 30, 2026</span></div>
 
         <div class="actions">
           <a class="btn" id="back-en" href="index.html">← Back to Home</a>
@@ -499,9 +515,9 @@
   </main>
 
   <footer role="contentinfo" aria-label="Fußbereich">
-    <small class="small">© <span id="y"></span> Keystone · All rights reserved.</small>
+    <small class="small">© <span id="y"></span> Keystone · <span id="footer-rights">Alle Rechte vorbehalten.</span></small>
     <div class="brandline" aria-hidden="true">
-      <span>Powered by</span>
+      <span id="footer-powered">Powered by</span>
       <span style="font-weight:900; background:linear-gradient(90deg,var(--grad-start),var(--grad-end)); -webkit-background-clip:text; background-clip:text; color:transparent;">
         Keystone
       </span>
@@ -509,118 +525,140 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    const qp = new URLSearchParams(location.search);
-    const ver = qp.get('v') || '1.0.0';
-    document.getElementById('v').textContent = ver;
-
-    function applyParams(href, lang, v) {
-      const parts = href.split('?');
-      const path = parts[0];
-      const sp = new URLSearchParams(parts[1] || '');
-      sp.set('lang', lang);
-
-      if (v) sp.set('v', v);
-      else sp.delete('v');
-
-      const qs = sp.toString();
-      return qs ? `${path}?${qs}` : path;
-    }
-
-    function setQueryParams(ids, lang, v) {
-      ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const base = el.getAttribute('href');
-        el.setAttribute('href', applyParams(base, lang, v));
-      });
-    }
-
-    const dict = {
-      de: {
-        pageTitle: 'Impressum • Imprint',
-        pageSubtitle: 'ToDo Business · Keystone · Version',
-        langIndicator: 'Sprache: Deutsch',
-        navHome: '← Home',
-        navPrivacy: 'Datenschutz',
-        navTerms: 'Nutzungsbedingungen',
-        navSupport: 'Support'
-      },
-      en: {
-        pageTitle: 'Imprint • Legal Notice',
-        pageSubtitle: 'ToDo Business · Keystone · Version',
-        langIndicator: 'Language: English',
-        navHome: '← Home',
-        navPrivacy: 'Privacy',
-        navTerms: 'Terms of Use',
-        navSupport: 'Support'
-      }
-    };
-
     (function () {
-      const saved = localStorage.getItem('aurevoir_lang');
-      const qsLang = (qp.get('lang') || '').toLowerCase();
-      const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
+      const STORAGE_KEY = "keystone_lang";
+      const qp = new URLSearchParams(location.search);
+      const ver = qp.get("v") || "1.0.0";
+      const validLangs = new Set(["de", "en"]);
 
-      const lang =
-        (qsLang === 'de' || qsLang === 'en')
-          ? qsLang
-          : ((saved === 'de' || saved === 'en') ? saved : (browserIsDe ? 'de' : 'en'));
+      document.getElementById("y").textContent = new Date().getFullYear();
+      document.getElementById("v").textContent = ver;
 
-      const secDe = document.getElementById('section-de');
-      const secEn = document.getElementById('section-en');
+      function applyParams(href, lang, v) {
+        const parts = href.split("?");
+        const path = parts[0];
+        const sp = new URLSearchParams(parts[1] || "");
+        sp.set("lang", lang);
+
+        if (v) sp.set("v", v);
+        else sp.delete("v");
+
+        const qs = sp.toString();
+        return qs ? `${path}?${qs}` : path;
+      }
+
+      function setQueryParams(ids, lang, v) {
+        ids.forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const base = el.getAttribute("href");
+          if (!base) return;
+          el.setAttribute("href", applyParams(base, lang, v));
+        });
+      }
+
+      const dict = {
+        de: {
+          docTitle: "Impressum • Keystone",
+          metaDescription: "Impressum von Keystone – rechtliche Angaben, Kontakt, Haftung und Hinweise.",
+          pageTitle: "Impressum • Imprint",
+          langIndicator: "Sprache: Deutsch",
+          navHome: "← Home",
+          navPrivacy: "Datenschutz",
+          navTerms: "Nutzungsbedingungen",
+          navSupport: "Support",
+          versionLabel: "Version",
+          footerRights: "Alle Rechte vorbehalten.",
+          footerPowered: "Powered by"
+        },
+        en: {
+          docTitle: "Imprint • Keystone",
+          metaDescription: "Imprint of Keystone – legal information, contact, liability and notices.",
+          pageTitle: "Imprint • Legal Notice",
+          langIndicator: "Language: English",
+          navHome: "← Home",
+          navPrivacy: "Privacy",
+          navTerms: "Terms of Use",
+          navSupport: "Support",
+          versionLabel: "Version",
+          footerRights: "All rights reserved.",
+          footerPowered: "Powered by"
+        }
+      };
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const qsLang = (qp.get("lang") || "").toLowerCase();
+      const browserIsDe = (navigator.language || "en").toLowerCase().startsWith("de");
+
+      const lang = validLangs.has(qsLang)
+        ? qsLang
+        : (validLangs.has(saved) ? saved : (browserIsDe ? "de" : "en"));
+
+      const secDe = document.getElementById("section-de");
+      const secEn = document.getElementById("section-en");
+      const langBtnDe = document.getElementById("lang-de");
+      const langBtnEn = document.getElementById("lang-en");
+      const metaDescription = document.getElementById("meta-description");
 
       function setLang(currentLang) {
         const d = dict[currentLang] || dict.de;
 
-        localStorage.setItem('aurevoir_lang', currentLang);
+        localStorage.setItem(STORAGE_KEY, currentLang);
         document.documentElement.lang = currentLang;
+        document.title = d.docTitle;
+        if (metaDescription) metaDescription.setAttribute("content", d.metaDescription);
 
-        document.getElementById('page-title').textContent = d.pageTitle;
-        document.getElementById('page-subtitle').innerHTML =
-          `ToDo Business · Keystone · ${d.pageSubtitle} <code id="v-inline" class="small">${ver}</code>`;
+        document.getElementById("page-title").textContent = d.pageTitle;
+        document.getElementById("lang-indicator-text").textContent = d.langIndicator;
+        document.getElementById("nav-home").textContent = d.navHome;
+        document.getElementById("nav-privacy").textContent = d.navPrivacy;
+        document.getElementById("nav-terms").textContent = d.navTerms;
+        document.getElementById("nav-support").textContent = d.navSupport;
+        document.getElementById("subtitle-version-label").textContent = d.versionLabel;
+        document.getElementById("footer-rights").textContent = d.footerRights;
+        document.getElementById("footer-powered").textContent = d.footerPowered;
 
-        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
-        document.getElementById('nav-home').textContent = d.navHome;
-        document.getElementById('nav-privacy').textContent = d.navPrivacy;
-        document.getElementById('nav-terms').textContent = d.navTerms;
-        document.getElementById('nav-support').textContent = d.navSupport;
-
-        if (currentLang === 'de') {
-          secDe.classList.remove('hidden');
-          secEn.classList.add('hidden');
+        if (currentLang === "de") {
+          secDe.classList.remove("hidden");
+          secEn.classList.add("hidden");
+          langBtnDe.classList.add("active");
+          langBtnEn.classList.remove("active");
         } else {
-          secEn.classList.remove('hidden');
-          secDe.classList.add('hidden');
+          secEn.classList.remove("hidden");
+          secDe.classList.add("hidden");
+          langBtnEn.classList.add("active");
+          langBtnDe.classList.remove("active");
         }
 
         setQueryParams(
           [
-            'nav-home',
-            'nav-privacy',
-            'nav-terms',
-            'nav-support',
-            'back-de',
-            'btn-privacy-de',
-            'btn-terms-de',
-            'back-en',
-            'btn-privacy-en',
-            'btn-terms-en',
-            'lnk-privacy-de',
-            'lnk-terms-de',
-            'lnk-privacy-en',
-            'lnk-terms-en'
+            "nav-home",
+            "nav-privacy",
+            "nav-terms",
+            "nav-support",
+            "back-de",
+            "btn-privacy-de",
+            "btn-terms-de",
+            "back-en",
+            "btn-privacy-en",
+            "btn-terms-en",
+            "lnk-privacy-de",
+            "lnk-terms-de",
+            "lnk-privacy-en",
+            "lnk-terms-en"
           ],
           currentLang,
           ver
         );
 
         const u = new URL(location.href);
-        u.searchParams.set('lang', currentLang);
-        if (ver) u.searchParams.set('v', ver);
-        history.replaceState({}, '', u.toString());
+        u.searchParams.set("lang", currentLang);
+        if (ver) u.searchParams.set("v", ver);
+        history.replaceState({}, "", u.toString());
       }
+
+      langBtnDe.addEventListener("click", () => setLang("de"));
+      langBtnEn.addEventListener("click", () => setLang("en"));
 
       setLang(lang);
     })();
