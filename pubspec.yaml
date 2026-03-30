@@ -1,0 +1,49 @@
+name: todo_app_buisness
+description: "A new Flutter project."
+publish_to: 'none' # This is a private project; not published on pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 📅 Kalender
+  table_calendar: ^3.0.9
+
+  # 🔥 Firebase
+  firebase_core: ^2.30.0
+  firebase_auth: ^4.17.4
+  firebase_storage: ^11.5.6
+  cloud_firestore: ^4.15.0
+
+  # 💡 State Management
+  provider: ^6.1.2
+
+  # 🌐 Internationalisierung
+  intl: ^0.18.1
+
+  # 🖼️ Bildauswahl
+  image_picker: ^1.0.4
+
+  # ⚙️ Lokale Speicherung (z. B. Onboarding)
+  shared_preferences: ^2.2.0
+
+  # 📧 E-Mail/URL starten
+  url_launcher: ^6.2.5
+
+  # 📱 iOS Icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/splash_icon.png
