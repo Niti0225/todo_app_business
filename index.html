@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Keystone • ToDo Business – Home</title>
   <meta
+    id="meta-description"
     name="description"
     content="Offizielle Info- und Rechteseite für die App ToDo Business – Privacy, Terms, Support und Abo-Modelle."
   />
@@ -47,8 +48,8 @@
       position:relative;
       isolation:isolate;
       background:
-        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--brand) 13%, transparent) 0%, transparent 60%),
-        radial-gradient(900px 500px at 10% -10%, color-mix(in oklab, var(--accent) 16%, transparent) 0%, transparent 60%),
+        radial-gradient(1200px 600px at 85% -10%, rgba(33,150,243,0.12) 0%, transparent 60%),
+        radial-gradient(900px 500px at 10% -10%, rgba(124,58,237,0.14) 0%, transparent 60%),
         linear-gradient(to bottom, var(--bg), var(--bg-soft));
       border-bottom:1px solid var(--border);
       overflow:hidden;
@@ -64,12 +65,14 @@
       content:"";
       position:absolute;
       width:55vmax; height:55vmax; border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 32%, transparent), transparent 60%);
     }
-    .glow::before{ top:-35vmax; left:-20vmax }
+    .glow::before{
+      top:-35vmax; left:-20vmax;
+      background:radial-gradient(circle at 30% 30%, rgba(33,150,243,0.25), transparent 60%);
+    }
     .glow::after{
       top:-30vmax; right:-25vmax;
-      background:radial-gradient(circle at 70% 40%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 60%);
+      background:radial-gradient(circle at 70% 40%, rgba(124,58,237,0.30), transparent 60%);
     }
 
     .emoji-cloud{
@@ -128,6 +131,7 @@
     .bar{
       display:flex;
       align-items:center;
+      justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
       margin:14px 0;
@@ -153,8 +157,30 @@
       height:10px;
       border-radius:50%;
       background:linear-gradient(90deg, var(--brand), var(--accent));
-      box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
+      box-shadow:0 0 12px rgba(33,150,243,0.35);
       flex:0 0 auto;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .lang-btn{
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 14px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-btn.active{
+      border-color:var(--brand);
+      color:#fff;
+      box-shadow:0 0 0 1px rgba(33,150,243,0.2) inset;
     }
 
     .tabs{
@@ -176,7 +202,7 @@
       letter-spacing:.2px;
     }
 
-    .tab:hover{border-color:color-mix(in oklab, var(--brand) 45%, var(--border))}
+    .tab:hover{border-color:rgba(33,150,243,0.45)}
     .tab small{opacity:.65; font-weight:700}
 
     .grid{display:grid; gap:18px}
@@ -192,6 +218,7 @@
     }
 
     h2{font-size:clamp(1.2rem,2.2vw,1.5rem); margin:.2rem 0 .65rem}
+    h3{margin:.2rem 0 .4rem}
     p{margin:.45rem 0}
 
     .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
@@ -202,13 +229,13 @@
       font-weight:800; letter-spacing:.2px;
       background:linear-gradient(90deg, var(--brand), var(--accent));
       color:#fff; border:1px solid transparent;
-      box-shadow:0 6px 20px color-mix(in oklab, var(--brand) 25%, transparent);
+      box-shadow:0 6px 20px rgba(33,150,243,0.18);
     }
 
     .btn.outline{
       background:transparent;
       color:var(--text);
-      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+      border-color:rgba(33,150,243,0.35);
     }
 
     .btn:hover{filter:brightness(1.05)}
@@ -287,10 +314,15 @@
           <span class="lang-dot" aria-hidden="true"></span>
           <span id="lang-indicator-text">Sprache: Deutsch</span>
         </div>
+
+        <div class="lang-switch" aria-label="Language switch">
+          <button class="lang-btn" id="lang-de" type="button">DE</button>
+          <button class="lang-btn" id="lang-en" type="button">EN</button>
+        </div>
       </div>
 
       <nav class="tabs" aria-label="Quick links">
-        <a class="tab" id="tab-home" href="index.html"><span data-i18n="tabHome">← Home</span></a>
+        <a class="tab" id="tab-home" href="index.html"><span data-i18n="tabHome">← Startseite</span></a>
         <a class="tab" id="tab-privacy" href="privacy.html"><span data-i18n="tabPrivacy">Privacy / Datenschutz</span></a>
         <a class="tab" id="tab-terms" href="terms.html"><span data-i18n="tabTerms">Terms / Nutzungsbedingungen</span></a>
         <a class="tab" id="tab-imprint" href="impressum.html"><span data-i18n="tabImprint">Imprint / Impressum</span></a>
@@ -306,8 +338,7 @@
       <section class="card">
         <h2 data-i18n="introTitle">Warum ToDo Business?</h2>
         <p data-i18n="introP1">
-          Behalte Termine, Aufgaben und Prioritäten im Blick – ohne Schnickschnack. Werbefinanziert im Free-Plan,
-          oder werbefrei mit Pro und cleveren Extras wie Fokus-Timer und Smart Scheduling.
+          Behalte Termine, Aufgaben und Prioritäten im Blick – ohne Schnickschnack. Werbefinanziert im Free-Plan oder werbefrei mit Pro und cleveren Extras wie Fokus-Timer und Smart Scheduling.
         </p>
         <div class="cta-row">
           <a class="btn" id="cta-get-started" href="support.html" data-i18n="ctaGetStarted">Loslegen</a>
@@ -346,7 +377,7 @@
           <a class="btn outline" href="premium.html" data-i18n="btnAlreadyActive">Bereits aktiv</a>
         </div>
 
-        <div class="plan" style="border-color: color-mix(in oklab, var(--brand) 45%, var(--border));">
+        <div class="plan" style="border-color: rgba(33,150,243,0.45);">
           <div class="label">PRO</div>
           <h3 data-i18n="planPro">Pro (Monatlich)</h3>
           <div class="price">1,99 € / <span data-i18n="perMonth">Monat</span></div>
@@ -374,10 +405,10 @@
   <footer>
     <div class="container">
       <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:8px">
-        <a class="tab" id="f-privacy" href="privacy.html">Privacy / Datenschutz</a>
-        <a class="tab" id="f-terms" href="terms.html">Terms / Nutzungsbedingungen</a>
-        <a class="tab" id="f-imprint" href="impressum.html">Imprint / Impressum</a>
-        <a class="tab" id="f-support" href="support.html">Support</a>
+        <a class="tab" id="f-privacy" href="privacy.html" data-i18n="footerPrivacy">Privacy / Datenschutz</a>
+        <a class="tab" id="f-terms" href="terms.html" data-i18n="footerTerms">Terms / Nutzungsbedingungen</a>
+        <a class="tab" id="f-imprint" href="impressum.html" data-i18n="footerImprint">Imprint / Impressum</a>
+        <a class="tab" id="f-support" href="support.html" data-i18n="footerSupport">Support</a>
       </div>
       <div class="muted">
         © <span id="y"></span> Keystone · <span data-i18n="allRights">Alle Rechte vorbehalten.</span>
@@ -386,152 +417,181 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById("y").textContent = new Date().getFullYear();
 
+    const STORAGE_KEY = "keystone_lang";
     const qp = new URLSearchParams(location.search);
-    const version = qp.get('v') || '1.0.0';
-    document.getElementById('ver').textContent = version;
+    const version = qp.get("v") || "1.0.0";
+    document.getElementById("ver").textContent = version;
 
     function applyParams(href, lang, v){
-      const parts = href.split('?');
+      const parts = href.split("?");
       const path = parts[0];
-      const sp = new URLSearchParams(parts[1] || '');
-      sp.set('lang', lang);
-      if (v) sp.set('v', v);
-      else sp.delete('v');
+      const sp = new URLSearchParams(parts[1] || "");
+      sp.set("lang", lang);
+      if (v) sp.set("v", v);
+      else sp.delete("v");
       const qs = sp.toString();
       return qs ? `${path}?${qs}` : path;
     }
 
     function setQueryParams(idList, lang){
-      const v = new URLSearchParams(location.search).get('v');
+      const v = new URLSearchParams(location.search).get("v");
       idList.forEach(id => {
         const a = document.getElementById(id);
         if (!a) return;
-        const base = a.getAttribute('href');
-        a.setAttribute('href', applyParams(base, lang, v));
+        const base = a.getAttribute("href");
+        if (!base) return;
+        a.setAttribute("href", applyParams(base, lang, v));
       });
     }
 
     const dict = {
       de: {
-        heroTitle:"ToDo Business • Produktivität, die mitwächst.",
-        heroSub:"Aufgaben. Kalender. Fokus – und ein faires Pro-Upgrade.",
-        version:"Version",
-        tabHome:"← Home",
-        tabPrivacy:"Privacy / Datenschutz",
-        tabTerms:"Terms / Nutzungsbedingungen",
-        tabImprint:"Imprint / Impressum",
-        tabSupport:"Support / Kontakt",
-        tabFeedback:"Feedback",
-        tabPremium:"Premium",
-        introTitle:"Warum ToDo Business?",
-        introP1:"Behalte Termine, Aufgaben und Prioritäten im Blick – ohne Schnickschnack. Werbefinanziert im Free-Plan oder werbefrei mit Pro und cleveren Extras wie Fokus-Timer und Smart Scheduling.",
-        ctaGetStarted:"Loslegen",
-        ctaPrivacy:"Privacy / Datenschutz",
-        factsTitle:"Kurz & knapp",
-        facts1:"Free: Werbung, Aufgaben und Kalender-Basics",
-        facts2:"Pro: Keine Werbung, Fokus-Timer und Smart Scheduling",
-        facts3:"Pro: Erweiterte Statistiken und Premium-Support",
-        facts4:"Abwicklung über App-Store (Apple / Google)",
-        factsNote:"Preise inkl. MwSt. · Abo jederzeit im Store kündbar.",
-        plansTitle:"Abo-Modelle",
-        planBadgeFree:"FREE",
-        planFree:"Kostenlos",
-        priceFree:"0 €",
-        priceFreeNote:"mit Werbung",
-        free1:"Aufgaben und Notizen",
-        free2:"Kalender-Grundfunktionen",
-        free3:"Basis-Sync (optional)",
-        btnAlreadyActive:"Bereits aktiv",
-        planPro:"Pro (Monatlich)",
-        perMonth:"Monat",
-        proNote:"monatlich kündbar",
-        pro1:"Keine Werbung",
-        pro2:"Fokus-Timer und Smart Scheduling",
-        pro3:"Erweiterte Statistiken",
-        pro4:"Premium-Support",
-        pro5:"Aufgaben erstellen und verwalten",
-        pro6:"Kalender nutzen",
-        btnUnlockNow:"Jetzt freischalten",
-        legalNote:"Käufe werden über den jeweiligen App-Store abgerechnet. Es gelten die Bedingungen des jeweiligen Stores.",
-        allRights:"Alle Rechte vorbehalten.",
-        langIndicator:"Sprache: Deutsch"
+        pageTitle: "Keystone • ToDo Business – Home",
+        metaDescription: "Offizielle Info- und Rechteseite für die App ToDo Business – Privacy, Terms, Support und Abo-Modelle.",
+        heroTitle: "ToDo Business • Produktivität, die mitwächst.",
+        heroSub: "Aufgaben. Kalender. Fokus – und ein faires Pro-Upgrade.",
+        version: "Version",
+        tabHome: "← Startseite",
+        tabPrivacy: "Privacy / Datenschutz",
+        tabTerms: "Terms / Nutzungsbedingungen",
+        tabImprint: "Imprint / Impressum",
+        tabSupport: "Support / Kontakt",
+        tabFeedback: "Feedback",
+        tabPremium: "Premium",
+        introTitle: "Warum ToDo Business?",
+        introP1: "Behalte Termine, Aufgaben und Prioritäten im Blick – ohne Schnickschnack. Werbefinanziert im Free-Plan oder werbefrei mit Pro und cleveren Extras wie Fokus-Timer und Smart Scheduling.",
+        ctaGetStarted: "Loslegen",
+        ctaPrivacy: "Privacy / Datenschutz",
+        factsTitle: "Kurz & knapp",
+        facts1: "Free: Werbung, Aufgaben und Kalender-Basics",
+        facts2: "Pro: Keine Werbung, Fokus-Timer und Smart Scheduling",
+        facts3: "Pro: Erweiterte Statistiken und Premium-Support",
+        facts4: "Abwicklung über App-Store (Apple / Google)",
+        factsNote: "Preise inkl. MwSt. · Abo jederzeit im Store kündbar.",
+        plansTitle: "Abo-Modelle",
+        planBadgeFree: "FREE",
+        planFree: "Kostenlos",
+        priceFree: "0 €",
+        priceFreeNote: "mit Werbung",
+        free1: "Aufgaben und Notizen",
+        free2: "Kalender-Grundfunktionen",
+        free3: "Basis-Sync (optional)",
+        btnAlreadyActive: "Bereits aktiv",
+        planPro: "Pro (Monatlich)",
+        perMonth: "Monat",
+        proNote: "monatlich kündbar",
+        pro1: "Keine Werbung",
+        pro2: "Fokus-Timer und Smart Scheduling",
+        pro3: "Erweiterte Statistiken",
+        pro4: "Premium-Support",
+        pro5: "Aufgaben erstellen und verwalten",
+        pro6: "Kalender nutzen",
+        btnUnlockNow: "Jetzt freischalten",
+        legalNote: "Käufe werden über den jeweiligen App-Store abgerechnet. Es gelten die Bedingungen des jeweiligen Stores.",
+        footerPrivacy: "Privacy / Datenschutz",
+        footerTerms: "Terms / Nutzungsbedingungen",
+        footerImprint: "Imprint / Impressum",
+        footerSupport: "Support",
+        allRights: "Alle Rechte vorbehalten.",
+        langIndicator: "Sprache: Deutsch"
       },
       en: {
-        heroTitle:"ToDo Business • Productivity that grows with you.",
-        heroSub:"Tasks. Calendar. Focus – plus a fair Pro upgrade.",
-        version:"Version",
-        tabHome:"← Home",
-        tabPrivacy:"Privacy",
-        tabTerms:"Terms of Use",
-        tabImprint:"Imprint",
-        tabSupport:"Support / Contact",
-        tabFeedback:"Feedback",
-        tabPremium:"Premium",
-        introTitle:"Why ToDo Business?",
-        introP1:"Keep track of tasks, dates and priorities without noise. Ad-supported in Free or ad-free with Pro and smart extras like Focus Timer and Smart Scheduling.",
-        ctaGetStarted:"Get started",
-        ctaPrivacy:"Privacy",
-        factsTitle:"At a glance",
-        facts1:"Free: Ads, tasks and calendar basics",
-        facts2:"Pro: No ads, Focus Timer and Smart Scheduling",
-        facts3:"Pro: Advanced stats and premium support",
-        facts4:"Billing via app stores (Apple / Google)",
-        factsNote:"VAT included · Cancel anytime in the store.",
-        plansTitle:"Plans",
-        planBadgeFree:"FREE",
-        planFree:"Free",
-        priceFree:"€0",
-        priceFreeNote:"with ads",
-        free1:"Tasks and notes",
-        free2:"Calendar essentials",
-        free3:"Basic sync (optional)",
-        btnAlreadyActive:"Already active",
-        planPro:"Pro (Monthly)",
-        perMonth:"month",
-        proNote:"cancel monthly",
-        pro1:"No ads",
-        pro2:"Focus Timer and Smart Scheduling",
-        pro3:"Advanced statistics",
-        pro4:"Premium support",
-        pro5:"Create and manage tasks",
-        pro6:"Use calendar",
-        btnUnlockNow:"Unlock now",
-        legalNote:"Purchases are processed by the respective app store. The respective store terms apply.",
-        allRights:"All rights reserved.",
-        langIndicator:"Language: English"
+        pageTitle: "Keystone • ToDo Business – Home",
+        metaDescription: "Official info and legal page for the ToDo Business app – privacy, terms, support and subscription plans.",
+        heroTitle: "ToDo Business • Productivity that grows with you.",
+        heroSub: "Tasks. Calendar. Focus – plus a fair Pro upgrade.",
+        version: "Version",
+        tabHome: "← Home",
+        tabPrivacy: "Privacy",
+        tabTerms: "Terms of Use",
+        tabImprint: "Imprint",
+        tabSupport: "Support / Contact",
+        tabFeedback: "Feedback",
+        tabPremium: "Premium",
+        introTitle: "Why ToDo Business?",
+        introP1: "Keep track of tasks, dates and priorities without noise. Ad-supported in Free or ad-free with Pro and smart extras like Focus Timer and Smart Scheduling.",
+        ctaGetStarted: "Get started",
+        ctaPrivacy: "Privacy",
+        factsTitle: "At a glance",
+        facts1: "Free: Ads, tasks and calendar basics",
+        facts2: "Pro: No ads, Focus Timer and Smart Scheduling",
+        facts3: "Pro: Advanced stats and premium support",
+        facts4: "Billing via app stores (Apple / Google)",
+        factsNote: "VAT included · Cancel anytime in the store.",
+        plansTitle: "Plans",
+        planBadgeFree: "FREE",
+        planFree: "Free",
+        priceFree: "€0",
+        priceFreeNote: "with ads",
+        free1: "Tasks and notes",
+        free2: "Calendar essentials",
+        free3: "Basic sync (optional)",
+        btnAlreadyActive: "Already active",
+        planPro: "Pro (Monthly)",
+        perMonth: "month",
+        proNote: "cancel monthly",
+        pro1: "No ads",
+        pro2: "Focus Timer and Smart Scheduling",
+        pro3: "Advanced statistics",
+        pro4: "Premium support",
+        pro5: "Create and manage tasks",
+        pro6: "Use calendar",
+        btnUnlockNow: "Unlock now",
+        legalNote: "Purchases are processed by the respective app store. The respective store terms apply.",
+        footerPrivacy: "Privacy",
+        footerTerms: "Terms of Use",
+        footerImprint: "Imprint",
+        footerSupport: "Support",
+        allRights: "All rights reserved.",
+        langIndicator: "Language: English"
       }
     };
+
+    function updateLangButtons(lang){
+      document.getElementById("lang-de")?.classList.toggle("active", lang === "de");
+      document.getElementById("lang-en")?.classList.toggle("active", lang === "en");
+    }
 
     function setLang(lang){
       const d = dict[lang] || dict.de;
       document.documentElement.lang = lang;
 
+      document.title = d.pageTitle;
+
+      const metaDesc = document.getElementById("meta-description");
+      if (metaDesc) {
+        metaDesc.setAttribute("content", d.metaDescription);
+      }
+
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        if (d[key]) el.textContent = d[key];
+        if (key && d[key]) el.textContent = d[key];
       });
 
-      const langIndicator = document.getElementById('lang-indicator-text');
+      const langIndicator = document.getElementById("lang-indicator-text");
       if (langIndicator) {
         langIndicator.textContent = d.langIndicator;
       }
 
       const linkIds = [
-        'tab-home','tab-privacy','tab-terms','tab-imprint',
-        'tab-support','tab-feedback','tab-premium',
-        'f-privacy','f-terms','f-imprint','f-support',
-        'cta-get-started','cta-read-privacy'
+        "tab-home","tab-privacy","tab-terms","tab-imprint",
+        "tab-support","tab-feedback","tab-premium",
+        "f-privacy","f-terms","f-imprint","f-support",
+        "cta-get-started","cta-read-privacy"
       ];
       setQueryParams(linkIds, lang);
-
-      localStorage.setItem('aurevoir_lang', lang);
+      updateLangButtons(lang);
+      localStorage.setItem(STORAGE_KEY, lang);
     }
 
-    const urlLang = new URLSearchParams(location.search).get('lang');
-    const stored = localStorage.getItem('aurevoir_lang');
-    const browser = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+    document.getElementById("lang-de")?.addEventListener("click", () => setLang("de"));
+    document.getElementById("lang-en")?.addEventListener("click", () => setLang("en"));
+
+    const urlLang = new URLSearchParams(location.search).get("lang");
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const browser = (navigator.language || "de").toLowerCase().startsWith("de") ? "de" : "en";
     setLang(urlLang || stored || browser);
   </script>
 </body>
