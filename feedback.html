@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <meta
+    id="meta-description"
     name="description"
     content="Sende Feedback zur App ToDo Business. Schneller Kontakt mit Vorlage und Geräteinfos."
   />
@@ -19,17 +20,14 @@
       --brand:#2196F3;
       --accent:#7c3aed;
       --ok:#22c55e;
-
       --bg:#000000;
       --bg-soft:#07090d;
       --card:#0e1218;
       --text:#e5e7eb;
       --muted:#9aa3af;
       --border:#141a22;
-
       --chip:#0b1320;
       --chip-border:#1e293b;
-
       --radius:18px;
       --blur:44px;
       --emoji-alpha:.12;
@@ -152,6 +150,13 @@
       z-index:2;
     }
 
+    .lang-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .lang-indicator{
       display:inline-flex;
       align-items:center;
@@ -172,6 +177,35 @@
       background:linear-gradient(90deg,var(--brand),var(--accent));
       box-shadow:0 0 12px rgba(33,150,243,.28);
       flex:0 0 auto;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .lang-btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 12px;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .lang-btn:hover{
+      transform:translateY(-1px);
+      border-color:color-mix(in oklab, var(--brand) 45%, var(--border));
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(90deg, color-mix(in oklab, var(--brand) 20%, var(--card)), color-mix(in oklab, var(--accent) 20%, var(--card)));
+      border-color:color-mix(in oklab, var(--brand) 55%, var(--border));
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
     }
 
     .tabs{
@@ -230,14 +264,8 @@
     }
 
     p{margin:.5em 0}
-
-    ul{
-      margin:.4em 0 .2em 1.2em;
-    }
-
-    li{
-      margin:.28em 0;
-    }
+    ul{margin:.4em 0 .2em 1.2em}
+    li{margin:.28em 0}
 
     .muted{
       color:var(--muted);
@@ -308,10 +336,7 @@
     }
 
     .hidden{display:none}
-
-    .emoji{
-      filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));
-    }
+    .emoji{filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
   </style>
 </head>
 <body>
@@ -334,13 +359,20 @@
       <div class="subtitle" id="page-subtitle">ToDo Business · Keystone</div>
 
       <div class="topline">
-        <div class="lang-indicator">
-          <span class="lang-dot" aria-hidden="true"></span>
-          <span id="lang-indicator-text">Sprache: Deutsch</span>
+        <div class="lang-row">
+          <div class="lang-indicator">
+            <span class="lang-dot" aria-hidden="true"></span>
+            <span id="lang-indicator-text">Sprache: Deutsch</span>
+          </div>
+
+          <div class="lang-switch" aria-label="Language switcher">
+            <button class="lang-btn" id="lang-de" type="button">DE</button>
+            <button class="lang-btn" id="lang-en" type="button">EN</button>
+          </div>
         </div>
 
         <nav class="tabs" aria-label="Quick links">
-          <a class="tab" id="tab-home" href="index.html">← Home</a>
+          <a class="tab" id="tab-home" href="index.html">← Startseite</a>
           <a class="tab" id="tab-privacy" href="privacy.html">Datenschutz</a>
           <a class="tab" id="tab-terms" href="terms.html">Nutzungsbedingungen</a>
           <a class="tab" id="tab-support" href="support.html">Support</a>
@@ -388,7 +420,7 @@
         <p class="muted">
           Deine E-Mail wird nur zur Bearbeitung deiner Anfrage verwendet.
           Mehr dazu in unserer
-          <a href="privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+          <a id="de-privacy-link" href="privacy.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
         </p>
       </div>
     </section>
@@ -430,7 +462,7 @@
         <p class="muted">
           Your email will only be used to process your request.
           See our
-          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+          <a id="en-privacy-link" href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
         </p>
       </div>
     </section>
@@ -439,15 +471,15 @@
   <footer>
     <div class="links">
       <a id="f-privacy" href="privacy.html">Datenschutz</a>
-      <a id="f-terms" href="terms.html">Terms</a>
+      <a id="f-terms" href="terms.html">Nutzungsbedingungen</a>
       <a id="f-support" href="support.html">Support</a>
       <a id="f-imprint" href="impressum.html">Impressum</a>
     </div>
     <div class="muted">
-      © <span id="year"></span> Keystone · Version <code class="kbd" id="ver">1.0.0</code>
+      © <span id="year"></span> Keystone · <span id="footer-version-label">Version</span> <code class="kbd" id="ver">1.0.0</code>
     </div>
     <div class="brandline" aria-hidden="true" style="margin-top:8px">
-      <span>Powered by</span>
+      <span id="powered-by-label">Powered by</span>
       <span style="font-weight:900; background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">
         Keystone
       </span>
@@ -456,11 +488,12 @@
 
   <script>
     (function () {
-      document.getElementById('year').textContent = new Date().getFullYear();
-
+      const STORAGE_KEY = 'keystone_lang';
       const qp = new URLSearchParams(location.search);
       const version = qp.get('v') || '1.0.0';
+      const validLangs = new Set(['de', 'en']);
 
+      document.getElementById('year').textContent = new Date().getFullYear();
       document.getElementById('ver').textContent = version;
       document.getElementById('v-de').textContent = version;
       document.getElementById('v-en').textContent = version;
@@ -469,22 +502,19 @@
         const parts = href.split('?');
         const path = parts[0];
         const sp = new URLSearchParams(parts[1] || '');
-
         sp.set('lang', lang);
-
         if (v) sp.set('v', v);
         else sp.delete('v');
-
         const qs = sp.toString();
         return qs ? `${path}?${qs}` : path;
       }
 
       function setQueryParams(ids, lang, v) {
-        ids.forEach(id => {
+        ids.forEach((id) => {
           const el = document.getElementById(id);
           if (!el) return;
-
           const base = el.getAttribute('href');
+          if (!base) return;
           el.setAttribute('href', applyParams(base, lang, v));
         });
       }
@@ -495,60 +525,63 @@
         return `${platform} | ${ua}`.slice(0, 400);
       }
 
-      function buildMailtoDE() {
+      function buildMailto(lang) {
         const to = 'keystone@aurevoir.de';
-        const subject = `App-Feedback – ToDo Business v${version}`;
-        const body = [
-          'Hallo,',
-          '',
-          'mein Feedback zur App:',
-          '• Das gefällt mir:',
-          '• Das könnte besser sein:',
-          '• Bug/Problem (inkl. Schritte):',
-          '',
-          '---',
-          `Gerät/OS: ${getUAInfo()}`,
-          `App-Version: ${version}`
-        ].join('\n');
+        const subject = lang === 'de'
+          ? `App-Feedback – ToDo Business v${version}`
+          : `App Feedback – ToDo Business v${version}`;
 
-        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      }
-
-      function buildMailtoEN() {
-        const to = 'keystone@aurevoir.de';
-        const subject = `App Feedback – ToDo Business v${version}`;
-        const body = [
-          'Hello,',
-          '',
-          'here is my feedback about the app:',
-          '• What I like:',
-          '• What could be improved:',
-          '• Bug/issue (including steps):',
-          '',
-          '---',
-          `Device/OS: ${getUAInfo()}`,
-          `App version: ${version}`
-        ].join('\n');
+        const body = lang === 'de'
+          ? [
+              'Hallo,',
+              '',
+              'mein Feedback zur App:',
+              '• Das gefällt mir:',
+              '• Das könnte besser sein:',
+              '• Bug/Problem (inkl. Schritte):',
+              '',
+              '---',
+              `Gerät/OS: ${getUAInfo()}`,
+              `App-Version: ${version}`
+            ].join('\n')
+          : [
+              'Hello,',
+              '',
+              'here is my feedback about the app:',
+              '• What I like:',
+              '• What could be improved:',
+              '• Bug/issue (including steps):',
+              '',
+              '---',
+              `Device/OS: ${getUAInfo()}`,
+              `App version: ${version}`
+            ].join('\n');
 
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
 
       const dict = {
         de: {
+          docTitle: 'App-Feedback · Keystone',
+          metaDescription: 'Sende Feedback zur App ToDo Business. Schneller Kontakt mit Vorlage und Geräteinfos.',
           title: '✉️ App-Feedback',
           subtitle: 'ToDo Business · Keystone',
           langIndicator: 'Sprache: Deutsch',
-          navHome: '← Home',
+          navHome: '← Startseite',
           navPrivacy: 'Datenschutz',
           navTerms: 'Nutzungsbedingungen',
           navSupport: 'Support',
           navImprint: 'Impressum',
           footerPrivacy: 'Datenschutz',
-          footerTerms: 'Terms',
+          footerTerms: 'Nutzungsbedingungen',
           footerSupport: 'Support',
-          footerImprint: 'Impressum'
+          footerImprint: 'Impressum',
+          footerVersion: 'Version',
+          poweredBy: 'Powered by'
         },
         en: {
+          docTitle: 'App Feedback · Keystone',
+          metaDescription: 'Send feedback about the ToDo Business app. Quick contact with template and device info.',
           title: '✉️ App Feedback',
           subtitle: 'ToDo Business · Keystone',
           langIndicator: 'Language: English',
@@ -558,29 +591,33 @@
           navSupport: 'Support',
           navImprint: 'Imprint',
           footerPrivacy: 'Privacy',
-          footerTerms: 'Terms',
+          footerTerms: 'Terms of Use',
           footerSupport: 'Support',
-          footerImprint: 'Imprint'
+          footerImprint: 'Imprint',
+          footerVersion: 'Version',
+          poweredBy: 'Powered by'
         }
       };
 
-      const saved = localStorage.getItem('aurevoir_lang');
+      const saved = localStorage.getItem(STORAGE_KEY);
       const fromQS = (qp.get('lang') || '').toLowerCase();
       const browserIsDe = (navigator.language || 'en').toLowerCase().startsWith('de');
-
-      const lang =
-        (fromQS === 'de' || fromQS === 'en')
-          ? fromQS
-          : ((saved === 'de' || saved === 'en') ? saved : (browserIsDe ? 'de' : 'en'));
+      const initialLang = validLangs.has(fromQS)
+        ? fromQS
+        : (validLangs.has(saved) ? saved : (browserIsDe ? 'de' : 'en'));
 
       const secDe = document.getElementById('sec-de');
       const secEn = document.getElementById('sec-en');
+      const langBtnDe = document.getElementById('lang-de');
+      const langBtnEn = document.getElementById('lang-en');
+      const metaDescription = document.getElementById('meta-description');
 
       function applyLang(currentLang) {
         const d = dict[currentLang] || dict.de;
-
-        localStorage.setItem('aurevoir_lang', currentLang);
+        localStorage.setItem(STORAGE_KEY, currentLang);
         document.documentElement.lang = currentLang;
+        document.title = d.docTitle;
+        if (metaDescription) metaDescription.setAttribute('content', d.metaDescription);
 
         document.getElementById('page-title').textContent = d.title;
         document.getElementById('page-subtitle').textContent = d.subtitle;
@@ -596,13 +633,19 @@
         document.getElementById('f-terms').textContent = d.footerTerms;
         document.getElementById('f-support').textContent = d.footerSupport;
         document.getElementById('f-imprint').textContent = d.footerImprint;
+        document.getElementById('footer-version-label').textContent = d.footerVersion;
+        document.getElementById('powered-by-label').textContent = d.poweredBy;
 
         if (currentLang === 'de') {
           secDe.classList.remove('hidden');
           secEn.classList.add('hidden');
+          langBtnDe.classList.add('active');
+          langBtnEn.classList.remove('active');
         } else {
           secEn.classList.remove('hidden');
           secDe.classList.add('hidden');
+          langBtnEn.classList.add('active');
+          langBtnDe.classList.remove('active');
         }
 
         setQueryParams(
@@ -615,11 +658,16 @@
             'f-privacy',
             'f-terms',
             'f-support',
-            'f-imprint'
+            'f-imprint',
+            'de-privacy-link',
+            'en-privacy-link'
           ],
           currentLang,
           version
         );
+
+        document.getElementById('btn-mail-de').setAttribute('href', buildMailto('de'));
+        document.getElementById('btn-mail-en').setAttribute('href', buildMailto('en'));
 
         const url = new URL(location.href);
         url.searchParams.set('lang', currentLang);
@@ -627,10 +675,10 @@
         history.replaceState({}, '', url.toString());
       }
 
-      document.getElementById('btn-mail-de').setAttribute('href', buildMailtoDE());
-      document.getElementById('btn-mail-en').setAttribute('href', buildMailtoEN());
+      langBtnDe.addEventListener('click', () => applyLang('de'));
+      langBtnEn.addEventListener('click', () => applyLang('en'));
 
-      applyLang(lang);
+      applyLang(initialLang);
     })();
   </script>
 </body>
