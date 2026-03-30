@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Premium Upgrade – Keystone</title>
   <meta
+    id="meta-description"
     name="description"
     content="ToDo Business Premium – Preise, Vorteile sowie rechtliche und datenschutzbezogene Hinweise."
   />
@@ -149,6 +150,13 @@
       z-index:2;
     }
 
+    .lang-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .lang-indicator{
       display:inline-flex;
       align-items:center;
@@ -169,6 +177,26 @@
       background:linear-gradient(90deg,var(--brand),var(--accent));
       box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
       flex:0 0 auto;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+    }
+
+    .lang-btn{
+      border:1px solid var(--line);
+      background:var(--card);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(90deg, rgba(33,150,243,.18), rgba(124,58,237,.18));
+      border-color:rgba(255,255,255,.12);
     }
 
     .nav{
@@ -234,13 +262,6 @@
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
-    }
-
-    h3{
-      margin:.6em 0 .35em;
-      font-size:16px;
-      font-weight:900;
-      color:var(--text);
     }
 
     .price{
@@ -330,7 +351,6 @@
       padding:20px;
       text-align:center;
       font-weight:600;
-      letter-spacing:.2px;
     }
 
     .hidden{
@@ -358,9 +378,16 @@
       <p class="subtitle" id="page-subtitle">ToDo Business · Keystone</p>
 
       <div class="topline">
-        <div class="lang-indicator">
-          <span class="lang-dot" aria-hidden="true"></span>
-          <span id="lang-indicator-text">Sprache: Deutsch</span>
+        <div class="lang-row">
+          <div class="lang-indicator">
+            <span class="lang-dot" aria-hidden="true"></span>
+            <span id="lang-indicator-text">Sprache: Deutsch</span>
+          </div>
+
+          <div class="lang-switch" aria-label="Language switcher">
+            <button class="lang-btn" id="lang-de" type="button">DE</button>
+            <button class="lang-btn" id="lang-en" type="button">EN</button>
+          </div>
         </div>
 
         <nav class="nav" aria-label="Quick links">
@@ -376,7 +403,7 @@
 
   <main class="wrap">
     <section id="sec-de">
-      <p class="notice">✨ Alle Pläne können sich weiterentwickeln. Preise inkl. MwSt.</p>
+      <p class="notice">✨ Alle Pläne können sich weiterentwickeln. Preise inkl. MwSt., soweit anwendbar.</p>
 
       <div class="plans">
         <article class="card plan-card">
@@ -410,7 +437,7 @@
             </ul>
           </div>
           <div>
-            <a id="buy-pro-de" class="btn" href="#">Jetzt freischalten</a>
+            <a id="buy-pro-de" class="btn" href="#" aria-disabled="true">Derzeit noch nicht live</a>
           </div>
         </article>
       </div>
@@ -423,13 +450,13 @@
             <li>Abos verlängern sich automatisch, sofern sie nicht rechtzeitig im Store gekündigt werden.</li>
             <li>Die Verwaltung und Kündigung erfolgt direkt in deinen Store-Einstellungen.</li>
             <li>Alle Preise verstehen sich inklusive gesetzlicher MwSt., soweit anwendbar.</li>
-            <li>Support: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
+            <li>Support: <a id="mail-de" href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
           </ul>
           <p class="muted">
             Mehr Informationen findest du in der
-            <a href="privacy.html">Datenschutzerklärung</a>
+            <a id="legal-privacy-de" href="privacy.html">Datenschutzerklärung</a>
             und in den
-            <a href="terms.html">Nutzungsbedingungen</a>.
+            <a id="legal-terms-de" href="terms.html">Nutzungsbedingungen</a>.
           </p>
           <p class="muted">Version: <code class="kbd" id="ver-de">1.0.0</code></p>
         </div>
@@ -471,7 +498,7 @@
             </ul>
           </div>
           <div>
-            <a id="buy-pro-en" class="btn" href="#">Unlock now</a>
+            <a id="buy-pro-en" class="btn" href="#" aria-disabled="true">Not live yet</a>
           </div>
         </article>
       </div>
@@ -484,13 +511,13 @@
             <li>Subscriptions renew automatically unless cancelled in time through your store settings.</li>
             <li>You can manage or cancel subscriptions directly in your store account.</li>
             <li>Prices include VAT where applicable.</li>
-            <li>Support: <a href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
+            <li>Support: <a id="mail-en" href="mailto:keystone@aurevoir.de">keystone@aurevoir.de</a></li>
           </ul>
           <p class="muted">
             See the
-            <a href="privacy.html">Privacy Policy</a>
+            <a id="legal-privacy-en" href="privacy.html">Privacy Policy</a>
             and the
-            <a href="terms.html">Terms of Use</a>
+            <a id="legal-terms-en" href="terms.html">Terms of Use</a>
             for more information.
           </p>
           <p class="muted">Version: <code class="kbd" id="ver-en">1.0.0</code></p>
@@ -503,151 +530,175 @@
     <div class="links">
       <a id="footer-home" href="index.html">Home</a> ·
       <a id="footer-privacy" href="privacy.html">Datenschutz</a> ·
-      <a id="footer-terms" href="terms.html">Terms</a> ·
+      <a id="footer-terms" href="terms.html">Nutzungsbedingungen</a> ·
       <a id="footer-support" href="support.html">Support</a> ·
       <a id="footer-imprint" href="impressum.html">Impressum</a>
     </div>
     <p class="muted">
-      © <span id="year"></span> Keystone · Version <code class="kbd" id="ver">1.0.0</code>
+      © <span id="year"></span> Keystone · <span id="footer-version-label">Version</span> <code class="kbd" id="ver">1.0.0</code>
     </p>
   </footer>
 
   <script>
     (function () {
-      document.getElementById('year').textContent = new Date().getFullYear();
-
+      const STORAGE_KEY = "keystone_lang";
       const qp = new URLSearchParams(location.search);
-      const version = qp.get('v') || '1.0.0';
+      const version = qp.get("v") || "1.0.0";
+      const validLangs = new Set(["de", "en"]);
 
-      document.getElementById('ver').textContent = version;
-      document.getElementById('ver-de').textContent = version;
-      document.getElementById('ver-en').textContent = version;
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("ver").textContent = version;
+      document.getElementById("ver-de").textContent = version;
+      document.getElementById("ver-en").textContent = version;
 
       function applyParams(href, lang, v) {
-        const parts = href.split('?');
+        const parts = href.split("?");
         const path = parts[0];
-        const sp = new URLSearchParams(parts[1] || '');
-        sp.set('lang', lang);
+        const sp = new URLSearchParams(parts[1] || "");
+        sp.set("lang", lang);
 
-        if (v) sp.set('v', v);
-        else sp.delete('v');
+        if (v) sp.set("v", v);
+        else sp.delete("v");
 
         const qs = sp.toString();
         return qs ? `${path}?${qs}` : path;
       }
 
       function setQueryParams(ids, lang, v) {
-        ids.forEach(id => {
+        ids.forEach((id) => {
           const el = document.getElementById(id);
           if (!el) return;
-          const base = el.getAttribute('href');
-          el.setAttribute('href', applyParams(base, lang, v));
+          const base = el.getAttribute("href");
+          if (!base) return;
+          el.setAttribute("href", applyParams(base, lang, v));
         });
       }
 
       const dict = {
         de: {
-          pageTitle: 'Premium Upgrade',
-          pageSubtitle: 'ToDo Business · Keystone',
-          langIndicator: 'Sprache: Deutsch',
-          navHome: '← Home',
-          navPrivacy: 'Datenschutz',
-          navTerms: 'Nutzungsbedingungen',
-          navSupport: 'Support',
-          navImprint: 'Impressum',
-          footerHome: 'Home',
-          footerPrivacy: 'Datenschutz',
-          footerTerms: 'Terms',
-          footerSupport: 'Support',
-          footerImprint: 'Impressum'
+          docTitle: "Premium Upgrade – Keystone",
+          metaDescription: "ToDo Business Premium – Preise, Vorteile sowie rechtliche und datenschutzbezogene Hinweise.",
+          pageTitle: "Premium Upgrade",
+          pageSubtitle: "ToDo Business · Keystone",
+          langIndicator: "Sprache: Deutsch",
+          navHome: "← Home",
+          navPrivacy: "Datenschutz",
+          navTerms: "Nutzungsbedingungen",
+          navSupport: "Support",
+          navImprint: "Impressum",
+          footerHome: "Home",
+          footerPrivacy: "Datenschutz",
+          footerTerms: "Nutzungsbedingungen",
+          footerSupport: "Support",
+          footerImprint: "Impressum",
+          footerVersionLabel: "Version"
         },
         en: {
-          pageTitle: 'Premium Upgrade',
-          pageSubtitle: 'ToDo Business · Keystone',
-          langIndicator: 'Language: English',
-          navHome: '← Home',
-          navPrivacy: 'Privacy',
-          navTerms: 'Terms of Use',
-          navSupport: 'Support',
-          navImprint: 'Imprint',
-          footerHome: 'Home',
-          footerPrivacy: 'Privacy',
-          footerTerms: 'Terms',
-          footerSupport: 'Support',
-          footerImprint: 'Imprint'
+          docTitle: "Premium Upgrade – Keystone",
+          metaDescription: "ToDo Business Premium – pricing, benefits and legal/privacy information.",
+          pageTitle: "Premium Upgrade",
+          pageSubtitle: "ToDo Business · Keystone",
+          langIndicator: "Language: English",
+          navHome: "← Home",
+          navPrivacy: "Privacy",
+          navTerms: "Terms of Use",
+          navSupport: "Support",
+          navImprint: "Imprint",
+          footerHome: "Home",
+          footerPrivacy: "Privacy",
+          footerTerms: "Terms of Use",
+          footerSupport: "Support",
+          footerImprint: "Imprint",
+          footerVersionLabel: "Version"
         }
       };
 
-      const urlLang = qp.get('lang');
-      const storedLang = localStorage.getItem('aurevoir_lang');
-      const browserLang =
-        (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+      const urlLang = (qp.get("lang") || "").toLowerCase();
+      const storedLang = localStorage.getItem(STORAGE_KEY);
+      const browserLang = (navigator.language || "de").toLowerCase().startsWith("de") ? "de" : "en";
 
-      const lang =
-        (urlLang === 'de' || urlLang === 'en')
-          ? urlLang
-          : ((storedLang === 'de' || storedLang === 'en') ? storedLang : browserLang);
+      const lang = validLangs.has(urlLang)
+        ? urlLang
+        : (validLangs.has(storedLang) ? storedLang : browserLang);
+
+      const secDe = document.getElementById("sec-de");
+      const secEn = document.getElementById("sec-en");
+      const metaDescription = document.getElementById("meta-description");
+      const langBtnDe = document.getElementById("lang-de");
+      const langBtnEn = document.getElementById("lang-en");
 
       function setLang(currentLang) {
         const d = dict[currentLang] || dict.de;
 
         document.documentElement.lang = currentLang;
-        localStorage.setItem('aurevoir_lang', currentLang);
+        document.title = d.docTitle;
+        localStorage.setItem(STORAGE_KEY, currentLang);
 
-        document.getElementById('page-title').textContent = d.pageTitle;
-        document.getElementById('page-subtitle').textContent = d.pageSubtitle;
-        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
+        if (metaDescription) metaDescription.setAttribute("content", d.metaDescription);
 
-        document.getElementById('nav-home').textContent = d.navHome;
-        document.getElementById('nav-privacy').textContent = d.navPrivacy;
-        document.getElementById('nav-terms').textContent = d.navTerms;
-        document.getElementById('nav-support').textContent = d.navSupport;
-        document.getElementById('nav-imprint').textContent = d.navImprint;
+        document.getElementById("page-title").textContent = d.pageTitle;
+        document.getElementById("page-subtitle").textContent = d.pageSubtitle;
+        document.getElementById("lang-indicator-text").textContent = d.langIndicator;
 
-        document.getElementById('footer-home').textContent = d.footerHome;
-        document.getElementById('footer-privacy').textContent = d.footerPrivacy;
-        document.getElementById('footer-terms').textContent = d.footerTerms;
-        document.getElementById('footer-support').textContent = d.footerSupport;
-        document.getElementById('footer-imprint').textContent = d.footerImprint;
+        document.getElementById("nav-home").textContent = d.navHome;
+        document.getElementById("nav-privacy").textContent = d.navPrivacy;
+        document.getElementById("nav-terms").textContent = d.navTerms;
+        document.getElementById("nav-support").textContent = d.navSupport;
+        document.getElementById("nav-imprint").textContent = d.navImprint;
 
-        const secDe = document.getElementById('sec-de');
-        const secEn = document.getElementById('sec-en');
+        document.getElementById("footer-home").textContent = d.footerHome;
+        document.getElementById("footer-privacy").textContent = d.footerPrivacy;
+        document.getElementById("footer-terms").textContent = d.footerTerms;
+        document.getElementById("footer-support").textContent = d.footerSupport;
+        document.getElementById("footer-imprint").textContent = d.footerImprint;
+        document.getElementById("footer-version-label").textContent = d.footerVersionLabel;
 
-        if (currentLang === 'de') {
-          secDe.classList.remove('hidden');
-          secEn.classList.add('hidden');
+        if (currentLang === "de") {
+          secDe.classList.remove("hidden");
+          secEn.classList.add("hidden");
+          langBtnDe.classList.add("active");
+          langBtnEn.classList.remove("active");
         } else {
-          secEn.classList.remove('hidden');
-          secDe.classList.add('hidden');
+          secEn.classList.remove("hidden");
+          secDe.classList.add("hidden");
+          langBtnEn.classList.add("active");
+          langBtnDe.classList.remove("active");
         }
 
         setQueryParams(
           [
-            'nav-home',
-            'nav-privacy',
-            'nav-terms',
-            'nav-support',
-            'nav-imprint',
-            'footer-home',
-            'footer-privacy',
-            'footer-terms',
-            'footer-support',
-            'footer-imprint'
+            "nav-home",
+            "nav-privacy",
+            "nav-terms",
+            "nav-support",
+            "nav-imprint",
+            "footer-home",
+            "footer-privacy",
+            "footer-terms",
+            "footer-support",
+            "footer-imprint",
+            "legal-privacy-de",
+            "legal-terms-de",
+            "legal-privacy-en",
+            "legal-terms-en"
           ],
           currentLang,
           version
         );
 
         const url = new URL(location.href);
-        url.searchParams.set('lang', currentLang);
-        if (version) url.searchParams.set('v', version);
-        history.replaceState({}, '', url.toString());
+        url.searchParams.set("lang", currentLang);
+        if (version) url.searchParams.set("v", version);
+        history.replaceState({}, "", url.toString());
       }
+
+      langBtnDe.addEventListener("click", () => setLang("de"));
+      langBtnEn.addEventListener("click", () => setLang("en"));
 
       setLang(lang);
 
-      document.getElementById('buy-pro-de').setAttribute('href', '#');
-      document.getElementById('buy-pro-en').setAttribute('href', '#');
+      document.getElementById("buy-pro-de").setAttribute("href", "#");
+      document.getElementById("buy-pro-en").setAttribute("href", "#");
     })();
   </script>
 </body>
