@@ -6,6 +6,7 @@
   <title>Terms / Nutzungsbedingungen – Keystone</title>
   <meta name="color-scheme" content="dark" />
   <meta
+    id="meta-description"
     name="description"
     content="ToDo Business App – Nutzungsbedingungen / Terms of Use."
   />
@@ -146,6 +147,13 @@
       z-index:2;
     }
 
+    .lang-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .lang-indicator{
       display:inline-flex;
       align-items:center;
@@ -166,6 +174,26 @@
       background:linear-gradient(90deg,var(--brand),var(--accent));
       box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
       flex:0 0 auto;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+    }
+
+    .lang-btn{
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(90deg, rgba(33,150,243,.18), rgba(124,58,237,.18));
+      border-color:rgba(255,255,255,.12);
     }
 
     .tabs{
@@ -294,9 +322,16 @@
       </p>
 
       <div class="topline">
-        <div class="lang-indicator">
-          <span class="lang-dot" aria-hidden="true"></span>
-          <span id="lang-indicator-text">Sprache: Deutsch</span>
+        <div class="lang-row">
+          <div class="lang-indicator">
+            <span class="lang-dot" aria-hidden="true"></span>
+            <span id="lang-indicator-text">Sprache: Deutsch</span>
+          </div>
+
+          <div class="lang-switch" aria-label="Language switcher">
+            <button class="lang-btn" id="lang-de" type="button">DE</button>
+            <button class="lang-btn" id="lang-en" type="button">EN</button>
+          </div>
         </div>
 
         <nav class="tabs" aria-label="Quick links">
@@ -511,26 +546,27 @@
 
   <script>
     (function(){
-      document.getElementById('year').textContent = new Date().getFullYear();
-
+      const STORAGE_KEY = "keystone_lang";
       const qp = new URLSearchParams(location.search);
-      const version = qp.get('v') || '1.0.0';
-      const last = qp.get('last') || '2025-01-01';
+      const version = qp.get("v") || "1.0.0";
+      const last = qp.get("last") || "2025-01-01";
+      const validLangs = new Set(["de", "en"]);
 
-      document.getElementById('ver').textContent = version;
-      document.getElementById('last').textContent = last;
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("ver").textContent = version;
+      document.getElementById("last").textContent = last;
 
       function applyParams(href, lang, v, lastValue){
-        const parts = href.split('?');
+        const parts = href.split("?");
         const path = parts[0];
-        const sp = new URLSearchParams(parts[1] || '');
-        sp.set('lang', lang);
+        const sp = new URLSearchParams(parts[1] || "");
+        sp.set("lang", lang);
 
-        if (v) sp.set('v', v);
-        else sp.delete('v');
+        if (v) sp.set("v", v);
+        else sp.delete("v");
 
-        if (lastValue) sp.set('last', lastValue);
-        else sp.delete('last');
+        if (lastValue) sp.set("last", lastValue);
+        else sp.delete("last");
 
         const qs = sp.toString();
         return qs ? `${path}?${qs}` : path;
@@ -540,97 +576,141 @@
         ids.forEach(id => {
           const a = document.getElementById(id);
           if (!a) return;
-          const base = a.getAttribute('href');
-          a.setAttribute('href', applyParams(base, lang, v, lastValue));
+          const base = a.getAttribute("href");
+          if (!base) return;
+          a.setAttribute("href", applyParams(base, lang, v, lastValue));
         });
       }
 
       const dict = {
         de: {
-          pageTitle: 'Terms / Nutzungsbedingungen',
-          lastLabel: 'Letzte Aktualisierung',
-          versionLabel: 'Version',
-          langIndicator: 'Sprache: Deutsch',
-          tabHome: '← Home',
-          tabPrivacy: 'Privacy / Datenschutz',
-          tabSupport: 'Support',
-          tabImprint: 'Impressum',
-          footerHome: 'Home',
-          footerPrivacy: 'Privacy / Datenschutz',
-          footerImprint: 'Impressum',
-          footerSupport: 'Support'
+          docTitle: "Terms / Nutzungsbedingungen – Keystone",
+          metaDescription: "ToDo Business App – Nutzungsbedingungen / Terms of Use.",
+          pageTitle: "Terms / Nutzungsbedingungen",
+          lastLabel: "Letzte Aktualisierung",
+          versionLabel: "Version",
+          langIndicator: "Sprache: Deutsch",
+          tabHome: "← Home",
+          tabPrivacy: "Privacy / Datenschutz",
+          tabSupport: "Support",
+          tabImprint: "Impressum",
+          footerHome: "Home",
+          footerPrivacy: "Privacy / Datenschutz",
+          footerImprint: "Impressum",
+          footerSupport: "Support"
         },
         en: {
-          pageTitle: 'Terms of Use',
-          lastLabel: 'Last update',
-          versionLabel: 'Version',
-          langIndicator: 'Language: English',
-          tabHome: '← Home',
-          tabPrivacy: 'Privacy',
-          tabSupport: 'Support',
-          tabImprint: 'Imprint',
-          footerHome: 'Home',
-          footerPrivacy: 'Privacy',
-          footerImprint: 'Imprint',
-          footerSupport: 'Support'
+          docTitle: "Terms of Use – Keystone",
+          metaDescription: "ToDo Business app – Terms of Use.",
+          pageTitle: "Terms of Use",
+          lastLabel: "Last update",
+          versionLabel: "Version",
+          langIndicator: "Language: English",
+          tabHome: "← Home",
+          tabPrivacy: "Privacy",
+          tabSupport: "Support",
+          tabImprint: "Imprint",
+          footerHome: "Home",
+          footerPrivacy: "Privacy",
+          footerImprint: "Imprint",
+          footerSupport: "Support"
         }
       };
 
-      const urlLang = qp.get('lang');
-      const storedLang = localStorage.getItem('aurevoir_lang');
+      const urlLang = (qp.get("lang") || "").toLowerCase();
+      const storedLang = localStorage.getItem(STORAGE_KEY);
       const browserLang =
-        (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+        (navigator.language || "de").toLowerCase().startsWith("de") ? "de" : "en";
 
-      const lang = (urlLang === 'de' || urlLang === 'en')
+      const lang = validLangs.has(urlLang)
         ? urlLang
-        : (storedLang || browserLang);
+        : (validLangs.has(storedLang) ? storedLang : browserLang);
+
+      const metaDescription = document.getElementById("meta-description");
+      const secDe = document.getElementById("sec-de");
+      const secEn = document.getElementById("sec-en");
+      const langBtnDe = document.getElementById("lang-de");
+      const langBtnEn = document.getElementById("lang-en");
 
       function setLang(currentLang){
         const d = dict[currentLang] || dict.de;
         document.documentElement.lang = currentLang;
-        localStorage.setItem('aurevoir_lang', currentLang);
+        document.title = d.docTitle;
+        localStorage.setItem(STORAGE_KEY, currentLang);
 
-        document.getElementById('page-title').textContent = d.pageTitle;
-        document.getElementById('last-label').textContent = d.lastLabel;
-        document.getElementById('version-label').textContent = d.versionLabel;
-        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
+        if (metaDescription) metaDescription.setAttribute("content", d.metaDescription);
 
-        document.getElementById('tab-home').textContent = d.tabHome;
-        document.getElementById('tab-privacy').textContent = d.tabPrivacy;
-        document.getElementById('tab-support').textContent = d.tabSupport;
-        document.getElementById('tab-imprint').textContent = d.tabImprint;
+        document.getElementById("page-title").textContent = d.pageTitle;
+        document.getElementById("last-label").textContent = d.lastLabel;
+        document.getElementById("version-label").textContent = d.versionLabel;
+        document.getElementById("lang-indicator-text").textContent = d.langIndicator;
 
-        document.getElementById('f-home').textContent = d.footerHome;
-        document.getElementById('f-privacy').textContent = d.footerPrivacy;
-        document.getElementById('f-imprint').textContent = d.footerImprint;
-        document.getElementById('f-support').textContent = d.footerSupport;
+        document.getElementById("tab-home").textContent = d.tabHome;
+        document.getElementById("tab-privacy").textContent = d.tabPrivacy;
+        document.getElementById("tab-support").textContent = d.tabSupport;
+        document.getElementById("tab-imprint").textContent = d.tabImprint;
 
-        const secDe = document.getElementById('sec-de');
-        const secEn = document.getElementById('sec-en');
+        document.getElementById("f-home").textContent = d.footerHome;
+        document.getElementById("f-privacy").textContent = d.footerPrivacy;
+        document.getElementById("f-imprint").textContent = d.footerImprint;
+        document.getElementById("f-support").textContent = d.footerSupport;
 
-        if (currentLang === 'de') {
-          secDe.classList.remove('hidden');
-          secEn.classList.add('hidden');
+        if (currentLang === "de") {
+          secDe.classList.remove("hidden");
+          secEn.classList.add("hidden");
+          langBtnDe.classList.add("active");
+          langBtnEn.classList.remove("active");
         } else {
-          secEn.classList.remove('hidden');
-          secDe.classList.add('hidden');
+          secEn.classList.remove("hidden");
+          secDe.classList.add("hidden");
+          langBtnEn.classList.add("active");
+          langBtnDe.classList.remove("active");
         }
 
         setQueryParams(
-          ['tab-home','tab-privacy','tab-support','tab-imprint','f-home','f-privacy','f-imprint','f-support'],
+          ["tab-home","tab-privacy","tab-support","tab-imprint","f-home","f-privacy","f-imprint","f-support"],
           currentLang,
           version,
           last
         );
 
         const url = new URL(location.href);
-        url.searchParams.set('lang', currentLang);
-        if (version) url.searchParams.set('v', version);
-        if (last) url.searchParams.set('last', last);
-        history.replaceState({}, '', url.toString());
+        url.searchParams.set("lang", currentLang);
+        if (version) url.searchParams.set("v", version);
+        if (last) url.searchParams.set("last", last);
+        history.replaceState({}, "", url.toString());
+      }
+
+      langBtnDe.addEventListener("click", () => setLang("de"));
+      langBtnEn.addEventListener("click", () => setLang("en"));
+
+      // create switch buttons if not already in markup
+      if (!langBtnDe || !langBtnEn) {
+        const switchWrap = document.createElement("div");
+        switchWrap.className = "lang-switch";
+        switchWrap.innerHTML = '<button class="lang-btn" id="lang-de" type="button">DE</button><button class="lang-btn" id="lang-en" type="button">EN</button>';
       }
 
       setLang(lang);
+    })();
+  </script>
+
+  <script>
+    // fallback for missing switch buttons in case markup was changed
+    (function(){
+      if (document.getElementById("lang-de") && document.getElementById("lang-en")) return;
+
+      const langRow = document.querySelector(".topline > div");
+      if (!langRow) return;
+
+      const wrap = document.createElement("div");
+      wrap.className = "lang-switch";
+      wrap.innerHTML = `
+        <button class="lang-btn" id="lang-de" type="button">DE</button>
+        <button class="lang-btn" id="lang-en" type="button">EN</button>
+      `;
+      langRow.appendChild(wrap);
+      location.reload();
     })();
   </script>
 </body>
