@@ -6,6 +6,7 @@
   <title>Support / Kontakt – Keystone</title>
   <meta name="color-scheme" content="dark" />
   <meta
+    id="meta-description"
     name="description"
     content="ToDo Business Support / Kontakt – Hilfe, E-Mail-Vorlage und Kontaktinformationen."
   />
@@ -149,6 +150,13 @@
       z-index:2;
     }
 
+    .lang-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .lang-indicator{
       display:inline-flex;
       align-items:center;
@@ -169,6 +177,26 @@
       background:linear-gradient(90deg,var(--brand),var(--accent));
       box-shadow:0 0 12px color-mix(in oklab, var(--brand) 40%, transparent);
       flex:0 0 auto;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+    }
+
+    .lang-btn{
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(90deg, rgba(33,150,243,.18), rgba(124,58,237,.18));
+      border-color:rgba(255,255,255,.12);
     }
 
     .tabs{
@@ -374,9 +402,16 @@
       </p>
 
       <div class="topline">
-        <div class="lang-indicator">
-          <span class="lang-dot" aria-hidden="true"></span>
-          <span id="lang-indicator-text">Sprache: Deutsch</span>
+        <div class="lang-row">
+          <div class="lang-indicator">
+            <span class="lang-dot" aria-hidden="true"></span>
+            <span id="lang-indicator-text">Sprache: Deutsch</span>
+          </div>
+
+          <div class="lang-switch" aria-label="Language switcher">
+            <button class="lang-btn" id="lang-de" type="button">DE</button>
+            <button class="lang-btn" id="lang-en" type="button">EN</button>
+          </div>
         </div>
 
         <nav class="tabs" aria-label="Quick links">
@@ -402,11 +437,7 @@
         </div>
 
         <div class="cta-row">
-          <a
-            class="btn"
-            id="btn-support-de"
-            href="#"
-          >Support kontaktieren</a>
+          <a class="btn" id="btn-support-de" href="#">Support kontaktieren</a>
           <a class="btn outline" id="btn-feedback-de" href="feedback.html">Feedback senden</a>
         </div>
       </div>
@@ -436,7 +467,7 @@
       <div class="card">
         <h2>E-Mail-Vorlage</h2>
         <p class="muted">Du kannst diesen Text einfach kopieren:</p>
-        <div class="template" id="template-de">Hallo,
+        <div class="template">Hallo,
 
 ich brauche Hilfe bei ToDo Business.
 
@@ -482,11 +513,7 @@ Danke.</div>
         </div>
 
         <div class="cta-row">
-          <a
-            class="btn"
-            id="btn-support-en"
-            href="#"
-          >Contact support</a>
+          <a class="btn" id="btn-support-en" href="#">Contact support</a>
           <a class="btn outline" id="btn-feedback-en" href="feedback.html">Send feedback</a>
         </div>
       </div>
@@ -516,7 +543,7 @@ Danke.</div>
       <div class="card">
         <h2>Email template</h2>
         <p class="muted">You can copy this text:</p>
-        <div class="template" id="template-en">Hello,
+        <div class="template">Hello,
 
 I need help with ToDo Business.
 
@@ -565,21 +592,23 @@ Thank you.</div>
 
   <script>
     (function(){
-      document.getElementById('year').textContent = new Date().getFullYear();
-
+      const STORAGE_KEY = "keystone_lang";
       const qp = new URLSearchParams(location.search);
-      const version = qp.get('v') || '1.0.0';
-      document.getElementById('ver').textContent = version;
+      const version = qp.get("v") || "1.0.0";
+      const validLangs = new Set(["de", "en"]);
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("ver").textContent = version;
 
       function applyParams(href, lang, v){
-        const parts = href.split('?');
+        const parts = href.split("?");
         const path = parts[0];
-        const sp = new URLSearchParams(parts[1] || '');
+        const sp = new URLSearchParams(parts[1] || "");
 
-        sp.set('lang', lang);
+        sp.set("lang", lang);
 
-        if (v) sp.set('v', v);
-        else sp.delete('v');
+        if (v) sp.set("v", v);
+        else sp.delete("v");
 
         const qs = sp.toString();
         return qs ? `${path}?${qs}` : path;
@@ -589,178 +618,196 @@ Thank you.</div>
         ids.forEach(id => {
           const a = document.getElementById(id);
           if (!a) return;
-          const base = a.getAttribute('href');
-          a.setAttribute('href', applyParams(base, lang, v));
+          const base = a.getAttribute("href");
+          if (!base) return;
+          a.setAttribute("href", applyParams(base, lang, v));
         });
       }
 
       function buildSupportMailDe() {
-        const to = 'keystone@aurevoir.de';
+        const to = "keystone@aurevoir.de";
         const subject = `ToDo Business Support v${version}`;
         const body = [
-          'Hallo,',
-          '',
-          'ich brauche Hilfe bei ToDo Business.',
-          '',
-          'Mein Problem:',
-          '[Bitte hier kurz beschreiben]',
-          '',
-          'Gerät:',
-          '[zum Beispiel iPhone / Android]',
-          '',
-          'Betriebssystem:',
-          '[Version]',
-          '',
-          'App-Version:',
+          "Hallo,",
+          "",
+          "ich brauche Hilfe bei ToDo Business.",
+          "",
+          "Mein Problem:",
+          "[Bitte hier kurz beschreiben]",
+          "",
+          "Gerät:",
+          "[zum Beispiel iPhone / Android]",
+          "",
+          "Betriebssystem:",
+          "[Version]",
+          "",
+          "App-Version:",
           version,
-          '',
-          'Schritte zum Problem:',
-          '1.',
-          '2.',
-          '3.',
-          '',
-          'Danke.'
-        ].join('\n');
+          "",
+          "Schritte zum Problem:",
+          "1.",
+          "2.",
+          "3.",
+          "",
+          "Danke."
+        ].join("\\n");
 
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
 
       function buildSupportMailEn() {
-        const to = 'keystone@aurevoir.de';
+        const to = "keystone@aurevoir.de";
         const subject = `ToDo Business Support v${version}`;
         const body = [
-          'Hello,',
-          '',
-          'I need help with ToDo Business.',
-          '',
-          'My issue:',
-          '[Please describe it briefly]',
-          '',
-          'Device:',
-          '[for example iPhone / Android]',
-          '',
-          'Operating system:',
-          '[Version]',
-          '',
-          'App version:',
+          "Hello,",
+          "",
+          "I need help with ToDo Business.",
+          "",
+          "My issue:",
+          "[Please describe it briefly]",
+          "",
+          "Device:",
+          "[for example iPhone / Android]",
+          "",
+          "Operating system:",
+          "[Version]",
+          "",
+          "App version:",
           version,
-          '',
-          'Steps to reproduce:',
-          '1.',
-          '2.',
-          '3.',
-          '',
-          'Thank you.'
-        ].join('\n');
+          "",
+          "Steps to reproduce:",
+          "1.",
+          "2.",
+          "3.",
+          "",
+          "Thank you."
+        ].join("\\n");
 
         return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
 
-      document.getElementById('btn-support-de').setAttribute('href', buildSupportMailDe());
-      document.getElementById('btn-support-en').setAttribute('href', buildSupportMailEn());
+      document.getElementById("btn-support-de").setAttribute("href", buildSupportMailDe());
+      document.getElementById("btn-support-en").setAttribute("href", buildSupportMailEn());
 
       const dict = {
         de: {
-          pageTitle: 'Support / Kontakt',
-          subtitle: 'Hilfe für ToDo Business',
-          versionLabel: 'Version',
-          langIndicator: 'Sprache: Deutsch',
-          tabHome: '← Home',
-          tabPrivacy: 'Datenschutz',
-          tabTerms: 'Nutzungsbedingungen',
-          tabFeedback: 'Feedback',
-          tabImprint: 'Impressum',
-          footerHome: 'Home',
-          footerPrivacy: 'Datenschutz',
-          footerTerms: 'Terms',
-          footerFeedback: 'Feedback',
-          footerImprint: 'Impressum'
+          docTitle: "Support / Kontakt – Keystone",
+          metaDescription: "ToDo Business Support / Kontakt – Hilfe, E-Mail-Vorlage und Kontaktinformationen.",
+          pageTitle: "Support / Kontakt",
+          subtitle: "Hilfe für ToDo Business",
+          versionLabel: "Version",
+          langIndicator: "Sprache: Deutsch",
+          tabHome: "← Home",
+          tabPrivacy: "Datenschutz",
+          tabTerms: "Nutzungsbedingungen",
+          tabFeedback: "Feedback",
+          tabImprint: "Impressum",
+          footerHome: "Home",
+          footerPrivacy: "Datenschutz",
+          footerTerms: "Terms",
+          footerFeedback: "Feedback",
+          footerImprint: "Impressum"
         },
         en: {
-          pageTitle: 'Support / Contact',
-          subtitle: 'Help for ToDo Business',
-          versionLabel: 'Version',
-          langIndicator: 'Language: English',
-          tabHome: '← Home',
-          tabPrivacy: 'Privacy',
-          tabTerms: 'Terms of Use',
-          tabFeedback: 'Feedback',
-          tabImprint: 'Imprint',
-          footerHome: 'Home',
-          footerPrivacy: 'Privacy',
-          footerTerms: 'Terms',
-          footerFeedback: 'Feedback',
-          footerImprint: 'Imprint'
+          docTitle: "Support / Contact – Keystone",
+          metaDescription: "ToDo Business support / contact – help, email template and contact details.",
+          pageTitle: "Support / Contact",
+          subtitle: "Help for ToDo Business",
+          versionLabel: "Version",
+          langIndicator: "Language: English",
+          tabHome: "← Home",
+          tabPrivacy: "Privacy",
+          tabTerms: "Terms of Use",
+          tabFeedback: "Feedback",
+          tabImprint: "Imprint",
+          footerHome: "Home",
+          footerPrivacy: "Privacy",
+          footerTerms: "Terms",
+          footerFeedback: "Feedback",
+          footerImprint: "Imprint"
         }
       };
 
-      const urlLang = qp.get('lang');
-      const storedLang = localStorage.getItem('aurevoir_lang');
+      const urlLang = (qp.get("lang") || "").toLowerCase();
+      const storedLang = localStorage.getItem(STORAGE_KEY);
       const browserLang =
-        (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+        (navigator.language || "de").toLowerCase().startsWith("de") ? "de" : "en";
 
-      const lang = (urlLang === 'de' || urlLang === 'en')
+      const lang = validLangs.has(urlLang)
         ? urlLang
-        : ((storedLang === 'de' || storedLang === 'en') ? storedLang : browserLang);
+        : (validLangs.has(storedLang) ? storedLang : browserLang);
+
+      const metaDescription = document.getElementById("meta-description");
+      const secDe = document.getElementById("sec-de");
+      const secEn = document.getElementById("sec-en");
+      const langBtnDe = document.getElementById("lang-de");
+      const langBtnEn = document.getElementById("lang-en");
 
       function setLang(currentLang){
         const d = dict[currentLang] || dict.de;
 
         document.documentElement.lang = currentLang;
-        localStorage.setItem('aurevoir_lang', currentLang);
+        document.title = d.docTitle;
+        localStorage.setItem(STORAGE_KEY, currentLang);
 
-        document.getElementById('page-title').textContent = d.pageTitle;
-        document.getElementById('subtitle-text').textContent = d.subtitle;
-        document.getElementById('version-label').textContent = d.versionLabel;
-        document.getElementById('lang-indicator-text').textContent = d.langIndicator;
+        if (metaDescription) metaDescription.setAttribute("content", d.metaDescription);
 
-        document.getElementById('tab-home').textContent = d.tabHome;
-        document.getElementById('tab-privacy').textContent = d.tabPrivacy;
-        document.getElementById('tab-terms').textContent = d.tabTerms;
-        document.getElementById('tab-feedback').textContent = d.tabFeedback;
-        document.getElementById('tab-imprint').textContent = d.tabImprint;
+        document.getElementById("page-title").textContent = d.pageTitle;
+        document.getElementById("subtitle-text").textContent = d.subtitle;
+        document.getElementById("version-label").textContent = d.versionLabel;
+        document.getElementById("lang-indicator-text").textContent = d.langIndicator;
 
-        document.getElementById('f-home').textContent = d.footerHome;
-        document.getElementById('f-privacy').textContent = d.footerPrivacy;
-        document.getElementById('f-terms').textContent = d.footerTerms;
-        document.getElementById('f-feedback').textContent = d.footerFeedback;
-        document.getElementById('f-imprint').textContent = d.footerImprint;
+        document.getElementById("tab-home").textContent = d.tabHome;
+        document.getElementById("tab-privacy").textContent = d.tabPrivacy;
+        document.getElementById("tab-terms").textContent = d.tabTerms;
+        document.getElementById("tab-feedback").textContent = d.tabFeedback;
+        document.getElementById("tab-imprint").textContent = d.tabImprint;
 
-        const secDe = document.getElementById('sec-de');
-        const secEn = document.getElementById('sec-en');
+        document.getElementById("f-home").textContent = d.footerHome;
+        document.getElementById("f-privacy").textContent = d.footerPrivacy;
+        document.getElementById("f-terms").textContent = d.footerTerms;
+        document.getElementById("f-feedback").textContent = d.footerFeedback;
+        document.getElementById("f-imprint").textContent = d.footerImprint;
 
-        if (currentLang === 'de') {
-          secDe.classList.remove('hidden');
-          secEn.classList.add('hidden');
+        if (currentLang === "de") {
+          secDe.classList.remove("hidden");
+          secEn.classList.add("hidden");
+          langBtnDe.classList.add("active");
+          langBtnEn.classList.remove("active");
         } else {
-          secEn.classList.remove('hidden');
-          secDe.classList.add('hidden');
+          secEn.classList.remove("hidden");
+          secDe.classList.add("hidden");
+          langBtnEn.classList.add("active");
+          langBtnDe.classList.remove("active");
         }
 
         setQueryParams(
           [
-            'tab-home',
-            'tab-privacy',
-            'tab-terms',
-            'tab-feedback',
-            'tab-imprint',
-            'f-home',
-            'f-privacy',
-            'f-terms',
-            'f-feedback',
-            'f-imprint',
-            'btn-feedback-de',
-            'btn-feedback-en'
+            "tab-home",
+            "tab-privacy",
+            "tab-terms",
+            "tab-feedback",
+            "tab-imprint",
+            "f-home",
+            "f-privacy",
+            "f-terms",
+            "f-feedback",
+            "f-imprint",
+            "btn-feedback-de",
+            "btn-feedback-en"
           ],
           currentLang,
           version
         );
 
         const url = new URL(location.href);
-        url.searchParams.set('lang', currentLang);
-        if (version) url.searchParams.set('v', version);
-        history.replaceState({}, '', url.toString());
+        url.searchParams.set("lang", currentLang);
+        if (version) url.searchParams.set("v", version);
+        history.replaceState({}, "", url.toString());
       }
+
+      langBtnDe.addEventListener("click", () => setLang("de"));
+      langBtnEn.addEventListener("click", () => setLang("en"));
 
       setLang(lang);
     })();
